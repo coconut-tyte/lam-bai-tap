@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hồ Sơ Năng Lực | Nguyễn Quốc Bảo</title>
+    <!-- Tích hợp thư viện Icon FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Khởi tạo biến màu & Font chữ hiện đại */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        
+        :root {
+            --bg-dark: #09090e;
+            --bg-card: rgba(26, 26, 36, 0.7);
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --accent: #00f3ff;
+            --accent-glow: 0 0 15px rgba(0, 243, 255, 0.6);
+            --gradient-text: linear-gradient(90deg, #00f3ff, #bc13fe);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(0, 243, 255, 0.05), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(188, 19, 254, 0.05), transparent 25%);
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.7;
+            scroll-behavior: smooth;
+        }
+
+        /* --- THANH ĐIỀU HƯỚNG --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(9, 9, 14, 0.85);
+            backdrop-filter: blur(10px); /* Hiệu ứng kính mờ */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+            text-shadow: var(--accent-glow);
+        }
+
+        /* --- BỐ CỤC CHÍNH --- */
+        main {
+            max-width: 1100px;
+            margin: 6rem auto 0;
+            padding: 0 2rem;
+        }
+
+        /* Khu vực Hero (Mở đầu) */
+        #hero {
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            animation: slideUp 1s ease-out;
+        }
+
+        #hero h1 {
+            font-size: 4rem;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .typing-text {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--accent);
+            color: #000;
+            box-shadow: var(--accent-glow);
+        }
+
+        /* Khung Section chung */
+        section {
+            padding: 5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            display: inline-block;
+            position: relative;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50%;
+            height: 3px;
+            background: var(--gradient-text);
+        }
+
+        /* Kỹ năng (Dạng Thẻ Tag) */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .skill-tag {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+        }
+
+        .skill-tag:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 243, 255, 0.1);
+        }
+
+        /* Dự án (CSS Grid) */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        article.project-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        article.project-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 243, 255, 0.5);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            margin-top: 0;
+            color: #fff;
+        }
+
+        .tech-stack {
+            font-size: 0.85rem;
+            color: var(--accent);
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+
+        /* Form Liên hệ */
+        .contact-form {
+            display: grid;
+            gap: 1.5rem;
+            max-width: 600px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 15px;
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: #fff;
+            font-family: inherit;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            background: #050508;
+            margin-top: 3rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--text-muted);
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+            transform: scale(1.2);
+        }
+
+        /* Hiệu ứng mượt mà */
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- <header>: Sticky Navbar -->
+    <header>
+        <nav>
+            <div class="logo">BaoNguyen.</div>
+            <ul>
+                <li><a href="#about">Giới thiệu</a></li>
+                <li><a href="#skills">Kỹ năng</a></li>
+                <li><a href="#projects">Dự án</a></li>
+                <li><a href="#contact">Liên hệ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- <main>: Nội dung cốt lõi -->
+    <main>
+
+        <!-- Khối Hero Banner -->
+        <section id="hero">
+            <p style="color: var(--accent); font-weight: 600; letter-spacing: 2px;">XIN CHÀO, TÔI LÀ</p>
+            <h1>Nguyễn Quốc Bảo</h1>
+            <p class="typing-text">Hành trình Xây dựng Giải pháp Số</p>
+            <p style="max-width: 600px; color: var(--text-muted); margin-bottom: 2rem;">
+                Đam mê tối ưu hóa mã nguồn, thiết kế giao diện sáng tạo và triển khai hạ tầng kỹ thuật. Chào mừng bạn đến với không gian cá nhân của tôi!
+            </p>
+            <a href="#projects" class="btn">Xem Dự Án <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i></a>
+        </section>
+
+        <!-- Khối Kỹ Năng -->
+        <section id="skills">
+            <h2>Kỹ Năng Kỹ Thuật</h2>
+            <div class="skills-container">
+                <div class="skill-tag"><i class="fa-brands fa-html5" style="color: #e34f26;"></i> HTML5 / CSS3</div>
+                <div class="skill-tag"><i class="fa-brands fa-js" style="color: #f7df1e;"></i> JavaScript</div>
+                <div class="skill-tag"><i class="fa-brands fa-unity" style="color: #fff;"></i> Unity 3D</div>
+                <div class="skill-tag"><i class="fa-brands fa-google" style="color: #4285F4;"></i> Google Cloud Infrastructure</div>
+                <div class="skill-tag"><i class="fa-solid fa-server" style="color: #bc13fe;"></i> Domain & Hosting Management</div>
+                <div class="skill-tag"><i class="fa-solid fa-brain" style="color: #00f3ff;"></i> Gemini AI Prompting</div>
+            </div>
+        </section>
+
+        <!-- Khối Dự Án -->
+        <section id="projects">
+            <h2>Dự Án Nổi Bật</h2>
+            
+            <div class="project-grid">
+                <!-- Project 1 -->
+                <article class="project-card">
+                    <i class="fa-solid fa-globe fa-2x" style="color: var(--accent); margin-bottom: 1rem;"></i>
+                    <h3>Hạ tầng Linotech Platform</h3>
+                    <p>Thiết lập và quản trị domain `linotech.io.vn` trên môi trường 123HOST. Tích hợp giải pháp bảo mật Google Cloud reCAPTCHA để tối ưu luồng truy cập an toàn.</p>
+                    <div class="tech-stack">Google Cloud • Hosting • Web Sec</div>
+                </article>
+                
+                <!-- Project 2 -->
+                <article class="project-card">
+                    <i class="fa-solid fa-video fa-2x" style="color: var(--accent); margin-bottom: 1rem;"></i>
+                    <h3>Motion & Audio Intro</h3>
+                    <p>Sản xuất đoạn video intro hoạt ảnh tùy chỉnh, kết hợp ánh sáng Neon nhấp nháy và xử lý ghép nối mượt mà 4 phong cách âm nhạc khác nhau.</p>
+                    <div class="tech-stack">Video Editing • Motion Graphics</div>
+                </article>
+
+                <!-- Project 3 -->
+                <article class="project-card">
+                    <i class="fa-brands fa-discord fa-2x" style="color: var(--accent); margin-bottom: 1rem;"></i>
+                    <h3>Cộng Đồng & Game Hub</h3>
+                    <p>Quản lý tương tác, thiết lập bảo mật 2 lớp và xây dựng quy trình tự động hóa trải nghiệm cho các server game trên nền tảng Steam và Roblox.</p>
+                    <div class="tech-stack">Community Auth • Unity • API</div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Khối Liên Hệ -->
+        <section id="contact">
+            <h2>Kết Nối Với Tôi</h2>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">Bạn có dự án thú vị hoặc cần thiết lập hạ tầng web? Hãy gửi tin nhắn cho tôi.</p>
+            
+            <div class="contact-form">
+                <input type="text" placeholder="Tên của bạn..." required>
+                <input type="email" placeholder="Email liên hệ..." required>
+                <textarea rows="5" placeholder="Nội dung tin nhắn..." required></textarea>
+                <button type="submit" class="btn" style="width: 200px; cursor: pointer;">Gửi Tin Nhắn <i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- <footer>: Chân trang -->
+    <footer>
+        <div class="social-links">
+            <a href="#"><i class="fa-brands fa-github"></i></a>
+            <a href="#"><i class="fa-brands fa-discord"></i></a>
+            <a href="#"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+        <p style="color: #666; font-size: 0.9rem;">&copy; 2026 Nguyễn Quốc Bảo. Đã đăng ký bản quyền.</p>
+        <p style="color: #444; font-size: 0.8rem;">Gemini Certified University Student</p>
+    </footer>
+
+</body>
+</html>
