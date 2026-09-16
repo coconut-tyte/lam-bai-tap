@@ -1,79 +1,102 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Cá Nhân</title>
+    <title>Portfolio Cá Nhân - Nguyễn Văn A</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Liên kết file CSS riêng biệt -->
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <!-- Header -->
+    <!-- Header: Flexbox dàn đều Logo và Menu -->
     <header>
-        <h1>Nguyễn Văn A - Lập Trình Viên Web</h1>
-        <nav>
-            <ul>
-                <li><a href="#about">Giới thiệu</a></li>
-                <li><a href="#projects">Dự án</a></li>
-                <li><a href="#contact">Liên hệ</a></li>
-            </ul>
-        </nav>
+        <div class="header-container">
+            <h1>Nguyễn Văn A - Lập Trình Viên Web</h1>
+            <nav>
+                <ul>
+                    <li><a href="#about">Giới thiệu</a></li>
+                    <li><a href="#projects">Dự án</a></li>
+                    <li><a href="#contact">Liên hệ</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
-    <!-- Nội dung chính -->
+
+    <!-- Main: CSS Grid cho bố cục các section tổng thể -->
     <main>
-        <!-- Section: Giới thiệu bản thân -->
+        <!-- 1. Section: Giới thiệu bản thân & Kỹ năng -->
         <section id="about">
             <h2>Giới thiệu bản thân</h2>
-            <p>Tôi là một lập trình viên web nhiệt huyết, chuyên xây dựng và phát triển các trang web cũng như ứng dụng web hiện đại, tối ưu trải nghiệm người dùng và chuẩn SEO. Tôi luôn chủ động học hỏi các công nghệ mới và sẵn sàng tham gia vào các dự án thách thức.</p>
+            <p>Tôi là một lập trình viên web nhiệt huyết, chuyên xây dựng và phát triển các trang web cũng như ứng dụng
+                web hiện đại, tối ưu trải nghiệm người dùng và chuẩn SEO.</p>
+
             <h3>Kỹ năng chính</h3>
+            <!-- Flexbox: flex-wrap: wrap tự động xuống dòng -->
             <ul>
-                <li>HTML5 (Semantic Web, Web Accessibility)</li>
-                <li>CSS3 &amp; Responsive Web Design</li>
+                <li>HTML5</li>
+                <li>CSS3 (Flexbox &amp; Grid)</li>
                 <li>JavaScript (ES6+)</li>
-                <li>Git &amp; Quản lý mã nguồn (GitHub / GitLab)</li>
-                <li>Lập trình Frontend &amp; Tối ưu hiệu năng website</li>
+                <li>Git &amp; GitHub</li>
+                <li>Responsive Web Design</li>
+                <li>Frontend Optimization</li>
             </ul>
         </section>
-        <!-- Section: Danh sách dự án -->
+
+        <!-- 2. Section: Danh sách dự án -->
         <section id="projects">
             <h2>Danh sách dự án</h2>
-            <article>
-                <h3>Trang Web Thương Mại Điện Tử Mini</h3>
-                <p>Website mua sắm trực tuyến với đầy đủ các tính năng cơ bản như hiển thị danh mục sản phẩm, tìm kiếm, giỏ hàng và xử lý đơn hàng.</p>
-                <p><a href="https://example.com/demo-ecommerce" target="_blank" rel="noopener noreferrer">Xem Demo Dự Án</a></p>
-            </article>
-            <article>
-                <h3>Ứng Dụng Quản Lý Công Việc (Task Manager)</h3>
-                <p>Công cụ quản lý công việc và tiến độ hằng ngày, hỗ trợ phân loại theo mức độ ưu tiên, trạng thái hoàn thành và lưu trữ dữ liệu cục bộ.</p>
-                <p><a href="https://example.com/demo-taskmanager" target="_blank" rel="noopener noreferrer">Xem Demo Dự Án</a></p>
-            </article>
+            <!-- CSS Grid: Lưới dự án tự co giãn linh hoạt -->
+            <div class="projects-grid">
+                <article>
+                    <h3>Trang Web Thương Mại Điện Tử Mini</h3>
+                    <p>Website mua sắm trực tuyến với tính năng xem sản phẩm, giỏ hàng và đặt hàng.</p>
+                    <a href="https://example.com/demo-ecommerce" target="_blank" rel="noopener noreferrer">Xem Demo
+                        &rarr;</a>
+                </article>
+                <article>
+                    <h3>Ứng Dụng Quản Lý Công Việc</h3>
+                    <p>Công cụ quản lý công việc và tiến độ cá nhân, phân loại theo độ ưu tiên.</p>
+                    <a href="https://example.com/demo-taskmanager" target="_blank" rel="noopener noreferrer">Xem Demo
+                        &rarr;</a>
+                </article>
+            </div>
         </section>
-        <!-- Section: Liên hệ -->
+
+        <!-- 3. Section: Liên hệ -->
         <section id="contact">
             <h2>Liên hệ</h2>
             <form action="#" method="post">
-                <p>
-                    <label for="name">Họ và tên:</label><br>
-                    <input type="text" id="name" name="name" required placeholder="Nhập họ và tên của bạn">
-                </p>
-                <p>
-                    <label for="email">Email liên hệ:</label><br>
+                <div class="form-group">
+                    <label for="name">Họ và tên:</label>
+                    <input type="text" id="name" name="name" required placeholder="Nhập họ và tên">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email liên hệ:</label>
                     <input type="email" id="email" name="email" required placeholder="email@example.com">
-                </p>
-                <p>
-                    <label for="message">Nội dung tin nhắn:</label><br>
-                    <textarea id="message" name="message" rows="5" cols="40" required placeholder="Nhập nội dung cần liên hệ..."></textarea>
-                </p>
-                <p>
-                    <button type="submit">Gửi liên hệ</button>
-                </p>
+                </div>
+                <div class="form-group">
+                    <label for="message">Nội dung tin nhắn:</label>
+                    <textarea id="message" name="message" rows="4" required
+                        placeholder="Nhập nội dung liên hệ..."></textarea>
+                </div>
+                <button type="submit">Gửi liên hệ</button>
             </form>
         </section>
     </main>
-    <!-- Footer -->
+
+    <!-- Footer: Flexbox căn giữa -->
     <footer>
         <p>&copy; 2026 Nguyễn Văn A. Mọi quyền được bảo lưu.</p>
         <p>
-            Kết nối với tôi qua:
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a> | 
+            Kết nối qua:
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a> |
             <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </p>
     </footer>
