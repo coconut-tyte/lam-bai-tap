@@ -1,0 +1,127 @@
+:root {
+    --gap-size: 24px;
+    --primary-color: #2563eb;
+    --bg-color: #f8fafc;
+    --card-bg: #ffffff;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    padding: 40px 20px;
+}
+
+/* Base Layout */
+.portfolio-container,
+.sidebar,
+.main-content,
+.projects-grid {
+    display: grid;
+    gap: var(--gap-size);
+}
+
+.portfolio-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    grid-template-columns: 320px 1fr;
+}
+
+.projects-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* Card Components */
+.card {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+.project-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 20px;
+    border-radius: 12px;
+    transition: transform 0.2s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-4px);
+}
+
+/* Typography & Details */
+.section-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.profile-header h1 {
+    font-size: 22px;
+    margin-top: 15px;
+}
+
+.profile-header p,
+.about-text,
+.project-card p {
+    color: var(--text-muted);
+}
+
+.profile-header p { 
+    font-size: 14px; 
+    margin-top: 4px; 
+}
+
+.about-text { 
+    font-size: 15px; 
+    line-height: 1.7; 
+}
+
+.project-card h3 { 
+    font-size: 16px; 
+    margin-bottom: 8px; 
+}
+
+.project-card p { 
+    font-size: 14px; 
+    line-height: 1.5; 
+}
+
+/* Badges */
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.skill-badge {
+    background: #eff6ff;
+    color: var(--primary-color);
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    border: 1px solid #dbeafe;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .portfolio-container {
+        grid-template-columns: 1fr;
+    }
+    body {
+        padding: 15px 10px;
+    }
+}
