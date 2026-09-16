@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hồ Sơ Năng Lực | Nguyễn Quốc Bảo 3D</title>
+    <!-- Thư viện Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        
+        :root {
+            /* Theme Tối (Mặc định) */
+            --bg-color: #050508;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.15);
+            --glass-shadow: rgba(0, 0, 0, 0.3);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            
+            /* Màu chủ đạo (Cập nhật động qua JS) */
+            --accent: #00f3ff;
+            --accent-glow: 0 0 20px rgba(0, 243, 255, 0.4);
+            
+            /* Hiệu ứng kính */
+            --glass-blur: 12px;
+        }
+
+        /* Theme Sáng */
+        body.light-mode {
+            --bg-color: #e2e8f0;
+            --glass-bg: rgba(255, 255, 255, 0.25); /* Giảm đục để dịu mắt hơn */
+            --glass-border: rgba(255, 255, 255, 0.4); /* Giảm chói viền kính */
+            --glass-shadow: rgba(0, 0, 0, 0.05); /* Bóng đổ rất nhẹ nhàng */
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        body.light-mode #hero {
+            text-shadow: none; /* Bỏ viền bóng đen quanh chữ gây lem nhem khi ở nền sáng */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.7;
+            overflow-x: hidden;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none; /* Không cản trở click UI */
+        }
+
+        /* Mixin Kính Mờ (Glassmorphism) dùng chung */
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px 0 var(--glass-shadow);
+            border-radius: 16px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            background: rgba(var(--bg-color), 0.3);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--accent);
+            text-shadow: var(--accent-glow);
+            transition: color 0.3s;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        main {
+            /* 1. CSS Grid Bố cục tổng thể */
+            display: grid;
+            grid-template-columns: 1fr;
+            row-gap: 8rem;
+            
+            width: 100%;
+            max-width: 1200px;
+            margin: 8rem auto 4rem;
+            padding: 0 2rem;
+        }
+
+        section {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+            color: var(--text-main);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent);
+            border-radius: 2px;
+            box-shadow: var(--accent-glow);
+            transition: background-color 0.3s;
+        }
+
+        #hero {
+            min-height: 60vh;
+            justify-content: center;
+            /* Đổ bóng chữ để dễ đọc trên nền 3D */
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .greeting {
+            color: var(--accent);
+            font-weight: 600;
+            letter-spacing: 3px;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        #hero h1 {
+            font-size: clamp(3.5rem, 8vw, 5rem);
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(5px);
+            color: var(--text-main);
+            border: 1px solid var(--accent);
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            background: var(--accent);
+            color: #000;
+            box-shadow: var(--accent-glow);
+            transform: translateY(-3px);
+        }
+
+        /* 2. Flexbox cho Danh sách Kỹ năng */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap; /* Tự động xuống dòng */
+            gap: 1.5rem; /* Gap đồng nhất */
+            width: 100%;
+        }
+
+        .skill-tag {
+            padding: 15px 30px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: transform 0.3s ease, border-color 0.3s;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .skill-tag i { font-size: 1.5rem; }
+
+        /* CSS Grid cho Dự Án */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            width: 100%;
+        }
+
+        /* 4. Giao diện Card Glassmorphism */
+        .project-card {
+            padding: 2.5rem 2rem;
+            transition: transform 0.4s ease, border-color 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+        }
+
+        .project-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-card p {
+            flex-grow: 1;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+        
+        .tech-badge {
+            font-size: 0.85rem;
+            padding: 6px 14px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        /* 3. Bảng điều khiển (Control Panel) */
+        .control-panel {
+            position: fixed;
+            right: -300px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 300px;
+            padding: 2rem;
+            border-radius: 20px 0 0 20px;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 9999;
+            border-right: none;
+        }
+
+        .control-panel.open {
+            right: 0;
+        }
+        
+        .panel-toggle {
+            position: absolute;
+            left: -60px;
+            top: 2rem;
+            width: 60px;
+            height: 60px;
+            border-radius: 16px 0 0 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            color: var(--accent);
+            font-size: 1.8rem;
+            border-right: none;
+            transition: color 0.3s;
+        }
+
+        .panel-toggle i {
+            animation: spinGear 6s linear infinite;
+        }
+        @keyframes spinGear { 100% { transform: rotate(360deg); } }
+        
+        .panel-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .panel-section { margin-bottom: 2rem; }
+        .panel-section h4 { 
+            font-size: 0.9rem; 
+            margin-bottom: 1rem; 
+            color: var(--text-muted); 
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Custom Color Picker */
+        .color-picker-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        input[type="color"] {
+            -webkit-appearance: none;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            background: transparent;
+        }
+        input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; }
+        input[type="color"]::-webkit-color-swatch {
+            border: 2px solid var(--glass-border);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        .theme-btn {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid var(--glass-border);
+            color: var(--text-main);
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: 0.3s;
+        }
+        .theme-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+        footer {
+            text-align: center;
+            padding: 4rem 2rem 2rem;
+            margin-top: 4rem;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .social-links a { color: var(--text-muted); font-size: 2rem; transition: 0.3s; }
+        .social-links a:hover { color: var(--accent); transform: translateY(-5px); }
+
+        @media (max-width: 768px) {
+            nav { flex-direction: column; gap: 1rem; padding: 1rem; }
+            main { margin-top: 10rem; row-gap: 5rem; }
+            .control-panel { top: auto; bottom: 0; transform: none; right: -300px; border-radius: 20px 20px 0 0; width: 100%; }
+            .control-panel.open { right: 0; }
+            .panel-toggle { top: -60px; left: calc(50% - 30px); border-radius: 16px 16px 0 0; border: 1px solid var(--glass-border); border-bottom: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 5. Background 3D Canvas -->
+    <div id="canvas-container"></div>
+
+    <header>
+        <nav>
+            <a href="#" class="logo">Bao<span>Nguyen</span>.</a>
+            <ul>
+                <li><a href="#hero">Giới thiệu</a></li>
+                <li><a href="#skills">Kỹ năng</a></li>
+                <li><a href="#projects">Dự án</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section id="hero">
+            <p class="greeting">HI THERE, I'M</p>
+            <h1>Nguyễn Quốc Bảo</h1>
+            <p class="glass-panel" style="padding: 1.5rem; max-width: 700px; font-size: 1.1rem; margin-bottom: 2rem; border-left: 4px solid var(--accent);">
+                Nhà phát triển Web & Cấu trúc Dữ liệu. Đam mê tạo ra các trải nghiệm người dùng đột phá bằng công nghệ hiện đại. Di chuyển chuột hoặc vuốt để xem sự tương tác với Robot Kính lỏng phía sau.
+            </p>
+            <a href="#projects" class="btn">Khám phá Dự án <i class="fa-solid fa-arrow-right"></i></a>
+        </section>
+
+        <!-- Kỹ Năng -->
+        <section id="skills">
+            <h2 class="section-title">Kỹ Năng Cốt Lõi</h2>
+            <div class="skills-container">
+                <div class="skill-tag glass-panel"><i class="fa-brands fa-html5" style="color: #e34f26;"></i> HTML5 & CSS3</div>
+                <div class="skill-tag glass-panel"><i class="fa-brands fa-js" style="color: #f7df1e;"></i> JavaScript ES6+</div>
+                <div class="skill-tag glass-panel"><i class="fa-brands fa-react" style="color: #61DAFB;"></i> React.js</div>
+                <div class="skill-tag glass-panel"><i class="fa-solid fa-cube" style="color: var(--accent);"></i> Three.js (3D)</div>
+                <div class="skill-tag glass-panel"><i class="fa-brands fa-python" style="color: #3776AB;"></i> Python</div>
+                <div class="skill-tag glass-panel"><i class="fa-solid fa-microchip" style="color: #00979D;"></i> IoT & ESP32</div>
+            </div>
+        </section>
+
+        <!-- Dự Án -->
+        <section id="projects">
+            <h2 class="section-title">Dự Án Nổi Bật</h2>
+            <div class="project-grid">
+                <article class="project-card glass-panel">
+                    <i class="fa-solid fa-vr-cardboard project-icon"></i>
+                    <h3>Không gian Web 3D</h3>
+                    <p>Ứng dụng Three.js và WebGL để tạo trải nghiệm tương tác 3D mượt mà trên trình duyệt với vật liệu PBR cao cấp.</p>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Three.js</span>
+                        <span class="tech-badge">WebGL</span>
+                    </div>
+                </article>
+                
+                <article class="project-card glass-panel">
+                    <i class="fa-solid fa-server project-icon"></i>
+                    <h3>Hệ thống Quản lý IoT</h3>
+                    <p>Kết nối vi điều khiển ESP32 với giao diện Web thời gian thực. Gửi và nhận tín hiệu điều khiển siêu tốc độ qua WebSocket.</p>
+                    <div class="tech-stack">
+                        <span class="tech-badge">C++</span>
+                        <span class="tech-badge">ESP32</span>
+                        <span class="tech-badge">WebSocket</span>
+                    </div>
+                </article>
+
+                <article class="project-card glass-panel">
+                    <i class="fa-solid fa-wand-magic-sparkles project-icon"></i>
+                    <h3>Giao diện Glassmorphism</h3>
+                    <p>Xây dựng hệ thống thiết kế linh hoạt với CSS Grid, Flexbox và hiệu ứng kính mờ (Liquid Glass) thẩm mỹ cao.</p>
+                    <div class="tech-stack">
+                        <span class="tech-badge">CSS Grid</span>
+                        <span class="tech-badge">UI/UX</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="#"><i class="fa-brands fa-github"></i></a>
+            <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="#"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+        <p style="color: var(--text-muted);">&copy; 2026 Nguyễn Quốc Bảo. Lập trình với ❤️ và WebGL.</p>
+    </footer>
+
+    <div class="control-panel glass-panel" id="control-panel">
+        <div class="panel-toggle glass-panel" id="panel-toggle" title="Settings">
+            <i class="fa-solid fa-gear"></i>
+        </div>
+        
+        <div class="panel-title">
+            <i class="fa-solid fa-sliders"></i> Tùy Chỉnh UI & 3D
+        </div>
+        
+        <div class="panel-section">
+            <h4>Chế Độ Hiển Thị</h4>
+            <button class="theme-btn" id="mode-toggle">
+                <i class="fa-solid fa-sun"></i> <span>Chế độ Sáng</span>
+            </button>
+        </div>
+
+        <div class="panel-section">
+            <h4>Màu Kính / Ánh Sáng 3D</h4>
+            <div class="color-picker-container">
+                <input type="color" id="color-picker" value="#00f3ff">
+                <span style="font-size: 0.9rem; color: var(--text-muted);">Chọn màu để đổi màu Robot & Đèn</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tích hợp Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <script>
+        // --- 1. LÔ-GIC UI VÀ BẢNG ĐIỀU KHIỂN ---
+        const panel = document.getElementById('control-panel');
+        const toggleBtn = document.getElementById('panel-toggle');
+        const modeBtn = document.getElementById('mode-toggle');
+        const colorPicker = document.getElementById('color-picker');
+        const root = document.documentElement;
+
+        // Bật/Tắt Panel
+        toggleBtn.addEventListener('click', () => panel.classList.toggle('open'));
+
+        // Chuyển chế độ Sáng/Tối
+        modeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            if (document.body.classList.contains('light-mode')) {
+                modeBtn.innerHTML = '<i class="fa-solid fa-moon"></i> <span>Chế độ Tối</span>';
+            } else {
+                modeBtn.innerHTML = '<i class="fa-solid fa-sun"></i> <span>Chế độ Sáng</span>';
+            }
+        });
+
+        // --- 2. HỆ THỐNG THREE.JS (MÔI TRƯỜNG & ROBOT GLASS) ---
+        const container = document.getElementById('canvas-container');
+        const scene = new THREE.Scene();
+        // Để render trong suốt, nhìn thấy background HTML
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+        
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        container.appendChild(renderer.domElement);
+
+        camera.position.z = 15;
+
+        // Ánh sáng (Lighting)
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+        scene.add(ambientLight);
+
+        // Đèn chiếu chính (Màu trắng để tạo viền bóng cho kính)
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 1.5);
+        directionalLight.position.set(5, 10, 7);
+        scene.add(directionalLight);
+
+        // 8. ĐÈN ĐIỂM ĐỔI MÀU (PointLight đồng bộ với Control Panel)
+        const accentLight = new THREE.PointLight(0x00f3ff, 5, 50);
+        accentLight.position.set(-5, 0, 5);
+        scene.add(accentLight);
+        
+        // Đèn phụ phía sau để kính lỏng khúc xạ đẹp hơn
+        const backLight = new THREE.PointLight(0xff00ff, 3, 50);
+        backLight.position.set(5, 5, -10);
+        scene.add(backLight);
+
+        // Tạo vật thể lơ lửng phía sau để Robot có cái để "khúc xạ" (Refraction)
+        const bgGeo = new THREE.IcosahedronGeometry(2, 1);
+        const bgMat = new THREE.MeshStandardMaterial({ color: 0x333344, wireframe: true });
+        const bgMesh1 = new THREE.Mesh(bgGeo, bgMat);
+        bgMesh1.position.set(-8, 5, -5);
+        scene.add(bgMesh1);
+
+        const bgMesh2 = new THREE.Mesh(bgGeo, bgMat);
+        bgMesh2.position.set(8, -5, -8);
+        scene.add(bgMesh2);
+
+        // 7. VẬT LIỆU LIQUID GLASS (MeshPhysicalMaterial)
+        const glassMaterial = new THREE.MeshPhysicalMaterial({
+            color: 0xffffff,
+            metalness: 0.1,
+            roughness: 0.05,       // Bề mặt trơn láng
+            transmission: 1.0,     // Kính trong suốt 100%
+            ior: 1.5,              // Chiết suất của kính
+            thickness: 2.0,        // Độ dày để tạo khúc xạ
+            specularIntensity: 1.0,
+            transparent: true,
+            side: THREE.DoubleSide
+        });
+
+        // 6. TẠO HÌNH ROBOT BẰNG CÁC KHỐI CƠ BẢN
+        const robotGroup = new THREE.Group();
+
+        // --- CẤU TRÚC LẠI ĐẦU ROBOT ĐỂ CÓ THỂ QUAY THEO CHUỘT ---
+        const headGroup = new THREE.Group();
+        headGroup.position.y = 3; // Đặt tâm xoay ở cổ
+        robotGroup.add(headGroup);
+
+        // Đầu Robot (Khối cầu)
+        const headGeo = new THREE.SphereGeometry(1.5, 32, 32);
+        const head = new THREE.Mesh(headGeo, glassMaterial);
+        headGroup.add(head);
+
+        // Mắt Robot (Khối cầu nhỏ, màu đen)
+        const eyeMat = new THREE.MeshStandardMaterial({ color: 0x000000, roughness: 0 });
+        const leftEye = new THREE.Mesh(new THREE.SphereGeometry(0.3, 16, 16), eyeMat);
+        leftEye.position.set(-0.5, 0.2, 1.3); // Tọa độ Y giờ tính từ tâm headGroup
+        const rightEye = new THREE.Mesh(new THREE.SphereGeometry(0.3, 16, 16), eyeMat);
+        rightEye.position.set(0.5, 0.2, 1.3);
+        headGroup.add(leftEye, rightEye);
+
+        // Thân Robot (Khối hộp bo góc - dùng BoxGeometry tạm)
+        const bodyGeo = new THREE.BoxGeometry(3, 4, 2);
+        const body = new THREE.Mesh(bodyGeo, glassMaterial);
+        robotGroup.add(body);
+
+        // Cánh tay trái & phải
+        const armGeo = new THREE.CylinderGeometry(0.5, 0.5, 3, 16);
+        const leftArm = new THREE.Mesh(armGeo, glassMaterial);
+        leftArm.position.set(-2.2, 0.5, 0);
+        leftArm.rotation.z = Math.PI / 8;
+        
+        const rightArm = new THREE.Mesh(armGeo, glassMaterial);
+        rightArm.position.set(2.2, 0.5, 0);
+        rightArm.rotation.z = -Math.PI / 8;
+        
+        robotGroup.add(leftArm, rightArm);
+
+        // Thêm Robot vào Scene
+        scene.add(robotGroup);
+        // Đặt vị trí ban đầu lệch sang phải một chút để nhường chỗ cho text
+        robotGroup.position.x = 4;
+
+        // --- SỰ KIỆN THAY ĐỔI MÀU (ĐỒNG BỘ UI & 3D) ---
+        colorPicker.addEventListener('input', (e) => {
+            const hexColor = e.target.value;
+            
+            // 1. Đổi biến CSS cho giao diện HTML
+            root.style.setProperty('--accent', hexColor);
+            
+            // 2. Chuyển HEX sang RGB để làm Glow CSS
+            const r = parseInt(hexColor.substr(1,2), 16);
+            const g = parseInt(hexColor.substr(3,2), 16);
+            const b = parseInt(hexColor.substr(5,2), 16);
+            root.style.setProperty('--accent-glow', `0 0 20px rgba(${r}, ${g}, ${b}, 0.5)`);
+
+            // 3. Đổi màu ánh sáng đèn trong Three.js (Robot sẽ tự khúc xạ màu này)
+            accentLight.color.set(hexColor);
+        });
+
+        // --- HỆ THỐNG TƯƠNG TÁC CHUỘT & RAYCASTER ---
+        let mouseX = 0;
+        let mouseY = 0;
+        let targetX = 0;
+        let targetY = 0;
+        
+        const raycaster = new THREE.Raycaster();
+        const mouseNormalized = new THREE.Vector2();
+        
+        // Máy trạng thái (State machine) cho các hành động
+        let robotAction = 'idle'; // 'idle', 'wave', 'spin', 'nod'
+        let actionTimer = 0;
+        
+        document.addEventListener('mousemove', (event) => {
+            mouseX = (event.clientX - window.innerWidth / 2);
+            mouseY = (event.clientY - window.innerHeight / 2);
+            
+            // Tọa độ chuẩn hóa cho Raycaster (-1 đến +1)
+            mouseNormalized.x = (event.clientX / window.innerWidth) * 2 - 1;
+            mouseNormalized.y = -(event.clientY / window.innerHeight) * 2 + 1;
+            
+            // Hiệu ứng Hover: Đổi con trỏ chuột khi trỏ vào Robot
+            raycaster.setFromCamera(mouseNormalized, camera);
+            const intersects = raycaster.intersectObjects(robotGroup.children, true);
+            if (intersects.length > 0) {
+                document.body.style.cursor = 'pointer';
+            } else {
+                document.body.style.cursor = 'default';
+            }
+        });
+
+        // Xử lý khi Click vào Robot
+        document.addEventListener('click', () => {
+            if (robotAction !== 'idle') return; // Đang làm hành động khác thì không đè lệnh mới
+            
+            raycaster.setFromCamera(mouseNormalized, camera);
+            const intersects = raycaster.intersectObjects(robotGroup.children, true);
+            
+            if (intersects.length > 0) {
+                // Random 1 trong 3 hành động
+                const rand = Math.random();
+                if (rand < 0.33) robotAction = 'wave';
+                else if (rand < 0.66) robotAction = 'spin';
+                else robotAction = 'nod';
+                
+                actionTimer = 0; // Reset đồng hồ hành động
+                
+                // Hiệu ứng nháy đèn lóa lên khi bị click
+                const currentIntensity = accentLight.intensity;
+                accentLight.intensity = currentIntensity * 3; 
+                setTimeout(() => { accentLight.intensity = currentIntensity; }, 150);
+            }
+        });
+
+        // --- VÒNG LẶP ANIMATION ---
+        const clock = new THREE.Clock();
+
+        function animate() {
+            requestAnimationFrame(animate);
+            const time = clock.getElapsedTime();
+
+            // 1. Robot lơ lửng và di chuyển ngẫu nhiên
+            const autoFloatY = Math.sin(time * 1.5) * 1.5;
+            const autoFloatX = Math.cos(time * 0.8) * 2;
+            
+            // Tính toán vị trí mục tiêu dựa trên chuột + tự động
+            targetX = mouseX * 0.005 + 4 + autoFloatX;
+            targetY = -mouseY * 0.005 + autoFloatY;
+
+            // Nội suy (Lerp) di chuyển mượt mà
+            robotGroup.position.x += (targetX - robotGroup.position.x) * 0.05;
+            robotGroup.position.y += (targetY - robotGroup.position.y) * 0.05;
+
+            // --- XỬ LÝ HÀNH ĐỘNG CỦA ROBOT (ACTIONS) ---
+            if (robotAction === 'wave') {
+                // Vẫy tay chào
+                actionTimer += 0.05;
+                rightArm.rotation.z = -Math.PI / 1.2; // Giơ tay cao lên
+                rightArm.rotation.x = Math.sin(actionTimer * 15) * 0.6; // Vẫy tới lui
+                
+                if (actionTimer > Math.PI) robotAction = 'idle'; // Xong thì về lại nhàn rỗi
+
+            } else if (robotAction === 'spin') {
+                // Xoay 360 độ
+                actionTimer += 0.05;
+                robotGroup.rotation.y += 0.3; // Quay nhanh theo trục Y
+                
+                if (actionTimer > Math.PI * 2) {
+                    robotGroup.rotation.y = 0; // Trả về 0 để không bị lệch trục sau này
+                    robotAction = 'idle';
+                }
+
+            } else if (robotAction === 'nod') {
+                // Gật đầu đồng ý
+                actionTimer += 0.1;
+                headGroup.rotation.x = Math.sin(actionTimer * 8) * 0.4;
+                
+                if (actionTimer > Math.PI * 2) {
+                    headGroup.rotation.x = 0;
+                    robotAction = 'idle';
+                }
+
+            } else {
+                // --- TRẠNG THÁI IDLE (Nhàn rỗi mặc định) ---
+                // Xoay Robot nhẹ nhàng toàn thân
+                robotGroup.rotation.y = Math.sin(time * 0.5) * 0.5 + (mouseX * 0.001);
+                robotGroup.rotation.x = Math.sin(time * 0.7) * 0.2 + (mouseY * 0.001);
+
+                // Chuyển động cánh tay lắt lư tự nhiên
+                leftArm.rotation.x = Math.sin(time * 3) * 0.2;
+                rightArm.rotation.x = Math.sin(time * 3 + Math.PI) * 0.2;
+                
+                // Mượt mà trả 2 tay về tư thế thả lỏng xui xuống (phòng khi vừa vẫy tay xong)
+                leftArm.rotation.z += (Math.PI / 8 - leftArm.rotation.z) * 0.1;
+                rightArm.rotation.z += (-Math.PI / 8 - rightArm.rotation.z) * 0.1;
+                
+                // Đầu và mắt luôn hướng nhìn theo con trỏ chuột (Head Tracking)
+                const targetHeadRotY = mouseX * 0.002;
+                const targetHeadRotX = mouseY * 0.002;
+                headGroup.rotation.y += (targetHeadRotY - headGroup.rotation.y) * 0.1;
+                headGroup.rotation.x += (targetHeadRotX - headGroup.rotation.x) * 0.1;
+            }
+
+            // Xoay vật thể nền
+            bgMesh1.rotation.x += 0.005;
+            bgMesh1.rotation.y += 0.01;
+            bgMesh2.rotation.x -= 0.005;
+            bgMesh2.rotation.y -= 0.01;
+
+            renderer.render(scene, camera);
+        }
+
+        // Xử lý khi thay đổi kích thước cửa sổ
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Bắt đầu Animation
+        animate();
+    </script>
+</body>
+</html>
