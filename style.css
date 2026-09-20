@@ -121,8 +121,8 @@ nav a {
 }
 
 nav a:hover {
-    color: var(--primary);
-    background: rgba(56, 189, 248, 0.1);
+    color: var(--text-secondary);
+    background: transparent;
     text-decoration: none;
 }
 
@@ -141,11 +141,6 @@ section {
     border: 1px solid var(--border-color);
     border-radius: var(--radius-md);
     padding: 1.75rem;
-    transition: var(--transition);
-}
-
-section:hover {
-    border-color: var(--border-hover);
 }
 
 /* 6. KỸ NĂNG: FLEXBOX TỰ XUỐNG DÒNG (FLEX-WRAP) */
@@ -165,13 +160,6 @@ section:hover {
     border-radius: 999px;
     font-size: 0.9rem;
     font-weight: 500;
-    transition: var(--transition);
-}
-
-#about ul li:hover {
-    background: var(--primary);
-    color: var(--bg-body);
-    transform: translateY(-2px);
 }
 
 /* 7. DỰ ÁN: CSS GRID TỰ CO GIÃN THEO MÀN HÌNH */
@@ -190,12 +178,6 @@ article {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: var(--transition);
-}
-
-article:hover {
-    border-color: var(--primary);
-    transform: translateY(-2px);
 }
 
 article h3 {
@@ -207,6 +189,11 @@ article a {
     font-weight: 600;
     margin-top: 0.5rem;
     display: inline-block;
+}
+
+article a:hover {
+    color: var(--primary);
+    text-decoration: none;
 }
 
 /* 8. FORM LIÊN HỆ (CSS GRID & FORM CONTROLS) */
