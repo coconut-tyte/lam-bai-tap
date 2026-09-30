@@ -125,3 +125,16 @@ body {
         padding: 15px 10px;
     }
 }
+:root {
+  /* Màu chủ đạo & Màu phụ */
+  --color-primary: #2563eb;       /* Xanh dương chủ đạo (Royal Blue) */
+  --color-secondary: #0ea5e9;     /* Xanh ngọc phụ (Sky Blue) */
+
+  /* 3 mức xám (từ nhạt đến đậm) */
+  --color-gray-100: #f3f4f6;      /* Xám rất nhạt (Dùng cho nền phụ, hover) */
+  --color-gray-200: #9ca3af;      /* Xám trung bình (Dùng cho đường viền, border) */
+  --color-gray-300: #374151;      /* Xám đậm (Dùng cho văn bản, text chính) */
+
+  /* Màu nền tổng thể */
+  --color-background: #ffffff;    /* Trắng tinh khiết */
+}

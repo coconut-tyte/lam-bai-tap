@@ -1,0 +1,137 @@
+:root {
+  /* Màu chủ đạo & Màu phụ */
+  --color-primary: #2563eb;       /* Xanh dương chủ đạo (Royal Blue) */
+  --color-secondary: #0ea5e9;     /* Xanh ngọc phụ (Sky Blue) */
+
+  /* 3 mức xám (từ nhạt đến đậm) */
+  --color-gray-100: #f3f4f6;      /* Xám rất nhạt (Dùng cho nền phụ, hover) */
+  --color-gray-200: #9ca3af;      /* Xám trung bình (Dùng cho đường viền, border) */
+  --color-gray-300: #374151;      /* Xám đậm (Dùng cho văn bản, text chính) */
+
+  /* Màu nền tổng thể & Các biến bổ trợ layout */
+  --color-background: #ffffff;    /* Trắng tinh khiết */
+  --gap-size: 24px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-gray-300);
+  padding: 40px 20px;
+}
+
+/* Base Layout */
+.portfolio-container,
+.sidebar,
+.main-content,
+.projects-grid {
+  display: grid;
+  gap: var(--gap-size);
+}
+
+.portfolio-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  grid-template-columns: 320px 1fr;
+}
+
+.projects-grid {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* Card Components */
+.card {
+  background: var(--color-background);
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  border: 1px solid var(--color-gray-100);
+}
+
+.project-card {
+  background: var(--color-gray-100);
+  border: 1px solid var(--color-gray-200);
+  padding: 20px;
+  border-radius: 12px;
+  transition: transform 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Typography & Details */
+.section-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-primary);
+}
+
+.profile-header h1 {
+  font-size: 22px;
+  margin-top: 15px;
+  color: var(--color-gray-300);
+}
+
+.profile-header p,
+.about-text,
+.project-card p {
+  color: var(--color-gray-200);
+}
+
+.profile-header p { 
+  font-size: 14px; 
+  margin-top: 4px; 
+}
+
+.about-text { 
+  font-size: 15px; 
+  line-height: 1.7; 
+}
+
+.project-card h3 { 
+  font-size: 16px; 
+  margin-bottom: 8px; 
+  color: var(--color-gray-300);
+}
+
+.project-card p { 
+  font-size: 14px; 
+  line-height: 1.5; 
+}
+
+/* Badges */
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.skill-badge {
+  background: var(--color-gray-100);
+  color: var(--color-primary);
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid var(--color-gray-200);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .portfolio-container {
+    grid-template-columns: 1fr;
+  }
+  body {
+    padding: 15px 10px;
+  }
+}
