@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="vi">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Cá Nhân - Nguyễn Văn A</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Liên kết file CSS riêng biệt -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Grid cho bố cục toàn trang */
+        body {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: auto 1fr auto;
+            gap: 1.5rem;
+        }
+
+        header,
+        footer {
+            grid-column: 1 / -1;
+        }
+
+        /* Main Content và Sidebar */
+        main {
+            display: grid;
+            grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr);
+            gap: 1.5rem;
+        }
+
+        main > section:not(.sidebar) {
+            grid-column: 1;
+        }
+
+        main > .sidebar {
+            grid-column: 2;
+            grid-row: 1 / span 2;
+            align-self: start;
+        }
+
+        /* Danh sách kỹ năng tự xuống dòng */
+        #about ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 0;
+        }
+
+        @media (max-width: 640px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+
+            main > section:not(.sidebar),
+            main > .sidebar {
+                grid-column: 1;
+                grid-row: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header: Flexbox dàn đều Logo và Menu -->
+    <header>
+        <div class="header-container">
+            <h1>Nguyễn Văn A - Lập Trình Viên Web</h1>
+            <nav>
+                <ul>
+                    <li><a href="#about">Giới thiệu</a></li>
+                    <li><a href="#projects">Dự án</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main: CSS Grid cho bố cục các section tổng thể -->
+    <main>
+        <!-- 1. Section: Giới thiệu bản thân & Kỹ năng -->
+        <section id="about">
+            <h2>Giới thiệu bản thân</h2>
+            <p>Tôi là một lập trình viên web nhiệt huyết, chuyên xây dựng và phát triển các trang web cũng như ứng dụng
+                web hiện đại, tối ưu trải nghiệm người dùng và chuẩn SEO.</p>
+
+            <h3>Kỹ năng chính</h3>
+            <!-- Flexbox: flex-wrap: wrap tự động xuống dòng -->
+            <ul>
+                <li>HTML5</li>
+                <li>CSS3 (Flexbox &amp; Grid)</li>
+                <li>JavaScript (ES6+)</li>
+                <li>Git &amp; GitHub</li>
+                <li>Responsive Web Design</li>
+                <li>Frontend Optimization</li>
+            </ul>
+        </section>
+
+        <!-- 2. Section: Danh sách dự án -->
+        <section id="projects">
+            <h2>Danh sách dự án</h2>
+            <!-- CSS Grid: Lưới dự án tự co giãn linh hoạt -->
+            <div class="projects-grid">
+                <article>
+                    <h3>Trang Web Thương Mại Điện Tử Mini</h3>
+                    <p>Website mua sắm trực tuyến với tính năng xem sản phẩm, giỏ hàng và đặt hàng.</p>
+                    <a href="https://example.com/demo-ecommerce" target="_blank" rel="noopener noreferrer">Xem Demo
+                        &rarr;</a>
+                </article>
+                <article>
+                    <h3>Ứng Dụng Quản Lý Công Việc</h3>
+                    <p>Công cụ quản lý công việc và tiến độ cá nhân, phân loại theo độ ưu tiên.</p>
+                    <a href="https://example.com/demo-taskmanager" target="_blank" rel="noopener noreferrer">Xem Demo
+                        &rarr;</a>
+                </article>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer: Flexbox căn giữa -->
+    <footer>
+        <p>&copy; 2026 Nguyễn Văn A. Mọi quyền được bảo lưu.</p>
+        <p>
+            Kết nối qua:
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a> |
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </p>
+    </footer>
+</body>
+</html>

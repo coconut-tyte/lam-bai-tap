@@ -1,0 +1,125 @@
+/* ==========================================================================
+   HĐ 4: DESIGN SYSTEM REFACTORING (SỬ DỤNG CSS VARIABLES TẠI :ROOT)
+   ========================================================================== */
+
+   :root {
+    /* --- 1. MÃ MÀU (COLOR TOKENS) --- */
+    --color-primary: #2855a6;        /* Màu xanh chủ đạo */
+    --color-primary-dark: #243047;   /* Màu xanh đậm / trạng thái Hover */
+    --color-text-primary: #243047;   /* Màu chữ chính */
+    --color-text-secondary: #52617a; /* Màu chữ phụ / mô tả */
+    --color-bg-body: #f3f6fb;        /* Màu nền trang */
+    --color-bg-surface: #ffffff;     /* Màu nền thẻ, header, footer */
+    --color-border: #dce4f0;         /* Màu đường viền */
+  
+    /* --- 2. HỆ THỐNG KHOẢNG CÁCH (SPACING TOKENS) --- */
+    --space-xs: 12px;                /* Khoảng cách nhỏ (Margin/Padding) */
+    --space-sm: 16px;                /* Khoảng cách vừa (Gap grid/Padding nút) */
+    --space-md: 24px;                /* Khoảng cách chuẩn (Padding card/Section gap) */
+    --space-lg: 32px;                /* Khoảng cách lớn (Header/Margin section) */
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+    color: var(--color-text-primary);
+    background-color: var(--color-bg-body);
+  }
+  
+  .container {
+    width: min(100% - var(--space-lg), 900px);
+    margin: 0 auto;
+  }
+  
+  .site-header {
+    padding: var(--space-lg) 0;
+    color: var(--color-bg-surface);
+    background-color: var(--color-primary);
+  }
+  
+  .site-header h1 {
+    margin: 0 0 var(--space-xs);
+    font-size: 2rem;
+  }
+  
+  .site-header p {
+    margin: 0;
+  }
+  
+  .site-header .eyebrow {
+    margin: 0 0 var(--space-xs);
+    font-weight: bold;
+  }
+  
+  .intro {
+    margin: var(--space-lg) 0 var(--space-md);
+  }
+  
+  .intro h2,
+  .note h2 {
+    margin: 0 0 var(--space-xs);
+    color: var(--color-primary);
+  }
+  
+  .intro p,
+  .note p {
+    margin: 0;
+    color: var(--color-text-secondary);
+  }
+  
+  .activity-list {
+    display: grid;
+    gap: var(--space-sm);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  }
+  
+  .activity-card {
+    padding: var(--space-md);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    background-color: var(--color-bg-surface);
+  }
+  
+  .activity-card h3 {
+    margin: 0 0 var(--space-xs);
+    color: var(--color-primary);
+  }
+  
+  .activity-card p {
+    margin: 0 0 var(--space-md);
+    color: var(--color-text-secondary);
+  }
+  
+  .action-link {
+    display: inline-block;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: 6px;
+    color: var(--color-bg-surface);
+    background-color: var(--color-primary);
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .action-link:hover,
+  .action-link:focus-visible {
+    background-color: var(--color-primary-dark);
+  }
+  
+  .note {
+    margin: var(--space-md) 0 var(--space-lg);
+    padding: var(--space-md);
+    border-left: 4px solid var(--color-primary);
+    border-radius: 6px;
+    background-color: var(--color-bg-surface);
+  }
+  
+  .site-footer {
+    padding: var(--space-md) 0;
+    color: var(--color-text-secondary);
+    background-color: var(--color-bg-surface);
+  }

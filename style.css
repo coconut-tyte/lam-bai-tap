@@ -1,0 +1,350 @@
+/* ==========================================================================
+   PORTFOLIO STYLESHEET (BAO GỒM HĐ 1, HĐ 2 & HĐ 3)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   [HĐ 1] BẢNG MÀU THÔNG MINH (CSS VARIABLES TẠI :ROOT)
+   -------------------------------------------------------------------------- */
+:root {
+    --primary-color: #38bdf8;   /* Màu chủ đạo: Xanh lam sáng */
+    --secondary-color: #818cf8; /* Màu phụ: Tím nhạt */
+    
+    --gray-light: #1e293b;      /* Xám nhạt: Nền cho khung/section */
+    --gray-medium: #94a3b8;     /* Xám vừa: Chữ phụ, mô tả, label */
+    --gray-dark: #f8fafc;       /* Xám đậm/Sáng: Chữ chính nổi bật */
+    
+    --bg-color: #0f172a;        /* Màu nền toàn trang */
+
+    --primary-gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    --bg-tag: rgba(56, 189, 248, 0.12);
+    --border-color: rgba(255, 255, 255, 0.08);
+
+    --gap-sm: 0.75rem;
+    --gap: 1.5rem;
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --transition: 0.2s ease;
+}
+
+/* --------------------------------------------------------------------------
+   RESET & BỐ CỤC TOÀN TRANG
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--gray-dark);
+    line-height: 1.6;
+    min-height: 100vh;
+    
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: var(--gap);
+}
+
+/* TYPOGRAPHY & LINKS */
+h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--gray-dark);
+}
+
+h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin: 1rem 0 0.5rem;
+}
+
+p {
+    color: var(--gray-medium);
+    margin-bottom: 0.75rem;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* HEADER & NAVBAR */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(15, 23, 42, 0.9);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 1.5rem;
+}
+
+.header-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--gap);
+}
+
+header h1 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: var(--gap);
+    align-items: center;
+}
+
+nav a {
+    color: var(--gray-medium);
+    font-weight: 500;
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--radius-sm);
+}
+
+nav a:hover {
+    color: var(--primary-color);
+    background: transparent;
+    text-decoration: none;
+}
+
+/* MAIN LAYOUT */
+main {
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: grid;
+    gap: var(--gap);
+}
+
+section {
+    background: var(--gray-light);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 1.75rem;
+}
+
+/* --------------------------------------------------------------------------
+   [HĐ 2] BỐ CỤC PORTFOLIO 2 CỘT MẶC ĐỊNH TRÊN DESKTOP
+   -------------------------------------------------------------------------- */
+.portfolio-layout {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: var(--gap);
+}
+
+/* --------------------------------------------------------------------------
+   [HĐ 3] BREAKPOINT CHALLENGE: KHU VỰC "DỊCH VỤ"
+   Mặc định trên Desktop: 4 Cột
+   -------------------------------------------------------------------------- */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);  /* 4 Cột trên Desktop */
+    gap: var(--gap);
+    margin-top: 1rem;
+}
+
+.service-card {
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 1.25rem;
+    transition: var(--transition);
+}
+
+.service-card:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+.service-card h3 {
+    margin-top: 0;
+    color: var(--gray-dark);
+}
+
+/* KỸ NĂNG & DỰ ÁN */
+#about ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap-sm);
+    margin-top: 0.75rem;
+}
+
+#about ul li {
+    background: var(--bg-tag);
+    color: var(--primary-color);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--gap);
+    margin-top: 1rem;
+}
+
+article {
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+article h3 {
+    margin-top: 0;
+    color: var(--gray-dark);
+}
+
+article a {
+    font-weight: 600;
+    margin-top: 0.5rem;
+    display: inline-block;
+}
+
+article a:hover {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+/* FORM LIÊN HỆ */
+form {
+    display: grid;
+    gap: 1rem;
+    max-width: 550px;
+    margin-top: 0.75rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--gray-medium);
+}
+
+input, textarea {
+    width: 100%;
+    background: rgba(15, 23, 42, 0.7);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    color: var(--gray-dark);
+    font: inherit;
+    font-size: 0.95rem;
+    padding: 0.65rem 0.9rem;
+    outline: none;
+    transition: var(--transition);
+}
+
+input:focus, textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+}
+
+button[type="submit"] {
+    background: var(--primary-gradient);
+    color: var(--bg-color);
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 0.7rem 1.4rem;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    justify-self: start;
+    transition: var(--transition);
+}
+
+button[type="submit"]:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+/* FOOTER */
+footer {
+    background: rgba(15, 23, 42, 0.9);
+    border-top: 1px solid var(--border-color);
+    padding: 1.5rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap-sm);
+    font-size: 0.9rem;
+}
+
+footer p {
+    margin: 0;
+    color: var(--gray-medium);
+}
+
+/* ==========================================================================
+   MEDIA QUERIES (RESPONSIVE BREAKPOINTS cho HĐ 2 & HĐ 3)
+   ========================================================================== */
+
+/* 1. TABLET (Từ 768px đến 1023px) */
+@media (max-width: 1023px) {
+    /* [HĐ 3] Dịch vụ: Chuyển từ 4 cột xuống 2 cột */
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* 2. MOBILE (Dưới 768px) */
+@media (max-width: 767px) {
+    /* [HĐ 2] Chuyển bố cục Portfolio 2 cột thành 1 cột */
+    .portfolio-layout {
+        grid-template-columns: 1fr;
+    }
+
+    /* [HĐ 3] Dịch vụ: Chuyển từ 2 cột xuống 1 cột */
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .header-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav ul {
+        gap: var(--gap-sm);
+    }
+
+    section {
+        padding: 1.25rem;
+    }
+}

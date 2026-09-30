@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Góc học tập - Bài thực hành CSS Variables</title>
+  <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <p class="eyebrow">Thiết kế Web · Tuần 4</p>
+      <h1>Góc học tập</h1>
+      <p>Ba việc nhỏ giúp bạn luyện tập đều đặn mỗi tuần.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="intro" aria-labelledby="intro-title">
+      <h2 id="intro-title">Kế hoạch hôm nay</h2>
+      <p>Chọn một hoạt động, ghi lại điều đã học và chia sẻ với bạn cùng nhóm.</p>
+    </section>
+
+    <section class="activity-list" aria-label="Danh sách hoạt động">
+      <article class="activity-card">
+        <h3>Đọc tài liệu</h3>
+        <p>Ôn lại cú pháp khai báo biến tại <code>:root</code> và cách dùng <code>var()</code>.</p>
+        <a class="action-link" href="#ghi-chu">Xem ghi chú</a>
+      </article>
+
+      <article class="activity-card">
+        <h3>Thử thay đổi</h3>
+        <p>Đổi một màu và một khoảng cách trong CSS, rồi quan sát toàn bộ trang.</p>
+        <a class="action-link" href="#ghi-chu">Ghi kết quả</a>
+      </article>
+    </section>
+
+    <section class="note" id="ghi-chu" aria-labelledby="note-title">
+      <h2 id="note-title">Ghi chú thực hành</h2>
+      <p>Khi hai phần tử dùng cùng một biến, chỉ cần sửa biến đó để cập nhật cả hai.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">Bài thực hành môn Thiết kế Web · Tuần 4</div>
+  </footer>
+</body>
+</html>
