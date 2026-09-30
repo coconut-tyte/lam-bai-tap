@@ -4,13 +4,20 @@
   --color-secondary: #0ea5e9;     /* Xanh ngọc phụ (Sky Blue) */
 
   /* 3 mức xám (từ nhạt đến đậm) */
-  --color-gray-100: #f3f4f6;      /* Xám rất nhạt (Dùng cho nền phụ, hover) */
-  --color-gray-200: #9ca3af;      /* Xám trung bình (Dùng cho đường viền, border) */
-  --color-gray-300: #374151;      /* Xám đậm (Dùng cho văn bản, text chính) */
+  --color-gray-100: #f3f4f6;      /* Xám rất nhạt (Dùng cho nền phụ, badge, hover) */
+  --color-gray-200: #9ca3af;      /* Xám trung bình (Dùng cho text phụ, đường viền) */
+  --color-gray-300: #374151;      /* Xám đậm (Dùng cho văn bản, tiêu đề chính) */
 
-  /* Màu nền tổng thể & Các biến bổ trợ layout */
-  --color-background: #ffffff;    /* Trắng tinh khiết */
+  /* Màu nền tổng thể & Layout */
+  --color-background: #f8fafc;    /* Nền tổng thể mượt mà (off-white) */
+  --card-bg: #ffffff;             /* Nền card trắng nổi bật */
+  
+  /* Khoảng cách (Spacing) trích xuất từ code cứng */
   --gap-size: 24px;
+  --spacing-container-desktop: 40px 20px;
+  --spacing-container-mobile: 15px 10px;
+  --card-padding-lg: 30px;
+  --card-padding-sm: 20px;
 }
 
 * {
@@ -23,18 +30,20 @@
 body {
   background-color: var(--color-background);
   color: var(--color-gray-300);
-  padding: 40px 20px;
+  padding: var(--spacing-container-desktop);
 }
 
 /* Base Layout */
 .portfolio-container,
 .sidebar,
 .main-content,
-.projects-grid {
+.projects-grid,
+.services-grid {
   display: grid;
   gap: var(--gap-size);
 }
 
+/* 1. Responsive Portfolio: 2 cột Desktop -> 1 cột Mobile */
 .portfolio-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -45,25 +54,49 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
+/* 2. Breakpoint Challenge: Khu vực "Dịch vụ" (4 cột Desktop -> 2 cột Tablet -> 1 cột Mobile) */
+.services-section {
+  margin-top: 30px;
+}
+
+.services-grid {
+  grid-template-columns: repeat(4, 1fr); /* Desktop: 4 cột */
+}
+
+.service-card {
+  background: var(--card-bg);
+  border: 1px solid var(--color-gray-100);
+  padding: var(--card-padding-sm);
+  border-radius: 12px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-gray-200);
+}
+
 /* Card Components */
 .card {
-  background: var(--color-background);
-  padding: 30px;
+  background: var(--card-bg);
+  padding: var(--card-padding-lg);
   border-radius: 16px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
   border: 1px solid var(--color-gray-100);
 }
 
 .project-card {
-  background: var(--color-gray-100);
-  border: 1px solid var(--color-gray-200);
-  padding: 20px;
+  background: var(--card-bg);
+  border: 1px solid var(--color-gray-100);
+  padding: var(--card-padding-sm);
   border-radius: 12px;
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .project-card:hover {
   transform: translateY(-4px);
+  border-color: var(--color-gray-200);
+  box-shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.05);
 }
 
 /* Typography & Details */
@@ -84,7 +117,8 @@ body {
 
 .profile-header p,
 .about-text,
-.project-card p {
+.project-card p,
+.service-card p {
   color: var(--color-gray-200);
 }
 
@@ -96,15 +130,18 @@ body {
 .about-text { 
   font-size: 15px; 
   line-height: 1.7; 
+  color: var(--color-gray-300);
 }
 
-.project-card h3 { 
+.project-card h3,
+.service-card h3 { 
   font-size: 16px; 
   margin-bottom: 8px; 
   color: var(--color-gray-300);
 }
 
-.project-card p { 
+.project-card p,
+.service-card p { 
   font-size: 14px; 
   line-height: 1.5; 
 }
@@ -123,15 +160,34 @@ body {
   border-radius: 8px;
   font-size: 13px;
   font-weight: 500;
-  border: 1px solid var(--color-gray-200);
+  border: 1px solid var(--color-gray-100);
+  transition: background-color 0.2s ease;
 }
 
-/* Responsive */
+.skill-badge:hover {
+  background: var(--color-gray-200);
+  color: var(--color-background);
+}
+
+/* Responsive Media Queries */
+@media (max-width: 1024px) {
+  /* Tablet: Dịch vụ chuyển về 2 cột */
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
+  /* Mobile: Portfolio chuyển 1 cột, body thu hẹp padding */
   .portfolio-container {
     grid-template-columns: 1fr;
   }
   body {
-    padding: 15px 10px;
+    padding: var(--spacing-container-mobile);
+  }
+  
+  /* Mobile: Dịch vụ chuyển về 1 cột */
+  .services-grid {
+    grid-template-columns: 1fr;
   }
 }
