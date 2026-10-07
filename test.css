@@ -1,0 +1,46 @@
+/* =========================================
+   HOẠT ĐỘNG 1: MICRO-INTERACTIONS (Nút bấm)
+   ========================================= */
+.btn-emotion {
+    padding: 10px 20px;
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    
+    /* Sử dụng cubic-bezier cho chuyển động nảy tự nhiên */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.btn-emotion:hover {
+    background-color: #4338ca;
+    /* Dùng transform thay vì top/left để tối ưu hiệu năng (Hoạt động 4) */
+    transform: translateY(-3px); 
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-emotion:active {
+    transform: translateY(0) scale(0.95);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* =========================================
+   HOẠT ĐỘNG 2: LOADING SPINNER
+   ========================================= */
+.loading-spinner {
+    width: 30px;
+    height: 30px;
+    border: 4px solid #f3f3f3; /* Màu nền nhạt */
+    border-top-color: #4f46e5; /* Màu con chạy đậm */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
