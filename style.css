@@ -23,7 +23,7 @@
     --gap: 1.5rem;
     --radius-sm: 8px;
     --radius-md: 14px;
-    --transition: 0.2s ease;
+    --transition: 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 /* --------------------------------------------------------------------------
@@ -74,7 +74,7 @@ p {
 a {
     color: var(--primary-color);
     text-decoration: none;
-    transition: var(--transition);
+    transition: color var(--transition);
 }
 
 a:hover {
@@ -172,7 +172,27 @@ section {
     border: 1px solid var(--border-color);
     border-radius: var(--radius-sm);
     padding: 1.25rem;
-    transition: var(--transition);
+    transition: transform var(--transition), border-color var(--transition);
+}
+
+.loading-spinner {
+    display: inline-block;
+    width: 2rem;
+    aspect-ratio: 1;
+    border: 3px solid var(--gray-medium);
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    animation: spinner-rotate 0.8s linear infinite;
+}
+
+.loading-spinner[hidden] {
+    display: none;
+}
+
+@keyframes spinner-rotate {
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .service-card:hover {
@@ -267,7 +287,7 @@ input, textarea {
     font-size: 0.95rem;
     padding: 0.65rem 0.9rem;
     outline: none;
-    transition: var(--transition);
+    transition: border-color var(--transition), box-shadow var(--transition);
 }
 
 input:focus, textarea:focus {
@@ -276,6 +296,7 @@ input:focus, textarea:focus {
 }
 
 button[type="submit"] {
+    button {
     background: var(--primary-gradient);
     color: var(--bg-color);
     border: none;
@@ -285,12 +306,22 @@ button[type="submit"] {
     font-weight: 700;
     cursor: pointer;
     justify-self: start;
-    transition: var(--transition);
+    transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1),
+                filter 0.2s cubic-bezier(0.2, 0.8, 0.2, 1),
+                box-shadow 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 button[type="submit"]:hover {
-    transform: translateY(-2px);
-    filter: brightness(1.1);
+    button:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.15);
+    box-shadow: 0 8px 18px rgba(56, 189, 248, 0.3);
+}
+
+button[type="submit"]:active {
+    button:active {
+    transform: translateY(0) scale(0.95);
+    box-shadow: 0 2px 6px rgba(56, 189, 248, 0.2);
 }
 
 /* FOOTER */

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio Cá Nhân - Nguyễn Văn A</title>
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -82,10 +83,11 @@
     <!-- Main: CSS Grid cho bố cục các section tổng thể -->
     <main>
         <!-- 1. Section: Giới thiệu bản thân & Kỹ năng -->
-        <section id="about">
+        <section id="about" data-aos="fade-up">
             <h2>Giới thiệu bản thân</h2>
             <p>Tôi là một lập trình viên web nhiệt huyết, chuyên xây dựng và phát triển các trang web cũng như ứng dụng
                 web hiện đại, tối ưu trải nghiệm người dùng và chuẩn SEO.</p>
+            <button type="button" id="view-projects-button">Khám phá dự án</button>
 
             <h3>Kỹ năng chính</h3>
             <!-- Flexbox: flex-wrap: wrap tự động xuống dòng -->
@@ -100,8 +102,9 @@
         </section>
 
         <!-- 2. Section: Danh sách dự án -->
-        <section id="projects">
+        <section id="projects" data-aos="fade-up">
             <h2>Danh sách dự án</h2>
+            <span class="loading-spinner" role="status" aria-label="Đang tải dự án"></span>
             <!-- CSS Grid: Lưới dự án tự co giãn linh hoạt -->
             <div class="projects-grid">
                 <article>
@@ -130,5 +133,12 @@
             <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </p>
     </footer>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+        document.getElementById('view-projects-button').addEventListener('click', () => {
+            document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
 </body>
 </html>
