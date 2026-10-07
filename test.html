@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hồ Sơ Năng Lực | Nguyễn Quốc Bảo Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap');
+
+        :root {
+            --bg-color: #030305;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: rgba(0, 0, 0, 0.4);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #00f3ff;
+            --accent-glow: 0 0 20px rgba(0, 243, 255, 0.5);
+            --glass-blur: 16px;
+        }
+
+        body.light-mode {
+            --bg-color: #e2e8f0;
+            --glass-bg: rgba(255, 255, 255, 0.4);
+            --glass-border: rgba(255, 255, 255, 0.6);
+            --glass-shadow: rgba(0, 0, 0, 0.05);
+            --text-main: #0f172a;
+            --text-muted: #475569;
+        }
+        body.light-mode #hero h1, body.light-mode .greeting { text-shadow: none; }
+
+        @media (hover: hover) and (pointer: fine) { * { cursor: none !important; } }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: 'Poppins', sans-serif; background-color: var(--bg-color); color: var(--text-main);
+            line-height: 1.7; overflow-x: hidden; transition: background-color 0.5s, color 0.5s;
+        }
+
+        /* CUSTOM CURSOR - Đã sửa lỗi kẹt con trỏ ở viền màn hình */
+        .cursor-dot, .cursor-outline {
+            position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); border-radius: 50%;
+            z-index: 999999; pointer-events: none; transition: transform 0.1s ease-out, opacity 0.3s;
+            opacity: 0; /* Ẩn mặc định cho đến khi di chuột */
+        }
+        .cursor-dot { width: 8px; height: 8px; background-color: var(--accent); box-shadow: var(--accent-glow); }
+        .cursor-outline {
+            width: 40px; height: 40px; border: 2px solid var(--accent); opacity: 0;
+            transition: width 0.2s, height 0.2s, background-color 0.2s, opacity 0.3s;
+        }
+        .cursor-hover .cursor-outline { width: 60px; height: 60px; background-color: rgba(0, 243, 255, 0.1); border-color: transparent; }
+
+        #canvas-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; }
+
+        .glass-panel {
+            background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border); box-shadow: 0 8px 32px 0 var(--glass-shadow); border-radius: 20px;
+        }
+
+        /* HEADER & NAVBAR - Đã sửa lỗi Mobile Menu */
+        header {
+            position: fixed; top: 0; width: 100%; z-index: 1000; padding: 1rem 0;
+            background: rgba(var(--bg-color), 0.7); backdrop-filter: blur(15px); border-bottom: 1px solid var(--glass-border);
+        }
+        nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        .logo { font-size: 2rem; font-weight: 700; color: var(--text-main); text-decoration: none; letter-spacing: -1px; z-index: 1001;}
+        .logo span { color: var(--accent); text-shadow: var(--accent-glow); transition: 0.3s; }
+        
+        .nav-links { list-style: none; display: flex; gap: 2.5rem; transition: 0.4s ease; }
+        .nav-links a { color: var(--text-main); text-decoration: none; font-weight: 600; transition: 0.3s; position: relative; padding: 5px 0;}
+        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--accent); transition: 0.3s; }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; box-shadow: var(--accent-glow);}
+        .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+
+        .mobile-menu-btn { display: none; font-size: 1.8rem; color: var(--text-main); cursor: pointer; z-index: 1001; }
+
+        /* SPA PAGE STRUCTURE */
+        .page {
+            display: none; flex-direction: column; gap: 8rem;
+            width: 100%; max-width: 1200px; margin: 8rem auto 4rem; padding: 0 2rem;
+            min-height: calc(100vh - 12rem); /* Đảm bảo trang đủ dài */
+            opacity: 0; animation: fadeInPage 0.6s forwards;
+        }
+        .page.active-page { display: flex; }
+        @keyframes fadeInPage { to { opacity: 1; } }
+
+        .section-title { font-size: 2.5rem; margin-bottom: 3rem; color: var(--text-main); position: relative; display: inline-block; font-weight: 700; }
+        .section-title::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 50px; height: 4px; background: var(--accent); border-radius: 2px; box-shadow: var(--accent-glow); }
+
+        .btn {
+            display: inline-flex; align-items: center; gap: 12px; padding: 14px 32px; background: var(--glass-bg);
+            color: var(--text-main); border: 1px solid var(--accent); border-radius: 50px;
+            text-decoration: none; font-weight: 700; font-size: 1rem; transition: 0.4s; box-shadow: 0 4px 15px rgba(0,0,0,0.2); width: fit-content;
+        }
+        .btn:hover { background: var(--accent); color: #000; box-shadow: var(--accent-glow); transform: translateY(-5px); }
+
+        /* --- MỞ RỘNG TRANG CHỦ --- */
+        #hero { min-height: 70vh; display: flex; flex-direction: column; justify-content: center; text-shadow: 0 4px 15px rgba(0,0,0,0.6); }
+        .greeting { color: var(--accent); font-weight: 700; letter-spacing: 4px; font-size: 1.2rem; margin-bottom: 1rem; }
+        #hero h1 { font-size: clamp(3.5rem, 8vw, 5.5rem); line-height: 1.1; margin-bottom: 1.5rem; font-weight: 800; letter-spacing: -1px;}
+        .hero-desc { padding: 1.8rem; max-width: 650px; font-size: 1.15rem; margin-bottom: 2.5rem; border-left: 5px solid var(--accent); }
+        
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        .service-card { padding: 2.5rem; text-align: center; transition: 0.3s; border: 1px solid var(--glass-border); }
+        .service-card:hover { border-color: var(--accent); transform: translateY(-10px); }
+        .service-card i { font-size: 3rem; color: var(--accent); margin-bottom: 1.5rem; filter: drop-shadow(var(--accent-glow)); }
+        .service-card h3 { font-size: 1.3rem; margin-bottom: 1rem; }
+        .service-card p { color: var(--text-muted); font-size: 0.95rem; }
+
+        .skills-container { display: flex; flex-wrap: wrap; gap: 1rem; }
+        .skill-tag { padding: 12px 24px; font-weight: 600; font-size: 1rem; display: flex; align-items: center; gap: 10px; transition: 0.4s; border: 1px solid var(--glass-border); }
+        .skill-tag:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: var(--accent-glow); color: var(--accent); }
+
+        /* --- MỞ RỘNG TRANG GIỚI THIỆU --- */
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+        .about-text p { color: var(--text-muted); margin-bottom: 1.5rem; font-size: 1.05rem; }
+        .about-text strong { color: var(--text-main); }
+        
+        .timeline { border-left: 2px solid var(--glass-border); padding-left: 30px; margin-left: 20px; position: relative; }
+        .timeline-item { margin-bottom: 3rem; position: relative; }
+        .timeline-item::before {
+            content: ''; position: absolute; left: -42px; top: 0; width: 20px; height: 20px;
+            background: var(--bg-color); border: 3px solid var(--accent); border-radius: 50%; box-shadow: var(--accent-glow);
+        }
+        .timeline-date { color: var(--accent); font-weight: 700; margin-bottom: 0.5rem; font-family: 'Fira Code', monospace; }
+        .timeline-content h3 { font-size: 1.3rem; margin-bottom: 5px; }
+        .timeline-content h4 { font-size: 1rem; color: var(--text-muted); margin-bottom: 10px; font-weight: 400; }
+        .timeline-content p { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* --- MỞ RỘNG TRANG DỰ ÁN --- */
+        .project-filters { display: flex; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
+        .filter-btn { padding: 8px 20px; border-radius: 20px; border: 1px solid var(--glass-border); background: var(--glass-bg); color: var(--text-main); cursor: pointer; transition: 0.3s; font-weight: 600; }
+        .filter-btn:hover, .filter-btn.active { background: var(--accent); color: #000; border-color: var(--accent); box-shadow: var(--accent-glow); }
+
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem; perspective: 1000px; }
+        .project-card { padding: 2.5rem 2rem; display: flex; flex-direction: column; border: 1px solid var(--glass-border); transition: 0.3s; transform-style: preserve-3d; will-change: transform; }
+        .project-card:hover { border-color: var(--accent); box-shadow: 0 15px 35px rgba(0,0,0,0.2), var(--accent-glow); }
+        .project-card > * { transform: translateZ(20px); }
+        .project-icon { font-size: 2.5rem; color: var(--accent); margin-bottom: 1.5rem; filter: drop-shadow(var(--accent-glow)); display: flex; justify-content: space-between; align-items: center;}
+        .project-icon a { color: var(--text-main); font-size: 1.2rem; transition: 0.3s; }
+        .project-icon a:hover { color: var(--accent); }
+        .project-card h3 { font-size: 1.4rem; margin-bottom: 1rem; font-weight: 700;}
+        .project-card p { flex-grow: 1; color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem; }
+        .tech-stack { display: flex; flex-wrap: wrap; gap: 8px; }
+        .tech-badge { font-size: 0.8rem; padding: 6px 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 20px; font-weight: 600; }
+
+        /* --- MỞ RỘNG TRANG LIÊN HỆ --- */
+        .contact-wrapper { display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; }
+        .contact-form { display: flex; flex-direction: column; gap: 1.5rem; padding: 3rem; border: 1px solid var(--glass-border); }
+        .input-group { display: flex; flex-direction: column; gap: 0.5rem; }
+        .input-group label { font-size: 0.9rem; font-weight: 600; color: var(--text-muted); }
+        .contact-form input, .contact-form textarea {
+            width: 100%; padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border);
+            border-radius: 10px; color: var(--text-main); font-family: inherit; font-size: 1rem; outline: none; transition: 0.3s;
+        }
+        .contact-form input:focus, .contact-form textarea:focus { border-color: var(--accent); box-shadow: 0 0 10px rgba(0, 243, 255, 0.2); background: rgba(255,255,255,0.08); }
+        
+        .contact-info-cards { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 2rem;}
+        .info-card { display: flex; align-items: center; gap: 20px; padding: 1.5rem; background: var(--glass-bg); border-radius: 15px; border: 1px solid var(--glass-border); transition: 0.3s;}
+        .info-card:hover { border-color: var(--accent); transform: translateX(10px); }
+        .info-card i { font-size: 2rem; color: var(--accent); width: 40px; text-align: center; }
+        .info-card div h4 { font-size: 1.1rem; margin-bottom: 5px; }
+        .info-card div p { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* MÀN HÌNH LOADING CÔNG NGHỆ */
+        .tech-loader {
+            position: fixed; inset: 0; z-index: 999999;
+            background: rgba(3, 3, 5, 0.98); backdrop-filter: blur(20px);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+        }
+        .tech-loader.active { opacity: 1; pointer-events: all; }
+        
+        .hud-spinner {
+            width: 120px; height: 120px; border: 3px solid transparent;
+            border-top-color: var(--accent); border-bottom-color: var(--accent);
+            border-radius: 50%; animation: spinHUD 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+            position: relative; margin-bottom: 30px; box-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
+        }
+        .hud-spinner::before {
+            content: ''; position: absolute; inset: 15px; border: 3px solid transparent;
+            border-left-color: var(--accent); border-right-color: var(--accent);
+            border-radius: 50%; animation: spinHUD 1s linear infinite reverse;
+        }
+        .hud-spinner::after {
+            content: ''; position: absolute; inset: 30px; background: var(--accent); border-radius: 50%;
+            opacity: 0.2; animation: pulseCore 1s alternate infinite;
+        }
+        @keyframes spinHUD { to { transform: rotate(360deg); } }
+        @keyframes pulseCore { to { opacity: 0.8; box-shadow: var(--accent-glow); transform: scale(1.2); } }
+
+        .terminal-container { width: 400px; height: 120px; border-left: 2px solid var(--accent); padding-left: 15px; font-family: 'Fira Code', monospace; font-size: 0.9rem; color: var(--accent); overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; }
+        .terminal-line { animation: typeLine 0.1s forwards; opacity: 0; }
+        @keyframes typeLine { to { opacity: 1; } }
+
+        .progress-box { width: 400px; height: 4px; background: rgba(255,255,255,0.1); margin-top: 20px; position: relative; overflow: hidden; }
+        .progress-bar { height: 100%; background: var(--accent); width: 0%; box-shadow: var(--accent-glow); transition: width 0.3s; }
+
+        footer { text-align: center; padding: 3rem 2rem; border-top: 1px solid var(--glass-border); width: 100%; position: relative; bottom: 0; margin-top: 4rem;}
+        .social-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; }
+        .social-links a { color: var(--text-muted); font-size: 1.8rem; transition: 0.3s; }
+        .social-links a:hover { color: var(--accent); transform: translateY(-5px); filter: drop-shadow(var(--accent-glow));}
+
+        /* CONTROL PANEL */
+        .control-panel { position: fixed; right: -320px; top: 50%; transform: translateY(-50%); width: 320px; padding: 2rem; border-radius: 24px 0 0 24px; transition: right 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 9999; border-right: none; }
+        .control-panel.open { right: 0; }
+        .panel-toggle { position: absolute; left: -65px; top: 2rem; width: 65px; height: 65px; border-radius: 20px 0 0 20px; display: flex; justify-content: center; align-items: center; color: var(--accent); font-size: 2rem; border-right: none; cursor: pointer; box-shadow: -5px 5px 15px rgba(0,0,0,0.2); }
+        .panel-toggle i { animation: spinGear 6s linear infinite; }
+        .panel-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 2rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 1rem;}
+        .panel-section { margin-bottom: 1.5rem; }
+
+        @media (max-width: 900px) {
+            .about-grid, .contact-wrapper { grid-template-columns: 1fr; }
+            .hero-desc { padding: 1.2rem; }
+        }
+
+        @media (max-width: 768px) {
+            .cursor-dot, .cursor-outline { display: none; }
+            * { cursor: auto !important; }
+            
+            .mobile-menu-btn { display: block; }
+            .nav-links { 
+                position: fixed; top: 0; right: -100%; height: 100vh; width: 250px; 
+                flex-direction: column; background: rgba(3, 3, 5, 0.95); backdrop-filter: blur(20px);
+                padding: 6rem 2rem; gap: 2rem; border-left: 1px solid var(--accent);
+            }
+            .nav-links.nav-active { right: 0; }
+            
+            .page { margin-top: 6rem; gap: 5rem; }
+            .terminal-container, .progress-box { width: 300px; }
+            .control-panel { top: auto; bottom: 0; transform: none; right: -100%; border-radius: 24px 24px 0 0; width: 100%; max-height: 80vh; overflow-y: auto;}
+            .panel-toggle { top: -65px; left: calc(50% - 32px); border-radius: 20px 20px 0 0; border: 1px solid var(--glass-border); border-bottom: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-outline" id="cursor-outline"></div>
+
+    <div id="canvas-container"></div>
+
+    <!-- MÀN HÌNH LOADING CÔNG NGHỆ -->
+    <div class="tech-loader" id="tech-loader">
+        <div class="hud-spinner"></div>
+        <div class="terminal-container" id="terminal-output"></div>
+        <div class="progress-box">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header>
+        <nav>
+            <a href="#" class="logo nav-link" data-target="home-page">Bao<span>Nguyen</span>.</a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#" class="nav-link active hover-target" data-target="home-page">Trang chủ</a></li>
+                <li><a href="#" class="nav-link hover-target" data-target="about-page">Giới thiệu</a></li>
+                <li><a href="#" class="nav-link hover-target" data-target="projects-page">Dự án</a></li>
+                <li><a href="#" class="nav-link hover-target" data-target="contact-page">Liên hệ</a></li>
+            </ul>
+            <div class="mobile-menu-btn hover-target" id="mobile-menu-btn"><i class="fa-solid fa-bars"></i></div>
+        </nav>
+    </header>
+
+    <!-- TRANG 1: TRANG CHỦ -->
+    <main class="page active-page" id="home-page">
+        <section id="hero">
+            <p class="greeting">XIN CHÀO, TÔI LÀ</p>
+            <h1>Nguyễn Quốc Bảo</h1>
+            <p class="hero-desc glass-panel">
+                Sinh viên Công nghệ Thông tin tại Đại học Lạc Hồng. Chuyên thiết kế Web UI/UX, phát triển thuật toán cấu trúc dữ liệu và xây dựng hệ thống vi điều khiển nhúng. <br><br>
+                <i class="fa-solid fa-cube" style="color: var(--accent);"></i> Không gian Web 3D này được render bằng Three.js. Hãy thử di chuột để xem phản ứng của Robot!
+            </p>
+            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                <a href="#" class="btn hover-target nav-link" data-target="projects-page">Xem Dự án <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="#" class="btn hover-target nav-link" data-target="contact-page" style="background: transparent; color: var(--text-main);">Liên hệ <i class="fa-solid fa-paper-plane"></i></a>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Lĩnh Vực Chuyên Môn</h2>
+            <div class="services-grid">
+                <div class="service-card glass-panel hover-target">
+                    <i class="fa-brands fa-html5"></i>
+                    <h3>Frontend & UI/UX</h3>
+                    <p>Thiết kế giao diện hiện đại, tối ưu responsive bằng Semantic HTML5, CSS Grid, Flexbox và hiệu ứng Glassmorphism tinh tế.</p>
+                </div>
+                <div class="service-card glass-panel hover-target">
+                    <i class="fa-solid fa-microchip"></i>
+                    <h3>Hệ Thống Nhúng & IoT</h3>
+                    <p>Lập trình vi điều khiển ESP32-C3 SuperMini bằng C++, tối ưu hóa truyền tải dữ liệu qua giao thức ESP-NOW và UDP.</p>
+                </div>
+                <div class="service-card glass-panel hover-target">
+                    <i class="fa-brands fa-python"></i>
+                    <h3>Cấu Trúc Dữ Liệu</h3>
+                    <p>Xây dựng và tối ưu thuật toán, quản lý bộ nhớ thông qua Python với các bài toán quản lý danh sách liên kết và hàng đợi.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2 class="section-title">Công Cụ Trọng Tâm</h2>
+            <div class="skills-container">
+                <div class="skill-tag glass-panel hover-target"><i class="fa-brands fa-js" style="color: #f7df1e;"></i> JavaScript ES6+</div>
+                <div class="skill-tag glass-panel hover-target"><i class="fa-brands fa-python" style="color: #3776AB;"></i> Python 3</div>
+                <div class="skill-tag glass-panel hover-target"><i class="fa-solid fa-cube" style="color: var(--accent);"></i> Three.js / WebGL</div>
+                <div class="skill-tag glass-panel hover-target"><i class="fa-solid fa-code" style="color: #00979D;"></i> C++ (Arduino IDE)</div>
+                <div class="skill-tag glass-panel hover-target"><i class="fa-brands fa-github" style="color: #fff;"></i> Git & GitHub</div>
+            </div>
+        </section>
+    </main>
+
+    <!-- TRANG 2: GIỚI THIỆU -->
+    <main class="page" id="about-page">
+        <section>
+            <h2 class="section-title">Mã Nguồn Của Tôi</h2>
+            <div class="about-grid">
+                <div class="about-text glass-panel" style="padding: 2.5rem; border: none; border-left: 4px solid var(--accent);">
+                    <p>Xin chào, tôi là <strong>Nguyễn Quốc Bảo</strong>, sinh viên K25 ngành Công nghệ Thông tin tại Đại học Lạc Hồng (LHU), hiện đang sinh sống và làm việc tại Đồng Nai.</p>
+                    <p>Niềm đam mê của tôi bắt đầu từ việc khám phá cấu trúc của các trò chơi và máy chủ, dẫn dắt tôi đào sâu vào lập trình thuật toán và phần cứng vi điều khiển. Tôi tin rằng sự kết hợp giữa <strong>Phần mềm mượt mà</strong> và <strong>Phần cứng tối ưu</strong> là chìa khóa của công nghệ tương lai.</p>
+                    <p>Khi không code, bạn có thể tìm thấy tôi đang thiết kế đồ họa AI, quản lý hệ thống mạng mesh nội bộ hoặc khám phá các cơ chế logic trong thế giới ảo.</p>
+                </div>
+                
+                <div class="about-stats">
+                    <h3 style="margin-bottom: 2rem; font-size: 1.5rem;"><i class="fa-solid fa-graduation-cap" style="color: var(--accent);"></i> Quá Trình Đào Tạo & Phát Triển</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">2026 - Hiện tại</div>
+                            <div class="timeline-content">
+                                <h3>Đại học Lạc Hồng (LHU) - Sinh viên K25</h3>
+                                <h4>Khoa Công nghệ Thông tin</h4>
+                                <p>Tập trung nghiên cứu chuyên sâu về Kiến trúc máy tính, Cấu trúc dữ liệu và thuật toán, Thiết kế Web và Lập trình nhúng.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Tháng 9, 2026</div>
+                            <div class="timeline-content">
+                                <h3>Nghiên cứu Giao thức ESP-NOW</h3>
+                                <h4>Phát triển phần cứng độc lập</h4>
+                                <p>Thiết kế hệ thống truyền tải gói tin UDP và dữ liệu sinh viên bằng vi mạch ESP32-C3 SuperMini không phụ thuộc vào hạ tầng Wi-Fi truyền thống.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Năm 2025</div>
+                            <div class="timeline-content">
+                                <h3>Quản trị Hệ thống & Khởi chạy Hosting</h3>
+                                <h4>Dự án cá nhân</h4>
+                                <p>Đăng ký tên miền quốc gia và thiết lập môi trường máy chủ WordPress kết hợp quản lý dự án qua Atlassian Jira.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- TRANG 3: DỰ ÁN -->
+    <main class="page" id="projects-page">
+        <section style="width: 100%;">
+            <h2 class="section-title">Kho Lưu Trữ Dự Án</h2>
+            
+            <div class="project-filters">
+                <button class="filter-btn hover-target active">Tất cả</button>
+                <button class="filter-btn hover-target">Web UI/3D</button>
+                <button class="filter-btn hover-target">Python/Logic</button>
+                <button class="filter-btn hover-target">Hệ thống Nhúng</button>
+            </div>
+
+            <div class="project-grid">
+                <article class="project-card glass-panel tilt-card hover-target">
+                    <div class="project-icon">
+                        <i class="fa-solid fa-vr-cardboard"></i>
+                        <a href="#" class="hover-target"><i class="fa-brands fa-github"></i></a>
+                    </div>
+                    <h3>Hồ Sơ Năng Lực Web 3D</h3>
+                    <p>Hệ thống Single Page Application tích hợp Three.js, xử lý đổ bóng PBR thời gian thực, thuật toán hạt không gian và hiệu ứng Glassmorphism siêu nhẹ.</p>
+                    <div class="tech-stack"><span class="tech-badge">Three.js</span><span class="tech-badge">Vanilla JS</span><span class="tech-badge">CSS Grid</span></div>
+                </article>
+                
+                <article class="project-card glass-panel tilt-card hover-target">
+                    <div class="project-icon">
+                        <i class="fa-solid fa-server"></i>
+                        <a href="#" class="hover-target"><i class="fa-brands fa-github"></i></a>
+                    </div>
+                    <h3>Giao Thức Điểm Danh ESP-NOW</h3>
+                    <p>Viết bằng C++ cho ESP32-C3 SuperMini. Hệ thống đóng gói mã sinh viên (VD: 125000946) vào các gói tin MAC và phát sóng tốc độ cao trong mạng lưới Mesh.</p>
+                    <div class="tech-stack"><span class="tech-badge">C++</span><span class="tech-badge">ESP32</span><span class="tech-badge">Network</span></div>
+                </article>
+
+                <article class="project-card glass-panel tilt-card hover-target">
+                    <div class="project-icon">
+                        <i class="fa-solid fa-book-open-reader"></i>
+                        <a href="#" class="hover-target"><i class="fa-brands fa-github"></i></a>
+                    </div>
+                    <h3>Quản Lý Thư Viện LHU (cau3.py)</h3>
+                    <p>Ứng dụng cấu trúc dữ liệu Hàng đợi (Queue) và Danh sách liên kết vòng (Circular Linked List) bằng Python để quản lý tiến trình mượn trả sách chính xác tuyệt đối.</p>
+                    <div class="tech-stack"><span class="tech-badge">Python 3</span><span class="tech-badge">Algorithms</span><span class="tech-badge">Data Structures</span></div>
+                </article>
+
+                <article class="project-card glass-panel tilt-card hover-target">
+                    <div class="project-icon">
+                        <i class="fa-solid fa-users-viewfinder"></i>
+                        <a href="#" class="hover-target"><i class="fa-brands fa-github"></i></a>
+                    </div>
+                    <h3>Team Portfolio Framework</h3>
+                    <p>Dự án nhóm (GitHub: coconut-tyte). Quản lý Repository và xây dựng bố cục Web tĩnh đáp ứng mọi thiết bị thông qua Media Queries và Semantic HTML5 chuẩn SEO.</p>
+                    <div class="tech-stack"><span class="tech-badge">HTML5</span><span class="tech-badge">Responsive</span><span class="tech-badge">Git</span></div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- TRANG 4: LIÊN HỆ -->
+    <main class="page" id="contact-page">
+        <section style="width: 100%;">
+            <h2 class="section-title">Khởi Tạo Kết Nối</h2>
+            <div class="contact-wrapper">
+                <div>
+                    <h3 style="font-size: 2rem; margin-bottom: 1rem;">Sẵn sàng cho dự án mới?</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 1.05rem;">
+                        Cho dù bạn cần thiết kế một giao diện Web đột phá, hay cấu trúc một hệ thống nhúng thông minh, tôi luôn ở đây để lắng nghe và chuyển hóa ý tưởng thành mã code.
+                    </p>
+                    
+                    <div class="contact-info-cards">
+                        <div class="info-card glass-panel hover-target">
+                            <i class="fa-solid fa-envelope"></i>
+                            <div>
+                                <h4>Email Chính</h4>
+                                <p>nguyenquocbao.dev@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="info-card glass-panel hover-target">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <div>
+                                <h4>Khu Vực</h4>
+                                <p>Đồng Nai, Việt Nam (Available for Remote)</p>
+                            </div>
+                        </div>
+                        <div class="info-card glass-panel hover-target">
+                            <i class="fa-brands fa-github"></i>
+                            <div>
+                                <h4>GitHub Profile</h4>
+                                <p>github.com/coconut-tyte</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="contact-form glass-panel" onsubmit="event.preventDefault();">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 10px;">Gửi Tin Nhắn Mật</h3>
+                    <div class="input-group">
+                        <label>Định danh của bạn (Tên)</label>
+                        <input type="text" class="hover-target" placeholder="Nhập tên..." required>
+                    </div>
+                    <div class="input-group">
+                        <label>Kênh phản hồi (Email)</label>
+                        <input type="email" class="hover-target" placeholder="Nhập email..." required>
+                    </div>
+                    <div class="input-group">
+                        <label>Khối dữ liệu (Nội dung)</label>
+                        <textarea rows="5" class="hover-target" placeholder="Bạn muốn thảo luận về..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn hover-target" style="width: 100%; justify-content: center; margin-top: 10px;">Thực Thi Truyền Tải <i class="fa-solid fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER GLOBAL -->
+    <footer>
+        <div class="social-links">
+            <a href="#" class="hover-target"><i class="fa-brands fa-github"></i></a>
+            <a href="#" class="hover-target"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="#" class="hover-target"><i class="fa-solid fa-envelope"></i></a>
+            <a href="#" class="hover-target"><i class="fa-brands fa-discord"></i></a>
+        </div>
+        <p style="color: var(--text-muted);">&copy; 2026 Nguyễn Quốc Bảo. Lập trình bằng <i class="fa-solid fa-heart" style="color: var(--accent);"></i> và WebGL.</p>
+    </footer>
+
+    <!-- CONTROL PANEL -->
+    <div class="control-panel glass-panel" id="control-panel">
+        <div class="panel-toggle glass-panel hover-target" id="panel-toggle"><i class="fa-solid fa-gear"></i></div>
+        <div class="panel-title"><i class="fa-solid fa-sliders"></i> Tùy Chỉnh Không Gian</div>
+        <div class="panel-section">
+            <button class="btn hover-target" id="mode-toggle" style="width: 100%; justify-content: center; padding: 12px; font-size: 0.9rem;">
+                <i class="fa-solid fa-sun"></i> Chế độ Sáng / Tối
+            </button>
+        </div>
+        <div class="panel-section">
+            <h4 style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px;">Lõi Năng Lượng 3D</h4>
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <input type="color" id="color-picker" value="#00f3ff" class="hover-target" style="width: 50px; height: 50px; border: none; background: transparent; cursor: pointer;">
+                <span style="font-size: 0.85rem;">Đổi màu Robot & Hạt</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tích hợp Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <script>
+        // ==========================================
+        // SPA NAVIGATION & CYBERPUNK LOADER LOGIC
+        // ==========================================
+        const navLinks = document.querySelectorAll('.nav-link');
+        const pages = document.querySelectorAll('.page');
+        const loader = document.getElementById('tech-loader');
+        const terminal = document.getElementById('terminal-output');
+        const progress = document.getElementById('progress-bar');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.getElementById('nav-links');
+        
+        let isLoading = false;
+
+        const terminalLogs = [
+            "Initiating connection to host...",
+            "Loading User Data: Nguyen Quoc Bao...",
+            "Decrypting LHU Modules [K25]...",
+            "Compiling WebGL shaders...",
+            "Bypassing security protocols...",
+            "Establishing neural link [OK]"
+        ];
+
+        // Xử lý Menu Mobile
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('nav-active');
+            mobileMenuBtn.innerHTML = navMenu.classList.contains('nav-active') ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                if(isLoading) return; 
+                
+                const targetId = link.getAttribute('data-target');
+                const targetPage = document.getElementById(targetId);
+                
+                if(targetPage.classList.contains('active-page')) return;
+
+                // Đóng menu mobile nếu đang mở
+                if(navMenu.classList.contains('nav-active')) {
+                    navMenu.classList.remove('nav-active');
+                    mobileMenuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+                }
+
+                navLinks.forEach(n => {
+                    if(n.getAttribute('data-target') !== 'home-page' || link.getAttribute('data-target') !== 'home-page') n.classList.remove('active');
+                });
+                if(link.classList.contains('nav-link') && !link.classList.contains('btn') && !link.classList.contains('logo')) link.classList.add('active');
+
+                startLoading(targetId);
+            });
+        });
+
+        function startLoading(targetId) {
+            isLoading = true;
+            loader.classList.add('active');
+            terminal.innerHTML = '';
+            progress.style.width = '0%';
+            
+            let logIndex = 0;
+            const logInterval = setInterval(() => {
+                if (logIndex < terminalLogs.length) {
+                    const line = document.createElement('div');
+                    line.className = 'terminal-line';
+                    line.innerText = `> ${terminalLogs[logIndex]}`;
+                    terminal.appendChild(line);
+                    logIndex++;
+                }
+            }, 250);
+
+            setTimeout(() => progress.style.width = '40%', 400);
+            setTimeout(() => progress.style.width = '85%', 1100);
+            setTimeout(() => progress.style.width = '100%', 1500);
+
+            setTimeout(() => {
+                clearInterval(logInterval);
+                pages.forEach(p => p.classList.remove('active-page'));
+                document.getElementById(targetId).classList.add('active-page');
+                
+                // Sửa lỗi vị trí scroll khi đổi trang
+                window.scrollTo({ top: 0, behavior: 'instant' }); 
+                
+                loader.classList.remove('active');
+                setTimeout(() => { isLoading = false; }, 300);
+            }, 1800);
+        }
+
+        // ==========================================
+        // GIAO DIỆN & TƯƠNG TÁC DOM (UI LOGIC)
+        // ==========================================
+        const root = document.documentElement;
+        const cursorDot = document.getElementById('cursor-dot');
+        const cursorOutline = document.getElementById('cursor-outline');
+        
+        // Sửa lỗi con trỏ bị kẹt
+        window.addEventListener('mousemove', (e) => {
+            cursorDot.style.opacity = 1; cursorOutline.style.opacity = 0.5;
+            const posX = e.clientX; const posY = e.clientY;
+            cursorDot.style.left = `${posX}px`; cursorDot.style.top = `${posY}px`;
+            cursorOutline.animate({ left: `${posX}px`, top: `${posY}px` }, { duration: 300, fill: "forwards" });
+        });
+        window.addEventListener('mouseout', () => { cursorDot.style.opacity = 0; cursorOutline.style.opacity = 0; });
+
+        const setHoverTarget = () => {
+            document.querySelectorAll('.hover-target, a, button, input, textarea').forEach(el => {
+                el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+                el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+            });
+        };
+        setHoverTarget();
+
+        // Tilt Cards Effect
+        document.querySelectorAll('.tilt-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left, y = e.clientY - rect.top;
+                const centerX = rect.width / 2, centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * -8;
+                const rotateY = ((x - centerX) / centerX) * 8;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+            card.addEventListener('mouseleave', () => { card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`; });
+        });
+
+        document.getElementById('panel-toggle').addEventListener('click', () => { document.getElementById('control-panel').classList.toggle('open'); });
+        document.getElementById('mode-toggle').addEventListener('click', () => { document.body.classList.toggle('light-mode'); });
+
+        // ==========================================
+        // HỆ THỐNG THREE.JS (3D ENGINE)
+        // ==========================================
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0x050508, 0.02);
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.z = 15;
+        let cameraBaseY = 0;
+
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+        scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 1.5);
+        directionalLight.position.set(5, 10, 7); scene.add(directionalLight);
+
+        const accentColorStr = getComputedStyle(root).getPropertyValue('--accent').trim();
+        const accentLight = new THREE.PointLight(accentColorStr, 8, 30);
+        
+        const particlesGeo = new THREE.BufferGeometry();
+        const posArray = new Float32Array(1200 * 3);
+        for(let i = 0; i < 3600; i++) posArray[i] = (Math.random() - 0.5) * 50; 
+        particlesGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+        const particlesMat = new THREE.PointsMaterial({ size: 0.05, color: accentColorStr, transparent: true, opacity: 0.7, blending: THREE.AdditiveBlending });
+        const particlesMesh = new THREE.Points(particlesGeo, particlesMat); scene.add(particlesMesh);
+
+        const glassMaterial = new THREE.MeshPhysicalMaterial({
+            color: 0xffffff, metalness: 0.2, roughness: 0.05, transmission: 1.0, ior: 1.5,
+            thickness: 2.0, clearcoat: 1.0, transparent: true, side: THREE.DoubleSide
+        });
+
+        const robotGroup = new THREE.Group();
+        const headGroup = new THREE.Group(); headGroup.position.y = 3; robotGroup.add(headGroup);
+        headGroup.add(new THREE.Mesh(new THREE.SphereGeometry(1.5, 32, 32), glassMaterial));
+        
+        const antennaMat = new THREE.MeshStandardMaterial({color: 0x333333, metalness: 0.8, roughness: 0.2});
+        const antennaBase = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 1), antennaMat);
+        antennaBase.position.set(0, 1.8, 0); headGroup.add(antennaBase);
+        const antennaGlowMat = new THREE.MeshBasicMaterial({color: accentColorStr});
+        const antennaTip = new THREE.Mesh(new THREE.SphereGeometry(0.2, 16, 16), antennaGlowMat);
+        antennaTip.position.set(0, 2.3, 0); headGroup.add(antennaTip);
+
+        const eyeMat = new THREE.MeshStandardMaterial({ color: 0x000000, roughness: 0 });
+        const leftEye = new THREE.Mesh(new THREE.SphereGeometry(0.3, 16, 16), eyeMat); leftEye.position.set(-0.6, 0.2, 1.35); 
+        const rightEye = new THREE.Mesh(new THREE.SphereGeometry(0.3, 16, 16), eyeMat); rightEye.position.set(0.6, 0.2, 1.35);
+        headGroup.add(leftEye, rightEye);
+
+        robotGroup.add(new THREE.Mesh(new THREE.BoxGeometry(3.5, 4.5, 2.5), glassMaterial));
+        const heartMat = new THREE.MeshBasicMaterial({ color: accentColorStr });
+        const heartCore = new THREE.Mesh(new THREE.OctahedronGeometry(0.6), heartMat);
+        heartCore.position.z = 0.5; robotGroup.add(heartCore); robotGroup.add(accentLight); 
+
+        const armGeo = new THREE.CylinderGeometry(0.4, 0.4, 3.5, 16);
+        const leftArm = new THREE.Mesh(armGeo, glassMaterial); leftArm.position.set(-2.5, 0.5, 0);
+        const rightArm = new THREE.Mesh(armGeo, glassMaterial); rightArm.position.set(2.5, 0.5, 0);
+        robotGroup.add(leftArm, rightArm); scene.add(robotGroup); robotGroup.position.x = 5;
+
+        const bgGeo = new THREE.IcosahedronGeometry(2.5, 1);
+        const bgMat = new THREE.MeshStandardMaterial({ color: 0x333344, wireframe: true, transparent: true, opacity: 0.3 });
+        const bgMesh1 = new THREE.Mesh(bgGeo, bgMat); bgMesh1.position.set(-8, 5, -8); scene.add(bgMesh1);
+        const bgMesh2 = new THREE.Mesh(bgGeo, bgMat); bgMesh2.position.set(8, -8, -12); scene.add(bgMesh2);
+
+        let mouseX = 0, mouseY = 0, targetX = 0, targetY = 0;
+        let robotAction = 'idle', actionTimer = 0, idleTimer = 0;
+        let nextBlinkTime = 0, isBlinking = false, blinkPhase = 0;
+
+        // Sửa lỗi nhảy hình khi scroll
+        window.addEventListener('scroll', () => {
+            const maxScroll = Math.max(1, document.body.scrollHeight - window.innerHeight);
+            const scrollPercent = window.scrollY / maxScroll;
+            cameraBaseY = -(scrollPercent * 8); 
+        });
+
+        document.getElementById('color-picker').addEventListener('input', (e) => {
+            const hex = e.target.value; root.style.setProperty('--accent', hex);
+            const r = parseInt(hex.substr(1,2), 16), g = parseInt(hex.substr(3,2), 16), b = parseInt(hex.substr(5,2), 16);
+            root.style.setProperty('--accent-glow', `0 0 20px rgba(${r}, ${g}, ${b}, 0.5)`);
+            accentLight.color.set(hex); antennaGlowMat.color.set(hex); heartMat.color.set(hex); particlesMat.color.set(hex);
+        });
+
+        const raycaster = new THREE.Raycaster(); const mouseNormalized = new THREE.Vector2();
+        document.addEventListener('mousemove', (event) => {
+            mouseX = (event.clientX - window.innerWidth / 2); mouseY = (event.clientY - window.innerHeight / 2);
+            mouseNormalized.x = (event.clientX / window.innerWidth) * 2 - 1; mouseNormalized.y = -(event.clientY / window.innerHeight) * 2 + 1;
+            idleTimer = 0;
+        });
+
+        document.addEventListener('click', () => {
+            idleTimer = 0; if (robotAction !== 'idle') return; 
+            raycaster.setFromCamera(mouseNormalized, camera);
+            if (raycaster.intersectObjects([headGroup.children[0], robotGroup.children[1], leftArm, rightArm], false).length > 0) {
+                robotAction = Math.random() < 0.5 ? 'wave' : 'nod'; actionTimer = 0; 
+                heartCore.scale.set(1.5, 1.5, 1.5); setTimeout(() => { heartCore.scale.set(1, 1, 1); }, 150);
+            }
+        });
+
+        const clock = new THREE.Clock();
+        function animate() {
+            requestAnimationFrame(animate);
+            const time = clock.getElapsedTime(); idleTimer += 0.016;
+            
+            camera.position.y += (cameraBaseY - camera.position.y) * 0.05;
+            particlesMesh.rotation.y = time * 0.05;
+            
+            const heartBeat = Math.pow(Math.sin(time * 3), 10); 
+            heartCore.scale.set(1 + heartBeat * 0.5, 1 + heartBeat * 0.5, 1 + heartBeat * 0.5);
+            accentLight.intensity = 5 + heartBeat * 5; heartCore.rotation.y += 0.02; 
+
+            if (time > nextBlinkTime) { isBlinking = true; blinkPhase = 0; nextBlinkTime = time + 2 + Math.random() * 5; }
+            if (isBlinking) {
+                blinkPhase += 0.4; const scaleY = Math.abs(Math.cos(blinkPhase));
+                leftEye.scale.y = scaleY; rightEye.scale.y = scaleY;
+                if (blinkPhase >= Math.PI) { isBlinking = false; leftEye.scale.y = 1; rightEye.scale.y = 1; }
+            }
+
+            // Tính toán vị trí tương đối với Camera để tránh trượt ra ngoài khi Scroll
+            targetX = mouseX * 0.003 + 4 + Math.cos(time * 0.8) * 1.0;
+            targetY = -mouseY * 0.003 + Math.sin(time * 1.5) * 1.2 + camera.position.y;
+            
+            robotGroup.position.x += (targetX - robotGroup.position.x) * 0.05;
+            robotGroup.position.y += (targetY - robotGroup.position.y) * 0.05;
+
+            if (robotAction === 'wave') {
+                actionTimer += 0.05; rightArm.rotation.z = -Math.PI / 1.2; rightArm.rotation.x = Math.sin(actionTimer * 15) * 0.6; 
+                if (actionTimer > Math.PI) robotAction = 'idle';
+            } else if (robotAction === 'nod') {
+                actionTimer += 0.1; headGroup.rotation.x = Math.sin(actionTimer * 8) * 0.4;
+                if (actionTimer > Math.PI * 2) { headGroup.rotation.x = 0; robotAction = 'idle'; }
+            } else {
+                robotGroup.rotation.y = Math.sin(time * 0.5) * 0.3 + (mouseX * 0.0005);
+                robotGroup.rotation.x = Math.sin(time * 0.7) * 0.1 + (mouseY * 0.0005);
+                leftArm.rotation.x = Math.sin(time * 3) * 0.15; rightArm.rotation.x = Math.sin(time * 3 + Math.PI) * 0.15;
+                leftArm.rotation.z += (Math.PI / 8 - leftArm.rotation.z) * 0.1; rightArm.rotation.z += (-Math.PI / 8 - rightArm.rotation.z) * 0.1;
+                headGroup.rotation.y += (mouseX * 0.001 - headGroup.rotation.y) * 0.05;
+                headGroup.rotation.x += (mouseY * 0.001 - headGroup.rotation.x) * 0.05;
+            }
+
+            bgMesh1.rotation.x += 0.003; bgMesh1.rotation.y += 0.005;
+            bgMesh2.rotation.x -= 0.004; bgMesh2.rotation.y -= 0.002;
+            bgMesh1.position.y = 5 + camera.position.y * 0.5;
+            bgMesh2.position.y = -8 + camera.position.y * 0.5;
+
+            renderer.render(scene, camera);
+        }
+        window.addEventListener('resize', () => { camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
+        animate();
+    </script>
+</body>
+</html>
