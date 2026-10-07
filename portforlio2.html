@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Ứng Tuyển IT | Tấn Dũng</title>
+    <link rel="stylesheet" href="test.css">
+</head>
+<body>
+    <!-- Màn hình Loading (Preloader) -->
+    <div id="preloader">
+        <div class="loader-content">
+            <div class="spinner"></div>
+            <p class="loading-text">&lt;Loading Portfolio... /&gt;</p>
+        </div>
+    </div>
+
+    <!-- Thanh điều hướng -->
+    <header>
+        <nav>
+            <div class="logo">Dev<span>tandung</span></div>
+            <ul>
+                <li><a href="#about">Giới thiệu</a></li>
+                <li><a href="#skills">Kỹ năng</a></li>
+                <li><a href="#projects">Dự án</a></li>
+                <li><a href="#contact">Liên hệ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Phần giới thiệu (Hero Section) -->
+        <section id="about" class="hero">
+            <div class="hero-content">
+                <h1>Xin chào, tôi là <span>Tấn Dũng</span></h1>
+                <p>Kỹ sư Lập trình | Đam mê Hệ thống nhúng & Thiết kế UI/UX</p>
+                <a href="#contact" class="btn">Liên hệ với tôi</a>
+            </div>
+        </section>
+
+        <!-- Phần Kỹ năng -->
+        <section id="skills">
+            <h2>Kỹ năng Chuyên môn</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Front-end & UI/UX</h3>
+                    <p>Thành thạo Semantic HTML5, CSS3. Kinh nghiệm thiết kế Wireframe, Component Sets và Interactive Prototype trên Figma/Illustrator.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Lập trình Hệ thống</h3>
+                    <p>Lập trình Python, thiết kế mạch vi điều khiển (Arduino, ESP32) với các cảm biến thực tế, xử lý tín hiệu.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Công cụ & Quy trình</h3>
+                    <p>Git/GitHub, VS Code, phân tích dữ liệu và thiết kế lưu đồ thuật toán (Flowchart).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Phần Dự án tiêu biểu -->
+        <section id="projects">
+            <h2>Dự án Tiêu biểu</h2>
+            <div class="project-grid">
+                <article class="project-card">
+                    <div class="project-img">
+                        <!-- Chèn ảnh dự án vào đây -->
+                        <span>[Ảnh mô phỏng mạch điện]</span>
+                    </div>
+                    <h3>Hệ thống Cảnh báo IoT</h3>
+                    <p>Phát triển hệ thống nhúng sử dụng Arduino/ESP32 kết hợp cảm biến chuyển động PIR và còi báo động. Xử lý phần cứng trên breadboard và lập trình C++.</p>
+                    <a href="#" class="btn-outline">Xem chi tiết trên GitHub</a>
+                </article>
+                
+                <article class="project-card">
+                    <div class="project-img">
+                        <!-- Chèn ảnh dự án vào đây -->
+                        <span>[Ảnh giao diện E-commerce]</span>
+                    </div>
+                    <h3>Bản mẫu UI E-commerce</h3>
+                    <p>Xây dựng kiến trúc thông tin và bản mẫu tương tác (interactive prototype) cho trang thương mại điện tử bằng Figma.</p>
+                    <a href="#" class="btn-outline">Xem bản thiết kế</a>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- Chân trang & Liên hệ -->
+    <footer id="contact">
+        <h2>Sẵn sàng hợp tác?</h2>
+        <div class="contact-info">
+            <p><strong>Email:</strong> yourmail@email.com</p>
+            <p><strong>Điện thoại:</strong> 0123 456 789</p>
+            <p><strong>LinkedIn:</strong> linkedin.com/in/yourprofile</p>
+            <p><strong>GitHub:</strong> github.com/yourgithub</p>
+        </div>
+        <p class="copyright">&copy; 2026 Bản quyền thuộc về Tấn Dũng.</p>
+    </footer>
+
+    <!-- Script tự động ẩn màn hình Loading khi trang tải xong -->
+    <script>
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            setTimeout(() => {
+                preloader.classList.add('fade-out');
+            }, 400);
+        });
+    </script>
+</body>
+</html>
