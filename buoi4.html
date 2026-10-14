@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tạp Chí Công Nghệ & Đời Sống</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ==========================================================================
+       1. CSS RESET & VARIABLES (Hệ thống thiết kế cơ bản)
+       ========================================================================== */
+    :root {
+      --primary-color: #0f172a;       /* Slate 900 */
+      --accent-color: #2563eb;        /* Blue 600 */
+      --accent-hover: #1d4ed8;
+      --text-main: #334155;           /* Slate 700 */
+      --text-muted: #64748b;          /* Slate 500 */
+      --bg-body: #f8fafc;             /* Slate 50 */
+      --bg-surface: #ffffff;
+      --border-color: #e2e8f0;        /* Slate 200 */
+      --radius-md: 12px;
+      --radius-sm: 6px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+      --transition: all 0.25s ease-in-out;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    /* Container chung */
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    /* ==========================================================================
+       2. MOBILE FIRST: MẶC ĐỊNH (< 600px)
+       ========================================================================== */
+    /* Header: Logo căn giữa, nút menu tạm ẩn, nav ẩn */
+    .site-header {
+      background-color: var(--bg-surface);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem 0;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--primary-color);
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .logo span {
+      color: var(--accent-color);
+    }
+
+    /* Hamburger Button: Ẩn ở mobile theo yêu cầu */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: 1px solid var(--border-color);
+      padding: 0.5rem 0.75rem;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-size: 1.25rem;
+      color: var(--primary-color);
+    }
+
+    /* Navigation: Ẩn ở mobile */
+    .main-nav {
+      display: none;
+      width: 100%;
+    }
+
+    /* Layout bao ngoài: 1 cột xếp chồng */
+    .page-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      padding: 1.5rem 0 3rem;
+    }
+
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    /* 2.1. Bài viết tiêu điểm (Hero Article) */
+    .featured-article {
+      background: var(--bg-surface);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .featured-article:hover {
+      box-shadow: var(--shadow-md);
+    }
+
+    .featured-media {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+    }
+
+    .featured-media img {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.4s ease;
+    }
+
+    .featured-article:hover .featured-media img {
+      transform: scale(1.03);
+    }
+
+    .featured-body {
+      padding: 1.25rem;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--accent-color);
+      letter-spacing: 0.5px;
+      margin-bottom: 0.5rem;
+    }
+
+    .featured-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--primary-color);
+      margin-bottom: 0.75rem;
+    }
+
+    .featured-excerpt {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .article-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* 2.2. Danh sách 5 bài viết: 1 cột xếp chồng */
+    .section-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      position: relative;
+      padding-left: 0.75rem;
+    }
+
+    .section-title::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 15%;
+      bottom: 15%;
+      width: 4px;
+      background-color: var(--accent-color);
+      border-radius: 2px;
+    }
+
+    .articles-grid {
+      display: grid;
+      grid-template-columns: 1fr; /* 1 cột trên Mobile */
+      gap: 1.25rem;
+    }
+
+    .article-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition);
+    }
+
+    .article-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .card-media {
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+    }
+
+    .card-media img {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.4s ease;
+    }
+
+    .article-card:hover .card-media img {
+      transform: scale(1.05);
+    }
+
+    .card-body {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .card-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      line-height: 1.4;
+      color: var(--primary-color);
+      margin: 0.4rem 0 0.6rem;
+    }
+
+    .card-title:hover {
+      color: var(--accent-color);
+    }
+
+    /* 2.3. Sidebar: Mặc định xếp dưới trên mobile */
+    .sidebar {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+    }
+
+    .trending-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .trending-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px dashed var(--border-color);
+    }
+
+    .trending-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .trending-number {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--border-color);
+      line-height: 1;
+    }
+
+    .trending-item:nth-child(1) .trending-number { color: #f59e0b; }
+    .trending-item:nth-child(2) .trending-number { color: #94a3b8; }
+    .trending-item:nth-child(3) .trending-number { color: #d97706; }
+
+    .trending-title {
+      font-size: 0.92rem;
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--primary-color);
+    }
+
+    /* ==========================================================================
+       3. MEDIA QUERY: TỪ 600PX (Tablet)
+       ========================================================================== */
+    @media (min-width: 600px) {
+      /* Header: Logo sang trái, Nút Menu xuất hiện bên phải */
+      .header-inner {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        text-align: left;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Grid 5 bài viết: Chuyển từ 1 cột thành 2 cột đều nhau */
+      .articles-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+
+      .featured-title {
+        font-size: 1.6rem;
+      }
+    }
+
+    /* ==========================================================================
+       4. MEDIA QUERY: TỪ 1024PX (Desktop)
+       ========================================================================== */
+    @media (min-width: 1024px) {
+      /* Header: Ẩn nút Hamburger, hiện thanh điều hướng ngang */
+      .menu-toggle {
+        display: none;
+      }
+
+      .main-nav {
+        display: block;
+        width: auto;
+      }
+
+      .nav-list {
+        display: flex;
+        list-style: none;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .nav-link {
+        font-weight: 600;
+        font-size: 0.95rem;
+        color: var(--text-main);
+        padding: 0.25rem 0;
+        position: relative;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        color: var(--accent-color);
+      }
+
+      .nav-link.active::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: var(--accent-color);
+        border-radius: 2px;
+      }
+
+      /* Layout 3 cột: Main 70% bên trái & Sidebar 30% bên phải */
+      .page-layout {
+        display: grid;
+        grid-template-columns: 7fr 3fr;
+        gap: 2.5rem;
+        align-items: start;
+      }
+
+      /* Main bên trong: Lưới tin chuyển thành 3 cột nhỏ */
+      .articles-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+      }
+
+      /* Sticky Sidebar trên Desktop giúp tăng thời gian trên trang */
+      .sidebar {
+        position: sticky;
+        top: 5rem;
+      }
+
+      .featured-body {
+        padding: 1.75rem;
+      }
+
+      .featured-title {
+        font-size: 1.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ======================== HEADER ======================== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#" class="logo">
+        NEWS<span>PRO</span>
+      </a>
+
+      <!-- Nút Hamburger (hiển thị từ 600px đến <1024px) -->
+      <button class="menu-toggle" aria-label="Mở thanh điều hướng">
+        ☰
+      </button>
+
+      <!-- Navigation (hiện ngang từ 1024px) -->
+      <nav class="main-nav" aria-label="Điều hướng chính">
+        <ul class="nav-list">
+          <li><a href="#" class="nav-link active">Trang chủ</a></li>
+          <li><a href="#" class="nav-link">Công nghệ</a></li>
+          <li><a href="#" class="nav-link">Giáo dục</a></li>
+          <li><a href="#" class="nav-link">Đời sống</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ======================== MAIN CONTAINER ======================== -->
+  <div class="container">
+    <div class="page-layout">
+
+      <!-- KHU VỰC CHÍNH (MAIN - 70% trên Desktop) -->
+      <main class="main-content">
+
+        <!-- 1 Ảnh đại diện lớn / Tin tiêu điểm -->
+        <article class="featured-article">
+          <div class="featured-media">
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80" alt="Vi xử lý thế hệ mới">
+          </div>
+          <div class="featured-body">
+            <span class="badge">Công nghệ</span>
+            <h1 class="featured-title">
+              <a href="#">Kỷ nguyên chip bán dẫn mới: Tăng hiệu năng 40% với tiến trình 2nm</a>
+            </h1>
+            <p class="featured-excerpt">
+              Đột phá kiến trúc bóng bán dẫn GAA mới hứa hẹn sẽ thay đổi toàn bộ thị trường thiết bị di động và các siêu máy tính điện toán đám mây trong thập kỷ tới.
+            </p>
+            <div class="article-meta">
+              <span>Bởi <strong>Nguyễn Văn A</strong></span>
+              <span>•</span>
+              <time datetime="2026-09-30">10 phút trước</time>
+            </div>
+          </div>
+        </article>
+
+        <!-- Danh sách 5 bài viết -->
+        <section aria-labelledby="latest-news">
+          <h2 id="latest-news" class="section-title">Tin tức mới cập nhật</h2>
+          
+          <div class="articles-grid">
+            <!-- Bài viết 1 -->
+            <article class="article-card">
+              <div class="card-media">
+                <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80" alt="An ninh mạng">
+              </div>
+              <div class="card-body">
+                <span class="badge">Công nghệ</span>
+                <h3 class="card-title">
+                  <a href="#">Các xu hướng an ninh thông tin cần lưu ý trong năm 2026</a>
+                </h3>
+                <div class="article-meta">
+                  <time datetime="2026-09-30">1 giờ trước</time>
+                </div>
+              </div>
+            </article>
+
+            <!-- Bài viết 2 -->
+            <article class="article-card">
+              <div class="card-media">
+                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=600&q=80" alt="Lớp học thông minh">
+              </div>
+              <div class="card-body">
+                <span class="badge">Giáo dục</span>
+                <h3 class="card-title">
+                  <a href="#">Mô hình lớp học tương tác trực tuyến phát huy hiệu quả cao</a>
+                </h3>
+                <div class="article-meta">
+                  <time datetime="2026-09-30">2 giờ trước</time>
+                </div>
+              </div>
+            </article>
+
+            <!-- Bài viết 3 -->
+            <article class="article-card">
+              <div class="card-media">
+                <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=600&q=80" alt="Yoga và sức khỏe">
+              </div>
+              <div class="card-body">
+                <span class="badge">Đời sống</span>
+                <h3 class="card-title">
+                  <a href="#">5 thói quen buổi sáng giúp duy trì năng lượng tích cực</a>
+                </h3>
+                <div class="article-meta">
+                  <time datetime="2026-09-30">3 giờ trước</time>
+                </div>
+              </div>
+            </article>
+
+            <!-- Bài viết 4 -->
+            <article class="article-card">
+              <div class="card-media">
+                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80" alt="Du học">
+              </div>
+              <div class="card-body">
+                <span class="badge">Giáo dục</span>
+                <h3 class="card-title">
+                  <a href="#">Cơ hội săn học bổng toàn phần cho sinh viên khối ngành STEM</a>
+                </h3>
+                <div class="article-meta">
+                  <time datetime="2026-09-30">4 giờ trước</time>
+                </div>
+              </div>
+            </article>
+
+            <!-- Bài viết 5 -->
+            <article class="article-card">
+              <div class="card-media">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80" alt="Lập trình viên">
+              </div>
+              <div class="card-body">
+                <span class="badge">Công nghệ</span>
+                <h3 class="card-title">
+                  <a href="#">Tự động hóa quy trình với các trợ lý AI thế hệ mới</a>
+                </h3>
+                <div class="article-meta">
+                  <time datetime="2026-09-30">5 giờ trước</time>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- THANH BÊN (SIDEBAR - 30% trên Desktop) -->
+      <aside class="sidebar" aria-label="Tin xem nhiều">
+        <h2 class="section-title">Tin xem nhiều</h2>
+        <ul class="trending-list">
+          <li class="trending-item">
+            <span class="trending-number">01</span>
+            <div>
+              <a href="#" class="trending-title">Thị trường xe điện đạt mốc tăng trưởng kỷ lục trong quý vừa qua</a>
+              <div class="article-meta" style="margin-top: 0.25rem;">
+                <time datetime="2026-09-29">Hôm qua</time>
+              </div>
+            </div>
+          </li>
+          <li class="trending-item">
+            <span class="trending-number">02</span>
+            <div>
+              <a href="#" class="trending-title">Khám phá phương pháp học ngôn ngữ tự nhiên của các trường quốc tế</a>
+              <div class="article-meta" style="margin-top: 0.25rem;">
+                <time datetime="2026-09-29">Hôm qua</time>
+              </div>
+            </div>
+          </li>
+          <li class="trending-item">
+            <span class="trending-number">03</span>
+            <div>
+              <a href="#" class="trending-title">Xu hướng du lịch bền vững và nghỉ dưỡng sinh thái lên ngôi</a>
+              <div class="article-meta" style="margin-top: 0.25rem;">
+                <time datetime="2026-09-28">2 ngày trước</time>
+              </div>
+            </div>
+          </li>
+          <li class="trending-item">
+            <span class="trending-number">04</span>
+            <div>
+              <a href="#" class="trending-title">Bí quyết quản lý tài chính cá nhân dành cho người trẻ</a>
+              <div class="article-meta" style="margin-top: 0.25rem;">
+                <time datetime="2026-09-28">2 ngày trước</time>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </aside>
+
+    </div>
+  </div>
+
+</body>
+</html>

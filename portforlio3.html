@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio cá nhân - Lập trình Viên Web & Hệ thống Nhúng">
+    <title>Portfolio Cá Nhân</title>
+
+    <!-- Font Awesome Icons & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tệp CSS bên ngoài -->
+    <link rel="stylesheet" href="test.css">
+</head>
+<body>
+
+    <!-- BÀI 1: Floating Action Button (FAB) -->
+    <div class="fab-container">
+        <span class="fab-tooltip">Liên hệ ngay!</span>
+        <a href="#contact" class="fab-btn" aria-label="Liên hệ">
+            <i class="fas fa-paper-plane"></i>
+        </a>
+    </div>
+
+    <!-- Header & Navigation -->
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">Dev<span>tandung</span></a>
+            
+            <!-- BÀI 5: Modern Hamburger Menu -->
+            <button class="hamburger-toggle" id="menu-toggle" aria-label="Mở Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#about">Giới thiệu</a></li>
+                <li><a href="#card-flip">Thẻ Nhân Sự</a></li>
+                <li><a href="#skills">Kỹ năng</a></li>
+                <li><a href="#contact">Liên hệ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="about" class="hero">
+            <div class="container hero-content" style="text-align: center;">
+                <h1>Xin chào, tôi là <span>Tấn Dũng</span></h1>
+                
+                <!-- BÀI 3: Pure CSS Typing Effect -->
+                <div class="typing-wrapper">
+                    <p class="typing-text">Tôi là một Web Developer...</p>
+                </div>
+
+                <p style="max-width: 600px; margin: 0 auto 25px; color: var(--text-light);">
+                    Chuyên phát triển giải pháp giao diện Web hiện đại, kết hợp lập trình vi điều khiển IoT và tối ưu trải nghiệm người dùng UI/UX.
+                </p>
+                <a href="#contact" class="btn btn-primary"><i class="fas fa-envelope"></i> Liên hệ ngay</a>
+            </div>
+        </section>
+
+        <!-- BÀI 2: Card Flip Effect -->
+        <section id="card-flip" class="flip-card-section">
+            <div class="container">
+                <h2 class="section-title">Thẻ Nhân Sự Interactive</h2>
+                <p class="section-subtitle">Hover chuột vào thẻ bên dưới để lật 180 độ xem thông tin liên hệ</p>
+                
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <!-- Mặt trước -->
+                        <div class="flip-card-front">
+                            <img src="https://via.placeholder.com/150/0284c7/ffffff?text=TD" alt="Tấn Dũng">
+                            <h3>Tấn Dũng</h3>
+                            <p>Web Developer & IoT Engineer</p>
+                            <span class="flip-hint"><i class="fas fa-sync-alt"></i> Hover để lật thẻ</span>
+                        </div>
+                        <!-- Mặt sau -->
+                        <div class="flip-card-back">
+                            <h3>Thông Tin Liên Hệ</h3>
+                            <ul>
+                                <li><i class="fas fa-envelope"></i> yourmail@email.com</li>
+                                <li><i class="fas fa-phone"></i> 0123 456 789</li>
+                                <li><i class="fab fa-github"></i> github.com/yourgithub</li>
+                                <li><i class="fas fa-map-marker-alt"></i> TP. Hồ Chí Minh, Việt Nam</li>
+                            </ul>
+                            <a href="#contact" class="btn btn-primary" style="padding: 6px 16px; font-size: 13px;">Gửi Tin Nhắn</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BÀI 4: Parallax Image Banner -->
+        <section class="parallax-section">
+            <div class="parallax-overlay"></div>
+            <div class="parallax-content">
+                <h2>Sáng Tạo & Đột Phá Công Nghệ</h2>
+                <p>Hiệu ứng Parallax giúp hình nền di chuyển chậm hơn nội dung khi cuộn trang, tạo chiều sâu thị giác độc đáo.</p>
+            </div>
+        </section>
+
+        <!-- BÀI 6: Skill Bar Animation -->
+        <section id="skills" class="section-padding bg-light">
+            <div class="container">
+                <h2 class="section-title">Kỹ Năng Chuyên Môn</h2>
+                <p class="section-subtitle">Thanh kỹ năng tự động chạy từ 0% đến giá trị đích khi tải trang</p>
+                
+                <div class="skills-animated-container">
+                    <div class="skill-bar-item">
+                        <div class="skill-bar-header">
+                            <span>HTML5 / CSS3 / Responsive</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar-track">
+                            <div class="skill-bar-fill" style="--target-width: 90%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-bar-item">
+                        <div class="skill-bar-header">
+                            <span>Figma UI/UX Design</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar-track">
+                            <div class="skill-bar-fill" style="--target-width: 85%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-bar-item">
+                        <div class="skill-bar-header">
+                            <span>Lập trình Python & Thuật toán</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="skill-bar-track">
+                            <div class="skill-bar-fill" style="--target-width: 80%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-bar-item">
+                        <div class="skill-bar-header">
+                            <span>Vi điều khiển Arduino / ESP32</span>
+                            <span>75%</span>
+                        </div>
+                        <div class="skill-bar-track">
+                            <div class="skill-bar-fill" style="--target-width: 75%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Form Liên Hệ -->
+        <section id="contact" class="section-padding">
+            <div class="container">
+                <h2 class="section-title">Liên Hệ Hợp Tác</h2>
+                <form class="contact-form" action="#" method="POST">
+                    <div class="form-group">
+                        <input type="text" placeholder="Họ và tên của bạn" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Địa chỉ Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="4" placeholder="Nội dung lời nhắn..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Gửi Tin Nhắn</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Bản quyền thuộc về <strong>Tấn Dũng</strong>. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript điều hướng Hamburger Menu -->
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const navLinks = document.getElementById('nav-links');
+        
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                menuToggle.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

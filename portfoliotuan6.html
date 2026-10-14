@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tấn Dũng · Creative Frontend Engineer & UI Specialist</title>
+    <link rel="stylesheet" href="styletuan6.css">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- 1. HEADER & RESPONSIVE NAV (CSS CHECKBOX HACK) -->
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="#" class="brand-logo">
+                <span>TẤN DŨNG</span>
+            </a>
+
+            <!-- Checkbox ẩn để kích hoạt menu trên mobile -->
+            <input type="checkbox" id="nav-toggle" class="nav-toggle-input">
+            <label for="nav-toggle" class="hamburger-btn" aria-label="Mở đóng Menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </label>
+
+            <ul class="nav-links">
+                <li><a href="#about">Giới Thiệu</a></li>
+                <li><a href="#skills">Kỹ Năng</a></li>
+                <li><a href="#workflow">Quy Trình</a></li>
+                <li><a href="#projects">Dự Án</a></li>
+                <li><a href="#visual-notes">Visual Notes</a></li>
+                <li><a href="#case-study">Case Study</a></li>
+                <li><a href="#dashboard">Dashboard</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <a href="https://github.com" target="_blank" class="github-link"><i class="fa-brands fa-github"></i> GitHub <span>↗</span></a>
+                <a href="#contact" class="btn btn-primary btn-sm">Liên Hệ</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- 2. HERO SECTION (BỐ CỤC 3 CỘT ĐẶC TRƯNG) -->
+        <section id="about" class="hero-section">
+            <!-- Cột 1: Menu mục lục nhanh -->
+            <aside class="hero-index">
+                <span class="index-label">MỤC LỤC TRANG</span>
+                <a href="#about"><span>01</span> Giới thiệu</a>
+                <a href="#skills"><span>02</span> Kỹ năng cốt lõi</a>
+                <a href="#workflow"><span>03</span> Quy trình làm việc</a>
+                <a href="#projects"><span>04</span> Dự án tiêu biểu</a>
+                <a href="#visual-notes"><span>05</span> Visual Bento</a>
+                <a href="#case-study"><span>06</span> Case Study ESP</a>
+                <a href="#dashboard"><span>07</span> Bảng điều khiển</a>
+                <div class="index-note">CẬP NHẬT: 2026</div>
+            </aside>
+
+            <!-- Cột 2: Nội dung chính -->
+            <div class="hero-content">
+                <div class="hero-kicker">
+                    <span class="pulse-dot"></span>
+                    FRONTEND ENGINEER & UI DESIGNER
+                </div>
+                <h1 class="hero-title">Xin chào, mình là <span class="highlight-text">Tấn Dũng</span>.</h1>
+                <p class="hero-desc">Chuyên nghiên cứu và kiến tạo các giao diện website tinh tế, đạt độ tương phản chuẩn WCAG, tối ưu hóa tốc độ tải trang bằng định dạng WebP và làm chủ nghệ thuật dàn trang CSS Grid & Flexbox hiện đại.</p>
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-primary">Khám Phá Dự Án <span>→</span></a>
+                    <a href="#contact" class="quiet-link">Trao đổi công việc ↗</a>
+                </div>
+                <div class="hero-footnote">
+                    <span>ĐỊA ĐIỂM: TP. HỒ CHÍ MINH</span>
+                    <span>KINH NGHIỆM: 3+ NĂM</span>
+                </div>
+            </div>
+
+            <!-- Cột 3: Trạng thái & Thông tin bổ sung -->
+            <aside class="hero-aside">
+                <div class="availability">
+                    <span class="availability-dot"></span>
+                    SẴN SÀNG NHẬN DỰ ÁN MỚI
+                </div>
+                <div class="hero-note">
+                    <span class="note-number">#CHUYÊN_MÔN</span>
+                    <p>Định hướng phát triển:</p>
+                    <strong>Giao diện sạch, tốc độ vượt trội & trải nghiệm thân thiện.</strong>
+                </div>
+                <div class="hero-aside-bottom">
+                    <span>CORE WEB VITALS: 99/100</span>
+                    <span>W3C VALIDATION: 100%</span>
+                </div>
+            </aside>
+        </section>
+
+        <!-- 3. KỸ NĂNG CHUYÊN MÔN -->
+        <section id="skills" class="section">
+            <div class="section-topline">
+                <span>02 — CHUYÊN MÔN</span>
+                <span>CÔNG NGHỆ SỬ DỤNG</span>
+            </div>
+            <div class="section-intro">
+                <h2>Làm chủ công nghệ <em>hiện đại</em> và tinh gọn.</h2>
+                <p>Mỗi dòng code đều được chăm chút tỉ mỉ, tối ưu dung lượng và thân thiện với mọi bộ đọc màn hình.</p>
+            </div>
+
+            <div class="skills-grid">
+                <article class="skill-card">
+                    <i class="fa-brands fa-html5"></i>
+                    <h3>HTML5 Semantic</h3>
+                    <p>Xây dựng cấu trúc tài liệu ngữ nghĩa chuẩn SEO, đảm bảo khả năng tiếp cận WCAG AA cao nhất.</p>
+                </article>
+                <article class="skill-card">
+                    <i class="fa-brands fa-css3-alt"></i>
+                    <h3>Modern CSS3</h3>
+                    <p>Làm chủ CSS Variables, Flexbox, CSS Grid và kiến trúc CSS module không gây phình dung lượng.</p>
+                </article>
+                <article class="skill-card">
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                    <h3>Responsive Design</h3>
+                    <p>Co giãn mượt mà từ màn hình di động 375px đến màn hình 4K, không bao giờ xảy ra lỗi vỡ khung.</p>
+                </article>
+                <article class="skill-card">
+                    <i class="fa-solid fa-gauge-high"></i>
+                    <h3>Web Performance</h3>
+                    <p>Chuyển đổi ảnh chuẩn .WebP, gộp mã trùng lặp và tối ưu hóa thời gian hiển thị đầu tiên (FCP).</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- 4. QUY TRÌNH LÀM VIỆC (WORKFLOW) -->
+        <section id="workflow" class="section workflow-section">
+            <div class="section-topline">
+                <span>03 — TIÊU CHUẨN</span>
+                <span>QUY TRÌNH 4 BƯỚC</span>
+            </div>
+            <div class="section-intro">
+                <h2>Quy trình làm việc <em>khoa học</em> & minh bạch.</h2>
+                <p>Đảm bảo từng giai đoạn dự án đều đạt tiêu chuẩn chất lượng cao nhất trước khi bàn giao.</p>
+            </div>
+
+            <div class="workflow-grid">
+                <article class="workflow-card">
+                    <span class="workflow-number">BƯỚC 01</span>
+                    <i class="fa-solid fa-compass-drafting workflow-icon"></i>
+                    <h3>Khảo Sát UI</h3>
+                    <p>Phân tích cấu trúc thông tin, hành trình người dùng và xác định bảng màu Design Tokens.</p>
+                    <a href="#workflow">Chi tiết bước 1 <span>→</span></a>
+                </article>
+
+                <article class="workflow-card">
+                    <span class="workflow-number">BƯỚC 02</span>
+                    <i class="fa-solid fa-layer-group workflow-icon"></i>
+                    <h3>Thiết Kế Khung</h3>
+                    <p>Dàn trang khung lưới CSS Grid và kiểm tra độ tương thích trên các kích thước di động chuẩn.</p>
+                    <a href="#workflow">Chi tiết bước 2 <span>→</span></a>
+                </article>
+
+                <article class="workflow-card">
+                    <span class="workflow-number">BƯỚC 03</span>
+                    <i class="fa-solid fa-code workflow-icon"></i>
+                    <h3>Hiện Thực Hóa</h3>
+                    <p>Viết code Semantic sạch, thêm hiệu ứng tương tác mượt mà và kiểm định W3C không cảnh báo.</p>
+                    <a href="#workflow">Chi tiết bước 3 <span>→</span></a>
+                </article>
+
+                <article class="workflow-card">
+                    <span class="workflow-number">BƯỚC 04</span>
+                    <i class="fa-solid fa-rocket workflow-icon"></i>
+                    <h3>Tối Ưu Tốc Độ</h3>
+                    <p>Nén hình ảnh WebP, loại bỏ CSS thừa và kiểm tra toàn diện điểm số Lighthouse trước khi deploy.</p>
+                    <a href="#workflow">Chi tiết bước 4 <span>→</span></a>
+                </article>
+            </div>
+        </section>
+
+        <!-- 5. DỰ ÁN TIÊU BIỂU -->
+        <section id="projects" class="section">
+            <div class="section-topline">
+                <span>04 — DỰ ÁN</span>
+                <span>DANH MỤC THỰC HIỆN</span>
+            </div>
+            <div class="section-intro">
+                <h2>Các sản phẩm <em>chọn lọc</em> của Tấn Dũng.</h2>
+                <p>Khám phá các giao diện web hoàn chỉnh được lập trình bằng 100% HTML5 và CSS3 thuần túy.</p>
+            </div>
+
+            <div class="projects-grid">
+                <article class="project-card">
+                    <span class="project-number">DỰ ÁN #01</span>
+                    <h3>Sàn Thương Mại Điện Tử NovaShop</h3>
+                    <p>Giao diện bán hàng cao cấp với bộ lọc danh mục thông minh, giỏ hàng nổi và tương thích mobile hoàn hảo.</p>
+                    <div class="tech-stack">
+                        <span>CSS Grid</span>
+                        <span>Flexbox</span>
+                        <span>Responsive</span>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <span class="project-number">DỰ ÁN #02</span>
+                    <h3>Bảng Điều Khiển Quản Trị Metrix</h3>
+                    <p>Dashboard phân tích dữ liệu trực quan thời gian thực, bảng biểu sắc nét và hỗ trợ chế độ tương phản cao.</p>
+                    <div class="tech-stack">
+                        <span>Dashboard UI</span>
+                        <span>Design Tokens</span>
+                        <span>W3C 0 Lỗi</span>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <span class="project-number">DỰ ÁN #03</span>
+                    <h3>Cổng Học Trực Tuyến EduLearn</h3>
+                    <p>Nền tảng đào tạo lập trình với thanh menu trượt Drawer trên mobile bằng CSS Checkbox Hack không cần thư viện.</p>
+                    <div class="tech-stack">
+                        <span>Checkbox Hack</span>
+                        <span>Pure CSS</span>
+                        <span>Drawer Menu</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- 6. VISUAL NOTES (BENTO GALLERY) -->
+        <section id="visual-notes" class="visual-section">
+            <div class="visual-inner">
+                <div class="section-topline">
+                    <span>05 — BENTO GALLERY</span>
+                    <span>VISUAL EXPERIENCES</span>
+                </div>
+                <div class="section-intro visual-intro">
+                    <h2>Ghi chép thị giác & <em>không gian số</em>.</h2>
+                    <p>Một góc nhìn nghệ thuật kết hợp giữa kỹ thuật bố cục hình ảnh và bảng màu tương phản tinh tế.</p>
+                </div>
+
+                <div class="visual-grid">
+                    <figure class="visual-tile visual-tall">
+                        <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=800&auto=format&fit=crop&q=80" alt="Workplace">
+                        <figcaption>KHÔNG GIAN LÀM VIỆC <span>01</span></figcaption>
+                    </figure>
+                    <figure class="visual-tile visual-wide">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80" alt="Code Analytics">
+                        <figcaption>DỮ LIỆU THỐNG KÊ <span>02</span></figcaption>
+                    </figure>
+                    <figure class="visual-tile">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&auto=format&fit=crop&q=80" alt="Coding Setup">
+                        <figcaption>CẤU TRÚC CODE <span>03</span></figcaption>
+                    </figure>
+                    <figure class="visual-tile">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&auto=format&fit=crop&q=80" alt="Hardware">
+                        <figcaption>THIẾT BỊ <span>04</span></figcaption>
+                    </figure>
+                </div>
+                <p class="visual-disclaimer">* Toàn bộ hình ảnh đều được tối ưu hóa chuẩn nén tải nhanh thế hệ mới.</p>
+            </div>
+        </section>
+
+        <!-- 7. CASE STUDY ESP -->
+        <section id="case-study" class="section case-section">
+            <div class="section-topline">
+                <span>06 — CASE STUDY TIÊU BIỂU</span>
+                <span>DỰ ÁN NỔI BẬT</span>
+            </div>
+
+            <div class="case-layout">
+                <div class="case-image">
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1000&auto=format&fit=crop&q=80" alt="ESP Project">
+                    <span class="case-image-label">DỰ ÁN TRỌNG TÂM</span>
+                    <span class="case-image-index">ESP / 2026</span>
+                </div>
+                <div class="case-copy">
+                    <span class="case-kicker">HỆ THỐNG GIÁM SÁT VI ĐIỀU KHIỂN</span>
+                    <h2>Nền Tảng Điều Khiển IoT <em>Thông Minh</em></h2>
+                    <p class="case-description">Thiết kế bảng điều khiển giám sát vi mạch ESP thời gian thực, tích hợp giao diện điều hướng tối giản, trực quan hóa biểu đồ đo nhiệt độ và điện năng tiêu thụ.</p>
+                    
+                    <div class="case-meta">
+                        <span>VAI TRÒ THỰC HIỆN</span>
+                        <strong>Thiết kế UI/UX & Lập trình Giao diện Frontend</strong>
+                    </div>
+
+                    <div class="case-meta">
+                        <span>CÔNG NGHỆ CHÍNH</span>
+                        <div class="case-tags">
+                            <span>HTML5 Semantic</span>
+                            <span>CSS Grid Layout</span>
+                            <span>SVG Icons</span>
+                            <span>Pure CSS Animations</span>
+                        </div>
+                    </div>
+
+                    <a href="#case-study" class="case-link">Xem chi tiết Case Study <span>↗</span></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. DASHBOARD PHÂN TÍCH CHỈ SỐ -->
+        <section id="dashboard" class="section dashboard-section">
+            <div class="section-topline">
+                <span>07 — CHỈ SỐ HOẠT ĐỘNG</span>
+                <span>METRICS & PERFORMANCE</span>
+            </div>
+
+            <div class="dashboard-frame">
+                <aside class="dashboard-sidebar">
+                    <div class="dashboard-brand">
+                        <span class="dashboard-mark">D</span>
+                        <span>DUNG.ANALYTICS<small>v2.6 Stable</small></span>
+                    </div>
+                    <span class="dashboard-label">ĐIỀU HƯỚNG</span>
+                    <a href="#dashboard" class="dashboard-link active"><span>●</span> Tổng Quan</a>
+                    <a href="#dashboard" class="dashboard-link"><span>○</span> Hiệu Suất Tải</a>
+                    <a href="#dashboard" class="dashboard-link"><span>○</span> Báo Cáo Lỗi</a>
+                    
+                    <div class="dashboard-profile">
+                        <span class="profile-monogram">TD</span>
+                        <span>Tấn Dũng<small>Admin Developer</small></span>
+                    </div>
+                </aside>
+
+                <div class="dashboard-content">
+                    <div class="dashboard-heading">
+                        <div>
+                            <span>KIỂM NGHIỆM CHẤT LƯỢNG MÃ NGUỒN</span>
+                            <h2>Bảng Đo Lường Hiệu Năng</h2>
+                        </div>
+                        <a href="#dashboard">Xuất báo cáo ↗</a>
+                    </div>
+
+                    <div class="dashboard-stats">
+                        <article>
+                            <span>TỐC ĐỘ TẢI TRANG (FCP)</span>
+                            <strong>0.4s</strong>
+                            <small>Nhanh hơn 92% website thường</small>
+                        </article>
+                        <article>
+                            <span>DUNG LƯỢNG ẢNH TIẾT KIỆM</span>
+                            <strong>-75%</strong>
+                            <small>Nhờ định dạng chuẩn .WebP</small>
+                        </article>
+                        <article>
+                            <span>W3C VALIDATION</span>
+                            <strong>0 Lỗi</strong>
+                            <small>Đạt chuẩn Semantic 100%</small>
+                        </article>
+                        <article>
+                            <span>ĐIỂM TRẢI NGHIỆM (UX)</span>
+                            <strong>9.8/10</strong>
+                            <small>Đánh giá từ khách hàng</small>
+                        </article>
+                    </div>
+
+                    <div class="dashboard-table-wrap">
+                        <div class="dashboard-table-heading">
+                            <div>
+                                <h3>Trạng Thái Tối Ưu Các Thành Phần</h3>
+                                <p>Cập nhật trạng thái kiểm tra tự động mới nhất.</p>
+                            </div>
+                            <span>TẤT CẢ ĐÃ TỐI ƯU</span>
+                        </div>
+                        <div class="dashboard-table-scroll">
+                            <table class="dashboard-table">
+                                <thead>
+                                    <tr>
+                                        <th>HẠNG MỤC</th>
+                                        <th>TRẠNG THÁI</th>
+                                        <th>TIÊU CHUẨN</th>
+                                        <th>KẾT QUẢ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Bố cục Mobile 375px</td>
+                                        <td><span class="skill-status">Hoàn thành</span></td>
+                                        <td>Responsive không tràn khung</td>
+                                        <td>Đạt chuẩn</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tương phản màu sắc</td>
+                                        <td><span class="skill-status">Hoàn thành</span></td>
+                                        <td>Chuẩn WCAG AA > 4.5:1</td>
+                                        <td>Đạt 5.2:1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tỉ lệ khung hình (Aspect Ratio)</td>
+                                        <td><span class="skill-status">Hoàn thành</span></td>
+                                        <td>Chống dẹt méo ảnh 16:9</td>
+                                        <td>Khóa chuẩn</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dung lượng CSS (Dead Code)</td>
+                                        <td><span class="skill-status">Hoàn thành</span></td>
+                                        <td>Loại bỏ mã thừa & dùng biến</td>
+                                        <td>Giảm 39%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 9. STICKY FOOTER CHUYÊN NGHIỆP 3 CỘT (FLEXBOX) -->
+    <footer id="contact" class="site-footer">
+        <div class="footer-container">
+            <div class="footer-col col-info">
+                <div class="footer-logo">
+                    <span>TẤN DŨNG.DEV</span>
+                </div>
+                <p>Kỹ sư phát triển giao diện Web tận tâm với việc tối ưu hóa tốc độ, cấu trúc mã nguồn sạch và nâng tầm trải nghiệm thị giác người dùng.</p>
+                <p class="footer-highlight"><i class="fa-solid fa-location-dot"></i> TP. Hồ Chí Minh, Việt Nam</p>
+                <p class="footer-highlight"><i class="fa-solid fa-envelope"></i> contact@tandung.dev</p>
+            </div>
+
+            <div class="footer-col col-links">
+                <h4>Điều Hướng Nhanh</h4>
+                <ul>
+                    <li><a href="#about"><i class="fa-solid fa-angle-right"></i> Giới Thiệu Tấn Dũng</a></li>
+                    <li><a href="#skills"><i class="fa-solid fa-angle-right"></i> Kỹ Năng Chuyên Môn</a></li>
+                    <li><a href="#workflow"><i class="fa-solid fa-angle-right"></i> Quy Trình 4 Bước</a></li>
+                    <li><a href="#projects"><i class="fa-solid fa-angle-right"></i> Danh Mục Dự Án</a></li>
+                    <li><a href="#case-study"><i class="fa-solid fa-angle-right"></i> Case Study ESP</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col col-form">
+                <h4>Gửi Lời Nhắn Hợp Tác</h4>
+                <p>Để lại email của bạn, Tấn Dũng sẽ phản hồi trong vòng 24 giờ làm việc.</p>
+                <form class="contact-form" action="#" method="get">
+                    <input type="email" class="form-input" placeholder="Nhập địa chỉ email của bạn..." required>
+                    <button type="submit" class="btn btn-primary btn-submit" aria-label="Gửi thư"><i class="fa-solid fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="social-links">
+                <a href="https://github.com" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="mailto:contact@tandung.dev" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+            <p>&copy; 2026 Tấn Dũng. Xây dựng 100% bằng HTML5 & CSS3 thuần túy. Đã tối ưu Clean Code.</p>
+        </div>
+    </footer>
+
+    <!-- 10. CHÚ ROBOT TRỢ LÝ AI (TỰ ĐỘNG CHẠY THEO CHUỘT) -->
+    <div class="robot-companion" tabindex="0" aria-label="Robot AI Trợ lý">
+        <div class="robot-dialogue">
+            <span class="speech-default">Chào bạn! Mình là AI Assistant 🤖</span>
+            <span class="speech-hover">Khám phá các dự án của Tấn Dũng nhé! ✨</span>
+        </div>
+        <div class="robot-body-wrapper">
+            <div class="robot-antenna"></div>
+            <div class="robot-head">
+                <div class="robot-face">
+                    <span class="robot-eye"></span>
+                    <span class="robot-eye"></span>
+                </div>
+            </div>
+            <div class="robot-torso">
+                <div class="robot-core"></div>
+            </div>
+            <div class="robot-arm left"></div>
+            <div class="robot-arm right"></div>
+        </div>
+        <div class="robot-shadow"></div>
+    </div>
+
+    <!-- ==========================================================================
+         MÃ JAVASCRIPT ĐIỀU KHIỂN ROBOT CHẠY THEO CHUỘT (60 FPS LERP PHYSICS)
+         ========================================================================== -->
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const robot = document.querySelector(".robot-companion");
+        if (!robot) return;
+
+        const dialogue = robot.querySelector(".robot-dialogue");
+        const speechDefault = robot.querySelector(".speech-default");
+        const speechHover = robot.querySelector(".speech-hover");
+
+        // Tọa độ mục tiêu (chuột) và tọa độ hiện tại của robot
+        let targetX = window.innerWidth - 100;
+        let targetY = window.innerHeight - 100;
+        let currentX = targetX;
+        let currentY = targetY;
+        
+        let isMoving = false;
+        let stopTimer = null;
+        let isFlipping = false;
+
+        // Thiết lập cố định để robot di chuyển mượt mà trên toàn màn hình
+        robot.style.position = "fixed";
+        robot.style.top = "0";
+        robot.style.left = "0";
+        robot.style.bottom = "auto";
+        robot.style.right = "auto";
+        robot.style.pointerEvents = "none"; // Không cản trở click chuột vào link/nút
+        robot.style.willChange = "transform";
+        robot.style.zIndex = "9999";
+        robot.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
+
+        // 1. Lắng nghe vị trí di chuyển của chuột
+        window.addEventListener("mousemove", (e) => {
+            // Đặt robot chạy lệch sang phải 30px và dưới 20px so với đầu chuột để không che tầm nhìn
+            targetX = e.clientX + 30;
+            targetY = e.clientY + 20;
+
+            // Tự động căn lại nếu sát mép phải hoặc mép dưới màn hình
+            if (targetX > window.innerWidth - 75) targetX = e.clientX - 75;
+            if (targetY > window.innerHeight - 90) targetY = e.clientY - 85;
+
+            // Kích hoạt trạng thái robot đang chạy
+            isMoving = true;
+            robot.classList.add("robot-running");
+
+            if (speechDefault) {
+                speechDefault.textContent = "Đang chạy theo bạn nè! 🏃‍♂️💨";
+                speechDefault.style.display = "inline";
+            }
+            if (speechHover) speechHover.style.display = "none";
+            if (dialogue) dialogue.style.opacity = "1";
+
+            // Dừng lại và chuyển sang trạng thái nghỉ khi chuột đứng yên
+            clearTimeout(stopTimer);
+            stopTimer = setTimeout(() => {
+                isMoving = false;
+                robot.classList.remove("robot-running");
+                if (speechDefault) speechDefault.textContent = "Nghỉ chân tí nào! 💤";
+                
+                // Ẩn bóng thoại sau 2.5s không di chuyển
+                setTimeout(() => {
+                    if (!isMoving && dialogue) dialogue.style.opacity = "0";
+                }, 2500);
+            }, 800);
+        });
+
+        // 2. Vòng lặp chuyển động 60 FPS (Linear Interpolation - Lerp)
+        function renderLoop() {
+            // Hệ số trễ 0.08: tạo độ trễ đàn hồi mượt mà như drone/robot mini chạy theo
+            const ease = 0.08;
+            const dx = targetX - currentX;
+            const dy = targetY - currentY;
+
+            currentX += dx * ease;
+            currentY += dy * ease;
+
+            // Tự động tính góc nghiêng người (tilt) khi rẽ gấp trái/phải
+            const tilt = Math.max(-25, Math.min(25, dx * 0.4));
+
+            if (!isFlipping) {
+                robot.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) rotate(${tilt}deg)`;
+            }
+
+            requestAnimationFrame(renderLoop);
+        }
+        renderLoop();
+
+        // 3. Tương tác khi nhấp chuột (Click)
+        window.addEventListener("mousedown", () => {
+            if (dialogue && speechDefault) {
+                dialogue.style.opacity = "1";
+                speechDefault.textContent = "Bắn tim nè! 💖";
+            }
+        });
+
+        // 4. Nhấp đúp chuột (Double click): Robot nhào lộn 360 độ
+        window.addEventListener("dblclick", () => {
+            isFlipping = true;
+            robot.style.transition = "transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)";
+            robot.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) rotate(360deg) scale(1.3)`;
+
+            if (speechDefault) speechDefault.textContent = "Yeah! Lộn 1 vòng nè! 🤸‍♂️";
+
+            setTimeout(() => {
+                robot.style.transition = "";
+                isFlipping = false;
+            }, 600);
+        });
+
+        // 5. Khi rê chuột vào các nút bấm hoặc liên kết
+        const interactiveElements = document.querySelectorAll("a, button, .btn, .project-card");
+        interactiveElements.forEach((el) => {
+            el.addEventListener("mouseenter", () => {
+                if (dialogue && speechDefault) {
+                    dialogue.style.opacity = "1";
+                    speechDefault.textContent = "Bấm thử xem! ✨";
+                }
+            });
+            el.addEventListener("mouseleave", () => {
+                if (!isMoving && dialogue) dialogue.style.opacity = "0";
+            });
+        });
+    });
+    </script>
+</body>
+</html>

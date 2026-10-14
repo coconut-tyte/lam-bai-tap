@@ -1,0 +1,240 @@
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+<style>
+    /* =========================================
+       BỐ CỤC CƠ BẢN (Nội dung file 1.css cũ)
+       ========================================= */
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f3f4f6;
+        color: #333;
+        line-height: 1.6;
+        padding: 20px;
+    }
+
+    .portfolio-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    /* Responsive: Màn hình lớn sẽ chia thành 2 cột (Sidebar và Main) */
+    @media (min-width: 768px) {
+        .portfolio-container {
+            grid-template-columns: 300px 1fr;
+        }
+    }
+
+    .card {
+        background: #ffffff;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        margin-bottom: 20px;
+    }
+
+    .profile-header {
+        text-align: center;
+    }
+
+    .profile-header h2 {
+        font-size: 3rem;
+        margin-bottom: 10px;
+    }
+
+    .profile-header h1 {
+        font-size: 1.5rem;
+        color: #1f2937;
+    }
+
+    .profile-header p {
+        color: #6b7280;
+        margin-bottom: 15px;
+    }
+
+    .section-title {
+        font-size: 1.25rem;
+        color: #111827;
+        margin-bottom: 15px;
+        border-bottom: 2px solid #e5e7eb;
+        padding-bottom: 8px;
+    }
+
+    .skills-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .skill-badge {
+        background-color: #e5e7eb;
+        color: #374151;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+
+    .projects-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    @media (min-width: 1024px) {
+        .projects-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    .project-card {
+        border: 1px solid #e5e7eb;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: #f9fafb;
+        transition: transform 0.3s ease;
+    }
+
+    .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+    }
+
+    .project-card h3 {
+        color: #4f46e5;
+        margin-bottom: 10px;
+    }
+
+    /* =========================================
+       HOẠT ĐỘNG 1: MICRO-INTERACTIONS (Nút bấm)
+       ========================================= */
+    .btn-emotion {
+        padding: 10px 24px;
+        background-color: #4f46e5;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-top: 10px;
+        
+        /* Sử dụng cubic-bezier cho chuyển động nảy tự nhiên */
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    .btn-emotion:hover {
+        background-color: #4338ca;
+        /* HOẠT ĐỘNG 4: Dùng transform để tối ưu hiệu năng thay vì margin/top */
+        transform: translateY(-3px); 
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-emotion:active {
+        transform: translateY(0) scale(0.95);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    /* =========================================
+       HOẠT ĐỘNG 2: LOADING SPINNER
+       ========================================= */
+    .loading-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 40px;
+        gap: 12px;
+    }
+
+    .loading-spinner {
+        width: 30px;
+        height: 30px;
+        border: 4px solid #e5e7eb; /* Màu nền nhạt */
+        border-top-color: #4f46e5; /* Màu con chạy đậm */
+        border-radius: 50%;
+        /* Gọi animation xoay 360 độ liên tục */
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+</style>
+
+
+<div class="portfolio-container">
+    <!-- HOẠT ĐỘNG 3: Thêm hiệu ứng trượt từ phải sang (fade-right) cho Sidebar -->
+    <aside class="sidebar" data-aos="fade-right" data-aos-duration="800">
+        <div class="card profile-header">
+            <h2>👨</h2>
+            <h1>Nguyễn Văn A</h1>
+            <p>Frontend Developer</p>
+            
+            <!-- Nút bấm Micro-interactions -->
+            <button class="btn-emotion">Gửi tin nhắn</button>
+        </div>
+
+        <div class="card">
+            <h3 class="section-title">Kỹ năng</h3>
+            <div class="skills-list">
+                <span class="skill-badge">HTML5 / CSS3</span>
+                <span class="skill-badge">CSS Grid</span>
+                <span class="skill-badge">Flexbox</span>
+                <span class="skill-badge">JavaScript</span>
+                <span class="skill-badge">ReactJS</span>
+                <span class="skill-badge">Git & GitHub</span>
+                <span class="skill-badge">Responsive</span>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <!-- HOẠT ĐỘNG 3: Hiệu ứng trượt từ dưới lên cho phần Giới thiệu -->
+        <section class="card" data-aos="fade-up" data-aos-duration="800">
+            <h3 class="section-title">Giới thiệu</h3>
+            <p class="about-text">
+                Xin chào! Tôi là một lập trình viên Frontend đam mê tạo ra các giao diện web mượt mà, tối ưu trải nghiệm người dùng. Tôi có thế mạnh trong việc ứng dụng <strong>CSS Grid</strong> để xây dựng khung tổng thể linh hoạt và <strong>Flexbox</strong> để xử lý các thành phần linh động bên trong.
+            </p>
+        </section>
+
+        <!-- Thêm delay để card dự án hiện ra sau card giới thiệu một chút -->
+        <section class="card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+            <h3 class="section-title">Dự án tiêu biểu</h3>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>E-Commerce Dashboard</h3>
+                    <p>Hệ thống quản lý bán hàng trực tuyến với biểu đồ thống kê và giao diện quản trị hiện đại.</p>
+                </div>
+                <div class="project-card">
+                    <h3>Portfolio Website</h3>
+                    <p>Trang web cá nhân giới thiệu kỹ năng và dự án, tối ưu hóa hiển thị trên mọi thiết bị.</p>
+                </div>
+            </div>
+            
+            <!-- HOẠT ĐỘNG 2: Vòng tròn Loading -->
+            <div class="loading-container">
+                <div class="loading-spinner"></div>
+                <span style="color: #6b7280; font-size: 14px; font-weight: 500;">Đang tải thêm dự án...</span>
+            </div>
+        </section>
+    </main>
+</div>
+
+<!-- HOẠT ĐỘNG 3: Chèn JS của AOS và khởi chạy hệ thống -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({
+        once: true, // Hiệu ứng chỉ diễn ra 1 lần khi cuộn trang
+        offset: 30  // Bắt đầu hiệu ứng khi cuộn cách phần tử 30px
+    });
+</script>

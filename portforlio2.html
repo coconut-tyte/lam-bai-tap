@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio cá nhân của Tấn Dũng - Kỹ sư Lập trình, Hệ thống nhúng IoT & Thiết kế UI/UX">
+    <meta name="keywords" content="Tấn Dũng, Portfolio, Lập trình, IoT, Embedded Systems, UI/UX, Figma, HTML5, Python, Arduino">
+    <meta name="author" content="Tấn Dũng">
+    
+    <!-- Open Graph / SEO -->
+    <meta property="og:title" content="Portfolio Ứng Tuyển IT | Tấn Dũng">
+    <meta property="og:description" content="Khám phá các dự án Lập trình Hệ thống nhúng IoT và Thiết kế UI/UX của Tấn Dũng.">
+    <meta property="og:type" content="website">
+
+    <title>Portfolio Ứng Tuyển IT | Tấn Dũng</title>
+
+    <!-- Font Awesome Icons & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="test.css">
+</head>
+<body>
+    <!-- Màn hình Loading (Preloader) -->
+    <div id="preloader" aria-label="Đang tải trang">
+        <div class="loader-content">
+            <div class="spinner"></div>
+            <p class="loading-text">&lt;Loading Portfolio... /&gt;</p>
+        </div>
+    </div>
+
+    <!-- Thanh điều hướng (Header & Nav) -->
+    <header id="header">
+        <nav class="container">
+            <a href="#about" class="logo">Dev<span>tandung</span></a>
+            
+            <!-- Nút bật/tắt Menu Mobile -->
+            <button class="menu-toggle" id="menu-toggle" aria-label="Mở Menu điều hướng">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#about"><i class="fas fa-user"></i> Giới thiệu</a></li>
+                <li><a href="#education"><i class="fas fa-graduation-cap"></i> Học vấn</a></li>
+                <li><a href="#skills"><i class="fas fa-code"></i> Kỹ năng</a></li>
+                <li><a href="#projects"><i class="fas fa-laptop-code"></i> Dự án</a></li>
+                <li><a href="#contact-section"><i class="fas fa-envelope"></i> Liên hệ</a></li>
+            </ul>
+
+            <!-- Nút chuyển đổi Dark/Light Mode -->
+            <button id="theme-toggle" class="theme-btn" aria-label="Chuyển đổi giao diện Sáng/Tối">
+                <i class="fas fa-moon"></i>
+            </button>
+        </nav>
+    </header>
+
+    <main id="top">
+        <!-- Phần giới thiệu (Hero Section) -->
+        <section id="about" class="hero">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <span class="badge">Sẵn sàng nhận công việc mới</span>
+                    <h1>Xin chào, tôi là <span>Tấn Dũng</span></h1>
+                    <p class="subtitle">Kỹ sư Lập trình | Đam mê Hệ thống nhúng IoT & Thiết kế UI/UX</p>
+                    <p class="bio-text">
+                        Sinh viên chuyên ngành Kỹ thuật Cơ khí Động lực / Hệ thống Lập trình tại Phân hiệu Trường Đại học GTVT. 
+                        Đam mê kết hợp giữa phần cứng vi điều khiển (Arduino, ESP32) và giao diện người dùng tối ưu (HTML5, Figma).
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#contact-section" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Liên hệ với tôi</a>
+                        <a href="#projects" class="btn btn-secondary"><i class="fas fa-eye"></i> Xem dự án</a>
+                        <a href="#" class="btn btn-outline" download><i class="fas fa-download"></i> Tải CV</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="avatar-wrapper">
+                        <img src="https://via.placeholder.com/320x320/1e293b/ffffff?text=Tan+Dung" alt="Chân dung Tấn Dũng" class="avatar-img" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Phần Học vấn & Quá trình -->
+        <section id="education" class="section-padding">
+            <div class="container">
+                <h2 class="section-title">Học vấn & Định hướng</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-icon"><i class="fas fa-university"></i></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">2021 - Hiện tại</span>
+                            <h3>Sinh viên Chuyên ngành Cơ khí Động lực (Khóa K66)</h3>
+                            <p class="institution">Phân hiệu Trường Đại học GTVT</p>
+                            <ul>
+                                <li>Nghiên cứu ứng dụng Lập trình Hệ thống nhúng, Vi điều khiển IoT.</li>
+                                <li>Thiết kế luồng thuật toán (Flowchart), cấu trúc dữ liệu và lập trình Python/C++.</li>
+                                <li>Phân tích mạch điện RC, cảm biến và thiết kế giao diện UI Web Semantic HTML5.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Phần Kỹ năng (Skills Section) -->
+        <section id="skills" class="section-padding bg-light">
+            <div class="container">
+                <h2 class="section-title">Kỹ năng Chuyên môn</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fas fa-desktop"></i></div>
+                        <h3>Front-end & UI/UX Design</h3>
+                        <p>Thành thạo Semantic HTML5, CSS3. Kinh nghiệm thiết kế Wireframe, Component Sets và Interactive Prototype trên Figma/Illustrator.</p>
+                        <ul class="tag-list">
+                            <li>Semantic HTML5</li>
+                            <li>CSS3 / Grid / Flexbox</li>
+                            <li>Figma Prototype</li>
+                            <li>Adobe Illustrator</li>
+                            <li>Wireframing</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fas fa-microchip"></i></div>
+                        <h3>Lập trình Hệ thống & IoT</h3>
+                        <p>Lập trình Python, thiết kế mạch vi điều khiển (Arduino, ESP32) với các cảm biến thực tế (PIR, cảm biến khoảng cách, relay), xử lý tín hiệu.</p>
+                        <ul class="tag-list">
+                            <li>C / C++</li>
+                            <li>Python</li>
+                            <li>Arduino IDE</li>
+                            <li>ESP32 / ESP8266</li>
+                            <li>PIR & Relay Circuits</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fas fa-tools"></i></div>
+                        <h3>Công cụ & Quy trình</h3>
+                        <p>Git/GitHub, VS Code, phân tích dữ liệu, làm việc nhóm và thiết kế lưu đồ thuật toán (Flowchart) chuyên nghiệp.</p>
+                        <ul class="tag-list">
+                            <li>Git / GitHub</li>
+                            <li>VS Code</li>
+                            <li>Flowchart & Algorithms</li>
+                            <li>PhET Simulation</li>
+                            <li>Kỹ năng Làm việc nhóm</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Phần Dự án tiêu biểu (Projects Section) -->
+        <section id="projects" class="section-padding">
+            <div class="container">
+                <h2 class="section-title">Dự án Tiêu biểu</h2>
+                <div class="project-grid">
+                    
+                    <!-- Dự án 1 -->
+                    <article class="project-card">
+                        <figure class="project-img-wrapper">
+                            <img src="https://via.placeholder.com/600x350/0f172a/38bdf8?text=IoT+Warning+System" alt="Hệ thống Cảnh báo IoT Arduino ESP32" class="project-img" loading="lazy">
+                            <span class="project-category">IoT & Embedded</span>
+                        </figure>
+                        <div class="project-info">
+                            <h3>Hệ thống Cảnh báo IoT Chống Trộm</h3>
+                            <p>Phát triển hệ thống nhúng sử dụng Arduino/ESP32 kết hợp cảm biến chuyển động PIR, Relay và còi báo động. Lập trình chống dội tín hiệu (debouncing) và xử lý phần cứng trên breadboard.</p>
+                            <div class="project-tags">
+                                <span class="tag">Arduino</span>
+                                <span class="tag">ESP32</span>
+                                <span class="tag">PIR Sensor</span>
+                                <span class="tag">C++</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/yourgithub/iot-warning-system" target="_blank" rel="noopener noreferrer" class="btn-outline"><i class="fab fa-github"></i> Mã nguồn GitHub</a>
+                                <a href="#" class="btn-text"><i class="fas fa-external-link-alt"></i> Xem Demo</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Dự án 2 -->
+                    <article class="project-card">
+                        <figure class="project-img-wrapper">
+                            <img src="https://via.placeholder.com/600x350/0f172a/818cf8?text=E-commerce+UI+Figma" alt="Bản mẫu UI E-commerce Figma" class="project-img" loading="lazy">
+                            <span class="project-category">UI/UX Design</span>
+                        </figure>
+                        <div class="project-info">
+                            <h3>Bản mẫu UI E-commerce Tương tác</h3>
+                            <p>Xây dựng kiến trúc thông tin, hệ thống màu sắc (Color Palette), Component Sets và bản mẫu tương tác (Interactive Prototype) cho website thương mại điện tử bằng Figma & Stitch Plugin.</p>
+                            <div class="project-tags">
+                                <span class="tag">Figma</span>
+                                <span class="tag">UI/UX</span>
+                                <span class="tag">Wireframe</span>
+                                <span class="tag">Interactive Prototype</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://figma.com/@yourprofile" target="_blank" rel="noopener noreferrer" class="btn-outline"><i class="fab fa-figma"></i> Bản thiết kế Figma</a>
+                                <a href="#" class="btn-text"><i class="fas fa-external-link-alt"></i> Xem Prototype</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Dự án 3 -->
+                    <article class="project-card">
+                        <figure class="project-img-wrapper">
+                            <img src="https://via.placeholder.com/600x350/0f172a/34d399?text=Semantic+HTML5+Layout" alt="Giao diện Website HTML5 Semantic" class="project-img" loading="lazy">
+                            <span class="project-category">Web Development</span>
+                        </figure>
+                        <div class="project-info">
+                            <h3>Website Portfolio & Semantic HTML5</h3>
+                            <p>Thiết kế trang web cá nhân tuân thủ nghiêm ngặt chuẩn Semantic HTML5 (Header, Nav, Main, Section, Article, Aside, Footer), chuẩn SEO, tối ưu DOM tree và phản hồi responsive đa thiết bị.</p>
+                            <div class="project-tags">
+                                <span class="tag">HTML5</span>
+                                <span class="tag">CSS3</span>
+                                <span class="tag">SEO Friendly</span>
+                                <span class="tag">Responsive</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/yourgithub/portfolio-html5" target="_blank" rel="noopener noreferrer" class="btn-outline"><i class="fab fa-github"></i> Mã nguồn GitHub</a>
+                                <a href="#" class="btn-text"><i class="fas fa-external-link-alt"></i> Xem Trực tiếp</a>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Phần Biểu mẫu Liên hệ (Contact Section) -->
+        <section id="contact-section" class="section-padding bg-light">
+            <div class="container">
+                <h2 class="section-title">Sẵn Sàng Hợp Tác?</h2>
+                <p class="section-subtitle">Hãy gửi lời nhắn cho tôi nếu bạn có bất kỳ câu hỏi hoặc cơ hội công việc nào!</p>
+
+                <div class="contact-wrapper">
+                    <div class="contact-info-card">
+                        <h3>Thông tin liên hệ</h3>
+                        <p>Tôi luôn sẵn sàng trao đổi về các dự án Lập trình Hệ thống nhúng, UI/UX hoặc Phát triển Web.</p>
+                        
+                        <ul class="info-list">
+                            <li>
+                                <i class="fas fa-envelope"></i>
+                                <div>
+                                    <strong>Email:</strong>
+                                    <a href="mailto:yourmail@email.com">yourmail@email.com</a>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-phone-alt"></i>
+                                <div>
+                                    <strong>Điện thoại:</strong>
+                                    <a href="tel:0123456789">0123 456 789</a>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div>
+                                    <strong>Địa điểm:</strong>
+                                    <span>TP. Hồ Chí Minh / Đồng Nai, Việt Nam</span>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div class="social-links">
+                            <a href="https://linkedin.com/in/yourprofile" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://github.com/yourgithub" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Form gửi liên hệ -->
+                    <form class="contact-form" action="#" method="POST" id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Họ và tên <span class="required">*</span></label>
+                            <input type="text" id="name" name="name" placeholder="Nguyễn Văn A" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Địa chỉ Email <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" placeholder="example@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Tiêu đề lời nhắn</label>
+                            <input type="text" id="subject" name="subject" placeholder="Cơ hội hợp tác / Hỏi thông tin dự án">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Nội dung lời nhắn <span class="required">*</span></label>
+                            <textarea id="message" name="message" rows="5" placeholder="Nhập nội dung tin nhắn của bạn tại đây..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block"><i class="fas fa-paper-plane"></i> Gửi Tin Nhắn</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Chân trang (Footer) -->
+    <footer id="contact">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <a href="#about" class="logo">Dev<span>tandung</span></a>
+                <p>Xây dựng hệ thống hiệu quả & tối ưu trải nghiệm người dùng.</p>
+            </div>
+            
+            <p class="copyright">&copy; 2026 Bản quyền thuộc về <strong>Tấn Dũng</strong>. All rights reserved.</p>
+
+            <a href="#top" class="back-to-top" aria-label="Về đầu trang">
+                <i class="fas fa-arrow-up"></i>
+            </a>
+        </div>
+    </footer>
+
+    <!-- Scripts điều hướng & tương tác JS -->
+    <script>
+        // Tự động ẩn Preloader khi trang tải xong
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            setTimeout(() => {
+                preloader.style.opacity = '0';
+                preloader.style.visibility = 'hidden';
+            }, 400);
+        });
+
+        // Toggle Mobile Menu Navigation
+        const menuToggle = document.getElementById('menu-toggle');
+        const navLinks = document.getElementById('nav-links');
+        
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+        }
+
+        // Toggle Dark/Light Mode đơn giản
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('dark-theme');
+                const icon = themeToggle.querySelector('i');
+                if (document.body.classList.contains('dark-theme')) {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                } else {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
