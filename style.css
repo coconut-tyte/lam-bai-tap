@@ -1,0 +1,432 @@
+/* =======================================================
+   1. RESET & VARIABLE STYLES (TÔNG MÀU NGỌT NGÀO & MỀM MẠI)
+   ======================================================= */
+:root {
+    --primary-color: #ff9ebb;      /* Hồng phấn ngọt ngào */
+    --primary-light: #ffdce5;      /* Hồng kem mềm mại */
+    --accent-color: #ff6b8b;       /* Hồng đậm tạo điểm nhấn */
+    --bg-color: #fff9fa;           /* Trắng kem hồng dịu nhẹ */
+    --card-bg: #ffffff;
+    --text-color: #5c484d;         /* Nâu xám trầm ấm, dịu mắt */
+    --text-light: #9c8288;
+    --shadow-soft: 0 10px 30px rgba(255, 158, 187, 0.2);
+    --border-radius: 20px;
+    --font-main: 'Comfortaa', cursive, sans-serif;
+    --font-handwriting: 'Dancing Script', cursive;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* =======================================================
+   2. HEADER & NAVIGATION
+   ======================================================= */
+.header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 8%;
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(255, 182, 193, 0.15);
+    z-index: 1000;
+}
+
+.logo {
+    font-family: var(--font-handwriting);
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--accent-color);
+}
+
+.logo span {
+    color: var(--primary-color);
+}
+
+.navbar a {
+    margin: 0 1.2rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.navbar a:hover {
+    color: var(--accent-color);
+}
+
+.cart-icon a {
+    font-size: 1.3rem;
+    position: relative;
+    background: var(--primary-light);
+    padding: 8px 14px;
+    border-radius: 50px;
+    transition: transform 0.3s ease;
+}
+
+.cart-icon a:hover {
+    transform: scale(1.08);
+}
+
+.cart-icon .badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: var(--accent-color);
+    color: #fff;
+    font-size: 0.75rem;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* =======================================================
+   3. HERO SECTION
+   ======================================================= */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4rem 8%;
+    min-height: 80vh;
+}
+
+.hero-content {
+    flex: 1;
+    padding-right: 3rem;
+}
+
+.hero-content .sub-title {
+    color: var(--accent-color);
+    font-weight: 700;
+    font-size: 0.95rem;
+    background-color: var(--primary-light);
+    padding: 6px 16px;
+    border-radius: 30px;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+.hero-content h1 {
+    font-size: 2.8rem;
+    line-height: 1.3;
+    margin-bottom: 1.2rem;
+    color: var(--text-color);
+}
+
+.hero-content p {
+    color: var(--text-light);
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    max-width: 500px;
+}
+
+.hero-btns {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.8rem;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    color: #fff;
+    box-shadow: 0 8px 20px rgba(255, 107, 139, 0.3);
+}
+
+.btn-primary:hover {
+    background-color: #e55675;
+    transform: translateY(-3px);
+}
+
+.btn-secondary {
+    background-color: var(--primary-light);
+    color: var(--accent-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-image .img-wrapper {
+    width: 380px;
+    height: 380px;
+    border-radius: 60% 40% 50% 50% / 50% 50% 40% 60%; /* Dáng hình bo tự nhiên mềm mại */
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    border: 8px solid #fff;
+    animation: morphing 8s ease-in-out infinite;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Hiệu ứng chuyển động tự nhiên cho hình ảnh */
+@keyframes morphing {
+    0% { border-radius: 60% 40% 50% 50% / 50% 50% 40% 60%; }
+    50% { border-radius: 40% 60% 50% 50% / 40% 40% 60% 60%; }
+    100% { border-radius: 60% 40% 50% 50% / 50% 50% 40% 60%; }
+}
+
+/* =======================================================
+   4. CATEGORIES SECTION
+   ======================================================= */
+.categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem 8%;
+}
+
+.category-card {
+    background: var(--card-bg);
+    padding: 2rem 1.5rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    border: 1px solid #fff0f3;
+}
+
+.category-card:hover {
+    transform: translateY(-8px);
+    background-color: #fff0f4;
+}
+
+.category-card .icon {
+    font-size: 2.8rem;
+    margin-bottom: 0.8rem;
+}
+
+.category-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+}
+
+.category-card p {
+    font-size: 0.85rem;
+    color: var(--text-light);
+}
+
+/* =======================================================
+   5. PRODUCTS SECTION
+   ======================================================= */
+.products {
+    padding: 4rem 8%;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-title span {
+    font-family: var(--font-handwriting);
+    font-size: 1.8rem;
+    color: var(--accent-color);
+}
+
+.section-title h2 {
+    font-size: 2.2rem;
+    margin-top: -0.3rem;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+}
+
+.product-card {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.3s ease;
+    border: 1px solid #ffeef2;
+    position: relative;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+}
+
+.product-img {
+    height: 220px;
+    position: relative;
+    overflow: hidden;
+}
+
+.product-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-img img {
+    transform: scale(1.08);
+}
+
+.product-img .tag {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: var(--accent-color);
+    color: #fff;
+    font-size: 0.75rem;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.product-info {
+    padding: 1.5rem;
+}
+
+.product-info h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+}
+
+.product-info .description {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    margin-bottom: 1.2rem;
+}
+
+.price-action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.price-action .price {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent-color);
+}
+
+.add-btn {
+    background-color: var(--primary-light);
+    color: var(--accent-color);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-family: var(--font-main);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.add-btn:hover {
+    background-color: var(--accent-color);
+    color: #fff;
+}
+
+/* =======================================================
+   6. FOOTER
+   ======================================================= */
+.footer {
+    background-color: #fff0f3;
+    padding: 4rem 8% 1.5rem;
+    margin-top: 4rem;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+}
+
+.footer-col h4 {
+    margin-bottom: 1.2rem;
+    color: var(--accent-color);
+    font-size: 1.1rem;
+}
+
+.footer-col p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 0.6rem;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 158, 187, 0.3);
+    font-size: 0.85rem;
+    color: var(--text-light);
+}
+
+/* Responsive cơ bản cho màn hình nhỏ */
+@media (max-width: 768px) {
+    .header {
+        padding: 1rem 5%;
+    }
+    .navbar {
+        display: none; /* Rút gọn trên mobile nếu cần thêm JS menu sau này */
+    }
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem 5%;
+    }
+    .hero-content {
+        padding-right: 0;
+        margin-bottom: 2rem;
+    }
+    .hero-btns {
+        justify-content: center;
+    }
+    .hero-image .img-wrapper {
+        width: 280px;
+        height: 280px;
+    }
+}
