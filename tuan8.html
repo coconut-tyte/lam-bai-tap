@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiểm tra điểm học lực</title>
+</head>
+<body>
+
+    <h2>Chương trình phân loại điểm học lực</h2>
+    <p>Nhấn vào nút bên dưới để bắt đầu nhập điểm:</p>
+    <button onclick="phanLoaiDiem()">Nhập điểm ngay</button>
+
+    <script>
+        function phanLoaiDiem() {
+            // 1. Dùng prompt() để lấy điểm từ người dùng
+            let input = prompt("Vui lòng nhập điểm số của bạn (từ 0 đến 10):");
+
+            // 2. Kiểm tra nếu người dùng nhấn Cancel (Hủy)
+            if (input === null) {
+                alert("Bạn đã hủy thao tác.");
+            } else {
+                // Chuyển đổi chuỗi nhập vào thành số thực
+                let diem = parseFloat(input);
+
+                // 3. Kiểm tra tính hợp lệ của dữ liệu (phải là số và nằm trong khoảng từ 0 đến 10)
+                if (isNaN(diem) || diem < 0 || diem > 10) {
+                    alert("Vui lòng nhập một số hợp lệ từ 0 đến 10!");
+                } else {
+                    // 4. Phân loại điểm sử dụng cấu trúc if-else
+                    let xepLoai = "";
+
+                    if (diem > 8) {
+                        xepLoai = "Giỏi";
+                    } else if (diem > 6.5) {
+                        xepLoai = "Khá";
+                    } else if (diem >= 5) {
+                        xepLoai = "Trung bình";
+                    } else {
+                        xepLoai = "Yếu";
+                    }
+
+                    // 5. Hiển thị kết quả bằng alert()
+                    alert("Điểm của bạn là: " + diem + "\nXếp loại học lực: " + xepLoai);
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
