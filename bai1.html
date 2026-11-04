@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Dashboard của Bảo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+
+    <!-- Sidebar: ẩn/hiện trên mobile -->
+    <aside class="sidebar" id="sidebar" aria-label="Menu">
+      <div class="brand">Việc của Bảo</div>
+      <dl class="stats">
+        <div><dt>Tổng số</dt><dd id="statTotal">0</dd></div>
+        <div><dt>Đã xong</dt><dd id="statDone">0</dd></div>
+        <div><dt>Còn lại</dt><dd id="statTodo">0</dd></div>
+      </dl>
+      <button class="btn btn-soft" id="clearDoneBtn" type="button">Xóa việc đã xong</button>
+    </aside>
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Header: lời chào + đồng hồ + tiến độ -->
+    <header class="hero">
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Mở menu" aria-expanded="false">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <div class="hero-text">
+        <h1 id="greeting">Chào Bảo!</h1>
+        <p id="dateText"></p>
+      </div>
+      <div class="hero-clock">
+        <div class="clock" id="clock" aria-live="off">00:00:00</div>
+      </div>
+      <div class="ring" title="Tiến độ hoàn thành">
+        <svg viewBox="0 0 44 44" width="64" height="64" aria-hidden="true">
+          <circle class="ring-bg" cx="22" cy="22" r="18"/>
+          <circle class="ring-fg" id="ringFg" cx="22" cy="22" r="18"/>
+        </svg>
+        <span id="ringText">0%</span>
+      </div>
+    </header>
+
+    <main>
+      <form class="task-form" id="taskForm">
+        <input type="text" id="taskInput" placeholder="Hôm nay Bảo cần làm gì?" autocomplete="off" aria-label="Nội dung công việc">
+        <button type="submit" class="btn">Thêm</button>
+      </form>
+
+      <div class="filters" id="filters" role="group" aria-label="Lọc công việc">
+        <button type="button" data-filter="all" class="active">Tất cả</button>
+        <button type="button" data-filter="todo">Chưa xong</button>
+        <button type="button" data-filter="done">Đã xong</button>
+      </div>
+
+      <ul class="task-list" id="taskList"></ul>
+    </main>
+
+    <footer id="footer">Tổng số công việc: 0</footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
