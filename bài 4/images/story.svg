@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-label="Đồi cà phê trong sương sớm">
+<defs><linearGradient id="a" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cfe0d3"/><stop offset="1" stop-color="#7fa88f"/></linearGradient></defs>
+<rect width="800" height="1000" fill="url(#a)"/>
+<circle cx="600" cy="190" r="56" fill="#f6e3a8"/>
+<path d="M0 420 Q220 300 420 400 T800 360 L800 1000 L0 1000Z" fill="#4f8a6c"/>
+<path d="M0 560 Q260 440 520 540 T800 500 L800 1000 L0 1000Z" fill="#2f6a4f"/>
+<path d="M0 720 Q300 620 560 700 T800 670 L800 1000 L0 1000Z" fill="#1b4a37"/>
+<g stroke="#0e2b22" stroke-opacity=".5" stroke-width="3" fill="none">
+<path d="M-20 640 Q260 540 520 620 T820 590"/><path d="M-20 680 Q260 580 520 660 T820 630"/>
+<path d="M-20 800 Q300 710 560 780 T820 750"/><path d="M-20 850 Q300 760 560 830 T820 800"/><path d="M-20 900 Q300 810 560 880 T820 850"/></g>
+<rect y="470" width="800" height="90" fill="#eef2ee" opacity=".35"/>
+</svg>

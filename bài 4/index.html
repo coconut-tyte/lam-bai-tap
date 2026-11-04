@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Đỉnh Sương | Cà phê đơn nguồn Đà Lạt</title>
+  <meta name="description" content="Cà phê Arabica đơn nguồn trồng ở độ cao 1.500 m tại Đà Lạt, rang nhỏ mẻ mỗi tuần và giao tận nhà.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+    <a href="#top" class="logo">Đỉnh Sương</a>
+    <nav class="nav" id="nav" aria-label="Menu chính">
+      <a href="#story" data-i18n="nav.story">Câu chuyện</a>
+      <a href="#products" data-i18n="nav.products">Sản phẩm</a>
+      <a href="#specs" data-i18n="nav.specs">Thông số</a>
+      <a href="#faq" data-i18n="nav.faq">Hỏi đáp</a>
+      <a href="#order" class="nav-cta" data-i18n="nav.order">Đặt hàng</a>
+    </nav>
+    <button type="button" class="lang-btn" id="langBtn" aria-label="Switch language">EN</button>
+    <button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav" aria-label="Mở menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- Hero: video nền tự phát (Autoplay & Muted) -->
+  <section class="hero">
+    <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="images/hero-poster.svg" aria-hidden="true">
+      <source src="videos/hero.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <h1 data-i18n="hero.title">Một tách cà phê, trọn một buổi sáng trên đỉnh núi.</h1>
+      <p class="hero-sub" data-i18n="hero.sub">Hạt Arabica trồng ở độ cao 1.500 m, rang nhỏ mẻ mỗi tuần và giao tận nhà.</p>
+      <div class="hero-actions">
+        <a href="#products" class="btn btn-gold" data-i18n="hero.cta1">Mua ngay</a>
+        <a href="#specs" class="btn btn-line" data-i18n="hero.cta2">Xem thông số</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Câu chuyện thương hiệu -->
+  <section class="section story" id="story">
+    <div class="container story-grid">
+      <img src="images/story.svg" alt="Đồi cà phê trong sương sớm" width="800" height="1000" loading="lazy" class="story-img reveal">
+      <div class="reveal">
+        <h2 data-i18n="story.title">Từ vườn đến tách, không qua trung gian</h2>
+        <p class="lead" data-i18n="story.lead">Chúng tôi làm việc trực tiếp với các hộ trồng ở Cầu Đất để mỗi mẻ cà phê đều truy xuất được nguồn gốc.</p>
+        <ul class="points">
+          <li><h3 data-i18n="story.p1.t">Trồng ở độ cao 1.500 m</h3><p data-i18n="story.p1.d">Khí hậu mát và sương sớm giúp quả chín chậm, vị chua thanh và hương rõ.</p></li>
+          <li><h3 data-i18n="story.p2.t">Hái chín bằng tay</h3><p data-i18n="story.p2.d">Chỉ chọn quả đỏ đều màu, nên mỗi tách sạch vị và ít chát.</p></li>
+          <li><h3 data-i18n="story.p3.t">Rang nhỏ mẻ mỗi tuần</h3><p data-i18n="story.p3.d">Hạt được rang theo đơn, đóng túi van một chiều và gửi đi trong 48 giờ.</p></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sản phẩm -->
+  <section class="section products" id="products">
+    <div class="container">
+      <h2 data-i18n="products.title">Ba cách chạm vào cao nguyên</h2>
+      <p class="lead" data-i18n="products.lead">Mỗi dòng một mức rang, cùng một vùng đất.</p>
+      <div class="product-grid">
+        <article class="card reveal">
+          <img src="images/bag-sunrise.svg" alt="Túi cà phê Sương Sớm" width="400" height="500" loading="lazy">
+          <h3 data-i18n="prod1.name">Sương Sớm</h3>
+          <p class="note" data-i18n="prod1.note">Rang nhạt · hoa nhài, mơ chín</p>
+          <p data-i18n="prod1.desc">Sáng, nhẹ và thanh. Hợp với pha pour-over buổi sáng.</p>
+          <div class="card-foot"><div><b data-i18n="prod1.price">189.000đ</b><span data-i18n="product.size">Túi 250 g</span></div><a href="#order" class="btn btn-dark" data-i18n="product.cta">Đặt mua</a></div>
+        </article>
+        <article class="card reveal">
+          <img src="images/bag-peak.svg" alt="Túi cà phê Đỉnh Núi" width="400" height="500" loading="lazy">
+          <h3 data-i18n="prod2.name">Đỉnh Núi</h3>
+          <p class="note" data-i18n="prod2.note">Rang vừa · cacao, hạnh nhân</p>
+          <p data-i18n="prod2.desc">Cân bằng và tròn vị. Dễ uống cả đen lẫn pha sữa.</p>
+          <div class="card-foot"><div><b data-i18n="prod2.price">199.000đ</b><span data-i18n="product.size">Túi 250 g</span></div><a href="#order" class="btn btn-dark" data-i18n="product.cta">Đặt mua</a></div>
+        </article>
+        <article class="card reveal">
+          <img src="images/bag-dusk.svg" alt="Túi cà phê Hoàng Hôn" width="400" height="500" loading="lazy">
+          <h3 data-i18n="prod3.name">Hoàng Hôn</h3>
+          <p class="note" data-i18n="prod3.note">Rang đậm · caramel, gỗ sồi</p>
+          <p data-i18n="prod3.desc">Đậm, ngọt hậu. Hợp với phin truyền thống và espresso.</p>
+          <div class="card-foot"><div><b data-i18n="prod3.price">179.000đ</b><span data-i18n="product.size">Túi 250 g</span></div><a href="#order" class="btn btn-dark" data-i18n="product.cta">Đặt mua</a></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Thông số kỹ thuật: Tabs -->
+  <section class="section specs" id="specs">
+    <div class="container specs-wrap">
+      <div>
+        <h2 data-i18n="specs.title">Thông số của mỗi mẻ</h2>
+        <p class="lead" data-i18n="specs.lead">Minh bạch từ vùng trồng đến mức rang.</p>
+      </div>
+      <div class="tabs">
+        <div class="tab-list" role="tablist" aria-label="Thông số sản phẩm">
+          <button role="tab" id="tab-origin" aria-controls="panel-origin" aria-selected="true" data-i18n="tab.origin">Nguồn gốc</button>
+          <button role="tab" id="tab-process" aria-controls="panel-process" aria-selected="false" tabindex="-1" data-i18n="tab.process">Chế biến</button>
+          <button role="tab" id="tab-flavor" aria-controls="panel-flavor" aria-selected="false" tabindex="-1" data-i18n="tab.flavor">Hương vị</button>
+        </div>
+        <div role="tabpanel" id="panel-origin" aria-labelledby="tab-origin" class="tab-panel" data-i18n-html="panel.origin"></div>
+        <div role="tabpanel" id="panel-process" aria-labelledby="tab-process" class="tab-panel" data-i18n-html="panel.process" hidden></div>
+        <div role="tabpanel" id="panel-flavor" aria-labelledby="tab-flavor" class="tab-panel" data-i18n-html="panel.flavor" hidden></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hỏi đáp: Accordion -->
+  <section class="section faq" id="faq">
+    <div class="container faq-wrap">
+      <h2 data-i18n="faq.title">Câu hỏi thường gặp</h2>
+      <div class="accordion" id="accordion">
+        <div class="acc-item">
+          <h3><button type="button" class="acc-btn" aria-expanded="false" aria-controls="acc-1" id="accb-1"><span data-i18n="faq.q1">Bao lâu tôi nhận được hàng?</span><i aria-hidden="true"></i></button></h3>
+          <div class="acc-panel" id="acc-1" role="region" aria-labelledby="accb-1"><div><p data-i18n="faq.a1">Nội thành 1–2 ngày, các tỉnh khác 2–4 ngày. Đơn từ 300.000đ được miễn phí vận chuyển.</p></div></div>
+        </div>
+        <div class="acc-item">
+          <h3><button type="button" class="acc-btn" aria-expanded="false" aria-controls="acc-2" id="accb-2"><span data-i18n="faq.q2">Tôi có thể nhờ xay sẵn không?</span><i aria-hidden="true"></i></button></h3>
+          <div class="acc-panel" id="acc-2" role="region" aria-labelledby="accb-2"><div><p data-i18n="faq.a2">Được. Ghi chú kiểu pha (phin, pour-over, espresso) khi đặt hàng, chúng tôi xay đúng độ mịn cho bạn.</p></div></div>
+        </div>
+        <div class="acc-item">
+          <h3><button type="button" class="acc-btn" aria-expanded="false" aria-controls="acc-3" id="accb-3"><span data-i18n="faq.q3">Bảo quản thế nào để giữ hương?</span><i aria-hidden="true"></i></button></h3>
+          <div class="acc-panel" id="acc-3" role="region" aria-labelledby="accb-3"><div><p data-i18n="faq.a3">Giữ túi kín, để nơi khô mát, tránh nắng. Ngon nhất trong 30 ngày sau khi mở túi.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kêu gọi hành động -->
+  <section class="section order" id="order">
+    <div class="container order-inner">
+      <h2 data-i18n="order.title">Pha tách đầu tiên cùng Đỉnh Sương</h2>
+      <p data-i18n="order.text">Gọi hoặc nhắn Zalo để đặt hàng. Đơn đầu tiên được giảm 10%.</p>
+      <a href="tel:0900000000" class="btn btn-gold btn-big" data-i18n="order.cta">Gọi 0900 000 000</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <strong class="logo">Đỉnh Sương</strong>
+    <p data-i18n="footer.text">Nội dung và số liệu trên trang là dữ liệu mẫu phục vụ bài tập.</p>
+    <p data-i18n="footer.rights">© 2026 Đỉnh Sương</p>
+  </div>
+</footer>
+
+<!-- Popup khuyến mãi -->
+<dialog id="promoModal" aria-labelledby="promoTitle">
+  <button type="button" class="modal-close" id="promoClose" aria-label="Đóng">×</button>
+  <div class="modal-body">
+    <h2 id="promoTitle" data-i18n="promo.title">Quà chào bạn mới</h2>
+    <p data-i18n="promo.text">Giảm 10% cho đơn hàng đầu tiên. Nhập mã bên dưới khi đặt hàng.</p>
+    <div class="code-box"><code id="promoCode">DINHSUONG10</code></div>
+    <button type="button" class="btn btn-gold" id="copyCodeBtn" data-i18n="promo.copy">Sao chép mã</button>
+    <button type="button" class="link-btn" id="promoDismiss" data-i18n="promo.close">Để sau</button>
+  </div>
+</dialog>
+
+<script src="js/translations.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
