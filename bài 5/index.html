@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="blue" data-mode="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <title>Aura Studio | Brand Showcase</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&family=Lexend:wght@500;700&family=Lora:wght@500;700&family=Nunito:wght@400;600;700&family=Chakra+Petch:wght@500;700&family=Exo+2:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Chạy sớm để áp dụng theme đã lưu trước khi trình duyệt vẽ trang -->
+  <script src="js/theme.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="#top" class="logo">Aura Studio</a>
+    <nav class="nav" aria-label="Menu chính">
+      <a href="#features">Giá trị</a>
+      <a href="#brandkit">Bộ nhận diện</a>
+      <a href="#contact">Liên hệ</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="banner">
+      <img id="bannerImg" src="images/banner-blue.svg" alt="Đường chân trời thành phố với các tòa nhà kính màu xanh dương" width="1600" height="700" fetchpriority="high">
+      <div class="banner-tint" aria-hidden="true"></div>
+      <div class="banner-shade" aria-hidden="true"></div>
+    </div>
+    <div class="container hero-wrap">
+      <div class="hero-card">
+        <h1>Một thương hiệu, nhiều diện mạo.</h1>
+        <p>Aura Studio thiết kế nhận diện linh hoạt: đổi màu, đổi font, đổi cả bầu không khí chỉ bằng một cú nhấp. Thử ngay với thanh công cụ ở cuối màn hình.</p>
+        <div class="hero-actions">
+          <a href="#brandkit" class="btn btn-primary">Xem bộ nhận diện</a>
+          <a href="#contact" class="btn btn-outline">Liên hệ</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="features">
+    <div class="container">
+      <h2>Nhận diện thay đổi, cảm giác vẫn nhất quán</h2>
+      <div class="feature-grid">
+        <article class="card">
+          <span class="icon" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="8.5" cy="10" r="1.2"/><circle cx="12" cy="7.5" r="1.2"/><circle cx="15.5" cy="10" r="1.2"/><path d="M12 21a3 3 0 0 1 0-6h2"/></svg></span>
+          <h3>Màu sắc linh hoạt</h3>
+          <p>Mọi màu trên trang đều đến từ biến CSS, nên đổi một biến là cả giao diện đổi theo.</p>
+        </article>
+        <article class="card">
+          <span class="icon" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5h16v2M9 19h6M12 5v14"/></svg></span>
+          <h3>Chữ theo từng thương hiệu</h3>
+          <p>Mỗi theme có cặp font tiêu đề và nội dung riêng, đều hỗ trợ đầy đủ tiếng Việt.</p>
+        </article>
+        <article class="card">
+          <span class="icon" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></span>
+          <h3>Sáng tối theo ý bạn</h3>
+          <p>Trang nhớ lựa chọn của bạn, và lần đầu ghé thăm sẽ theo chế độ của thiết bị.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section kit" id="brandkit">
+    <div class="container">
+      <h2>Bộ nhận diện đang áp dụng</h2>
+      <p class="lead">Phần này đọc trực tiếp các biến CSS hiện tại, nên đổi theme hoặc chế độ là số liệu đổi theo.</p>
+      <div class="kit-grid">
+        <div class="panel">
+          <h3>Màu sắc</h3>
+          <div class="swatches" id="swatches"></div>
+          <h3 class="spaced">Font chữ</h3>
+          <p class="font-line"><span>Tiêu đề</span><strong class="sample-heading" id="fontHeading"></strong></p>
+          <p class="font-line"><span>Nội dung</span><strong id="fontBody"></strong></p>
+        </div>
+        <div class="panel">
+          <h3>Độ tương phản (WCAG)</h3>
+          <p class="hint">Từ 4.5:1 là đạt mức AA cho chữ thường, từ 7:1 là mức AAA.</p>
+          <ul class="contrast-list" id="contrastList"></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section cta" id="contact">
+    <div class="container cta-inner">
+      <h2>Sẵn sàng cho diện mạo tiếp theo?</h2>
+      <p>Cho chúng tôi biết thương hiệu của bạn, chúng tôi sẽ lo phần còn lại.</p>
+      <a href="mailto:hello@example.com" class="btn btn-on-primary">hello@example.com</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>© 2026 Aura Studio. Nội dung trên trang là dữ liệu mẫu phục vụ bài tập.</p>
+  </div>
+</footer>
+
+<!-- Theme Toolbar -->
+<div class="theme-toolbar" role="toolbar" aria-label="Thanh công cụ giao diện">
+  <button type="button" class="mode-switch" id="modeSwitch" role="switch" aria-checked="false" aria-label="Chế độ tối">
+    <span class="switch-track"><span class="switch-thumb"></span></span>
+    <span class="switch-text" id="modeText">Sáng</span>
+  </button>
+  <span class="tb-divider" aria-hidden="true"></span>
+  <div class="theme-options" role="group" aria-label="Chọn theme thương hiệu">
+    <button type="button" class="theme-btn" data-theme-btn="blue" aria-pressed="true" aria-label="Theme Modern Blue" title="Modern Blue"><span class="dot dot-blue"></span><span class="theme-name">Blue</span></button>
+    <button type="button" class="theme-btn" data-theme-btn="green" aria-pressed="false" aria-label="Theme Organic Green" title="Organic Green"><span class="dot dot-green"></span><span class="theme-name">Green</span></button>
+    <button type="button" class="theme-btn" data-theme-btn="pink" aria-pressed="false" aria-label="Theme Cyberpunk Pink" title="Cyberpunk Pink"><span class="dot dot-pink"></span><span class="theme-name">Pink</span></button>
+    <label class="theme-btn color-btn" title="Chọn màu của bạn">
+      <input type="color" id="customColor" value="#7c3aed" aria-label="Chọn màu chủ đạo tùy chỉnh">
+      <span class="theme-name">Tự chọn</span>
+    </label>
+  </div>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
