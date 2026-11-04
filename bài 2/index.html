@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Weather &amp; Travel Planner</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-weather="sunny">
+  <div class="page">
+    <header class="topbar glass">
+      <h1>Weather &amp; Travel Planner</h1>
+      <p id="todayText"></p>
+    </header>
+
+    <main class="layout">
+
+      <!-- ===== Vùng trái: Thời tiết ===== -->
+      <section class="panel glass" aria-labelledby="weatherTitle">
+        <h2 id="weatherTitle">Thời tiết</h2>
+
+        <label class="field" for="citySelect">Chọn thành phố</label>
+        <select id="citySelect"></select>
+
+        <div class="weather-main">
+          <div class="weather-icon" id="weatherIcon" aria-hidden="true">☀️</div>
+          <div>
+            <div class="weather-temp" id="weatherTemp">--°C</div>
+            <div class="weather-cond" id="weatherCond">--</div>
+          </div>
+        </div>
+
+        <dl class="weather-stats">
+          <div><dt>Thành phố</dt><dd id="weatherCity">--</dd></div>
+          <div><dt>Độ ẩm</dt><dd id="weatherHumidity">--%</dd></div>
+          <div><dt>Gió</dt><dd id="weatherWind">-- km/h</dd></div>
+        </dl>
+
+        <div class="block">
+          <h3>Gợi ý cho chuyến đi</h3>
+          <ul class="tips" id="tipsList"></ul>
+        </div>
+
+        <div class="block">
+          <h3>Đếm ngược đến ngày khởi hành</h3>
+          <label class="field" for="departureInput">Ngày khởi hành</label>
+          <input type="date" id="departureInput">
+          <div class="countdown" id="countdown" aria-live="off">
+            <div><b id="cdDays">--</b><span>Ngày</span></div><i>:</i>
+            <div><b id="cdHours">--</b><span>Giờ</span></div><i>:</i>
+            <div><b id="cdMinutes">--</b><span>Phút</span></div>
+          </div>
+          <p class="hint" id="cdMessage"></p>
+        </div>
+      </section>
+
+      <!-- ===== Vùng phải: Lịch trình ===== -->
+      <section class="panel glass" aria-labelledby="tripTitle">
+        <div class="panel-head">
+          <h2 id="tripTitle">Lịch trình</h2>
+          <button type="button" class="btn btn-ghost" id="exportBtn">Xuất file .txt</button>
+        </div>
+
+        <form class="trip-form" id="tripForm" novalidate>
+          <input type="text" id="placeInput" placeholder="Tên địa điểm" aria-label="Tên địa điểm" autocomplete="off">
+          <input type="datetime-local" id="timeInput" aria-label="Thời gian ghé thăm">
+          <button type="submit" class="btn">Thêm</button>
+        </form>
+        <p class="form-error" id="formError" role="alert"></p>
+
+        <div class="toolbar">
+          <input type="search" id="searchInput" placeholder="Tìm theo tên..." aria-label="Tìm kiếm địa điểm">
+          <select id="filterSelect" aria-label="Lọc">
+            <option value="all">Tất cả</option>
+            <option value="pending">Chưa đến</option>
+            <option value="visited">Đã đến</option>
+          </select>
+          <select id="sortSelect" aria-label="Sắp xếp">
+            <option value="added">Thứ tự thêm</option>
+            <option value="az">Tên A → Z</option>
+            <option value="za">Tên Z → A</option>
+            <option value="time">Thời gian ghé thăm</option>
+          </select>
+          <select id="pageSizeSelect" aria-label="Số dòng mỗi trang">
+            <option value="10">10 / trang</option>
+            <option value="20">20 / trang</option>
+            <option value="50">50 / trang</option>
+            <option value="all">Tất cả</option>
+          </select>
+        </div>
+
+        <ul class="trip-list" id="tripList"></ul>
+
+        <nav class="pagination" id="pagination" aria-label="Phân trang"></nav>
+        <p class="hint" id="listInfo"></p>
+      </section>
+    </main>
+
+    <footer class="footer">Dữ liệu thời tiết là dữ liệu mẫu · Lịch trình được lưu trên trình duyệt của bạn</footer>
+  </div>
+  <script src="js/script.js"></script>
+</body>
+</html>
