@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Đăng ký Vibe Code Workshop</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="page">
+
+    <!-- Thông tin sự kiện + đếm ngược chỗ ngồi -->
+    <section class="info" aria-labelledby="eventTitle">
+      <p class="demo-badge" id="demoBadge" hidden>Chế độ demo: chưa kết nối Google Sheets</p>
+      <h1 id="eventTitle">Vibe Code Workshop</h1>
+      <p class="lead">Một buổi thực hành xây web cùng AI: từ ý tưởng đến trang chạy được trong vài giờ.</p>
+
+      <ul class="facts">
+        <li><b>Thời gian</b><span>Thứ Bảy, 09:00 – 12:00</span></li>
+        <li><b>Hình thức</b><span>Trực tiếp, mang theo laptop</span></li>
+        <li><b>Chi phí</b><span>Miễn phí</span></li>
+      </ul>
+
+      <div class="seats" id="seats">
+        <div class="seats-text">
+          <strong id="seatsLeft">--</strong>
+          <span id="seatsDetail">Đang kiểm tra số chỗ...</span>
+        </div>
+        <div class="meter" role="progressbar" aria-label="Số chỗ đã đăng ký" aria-valuemin="0" aria-valuemax="50" aria-valuenow="0" id="meter">
+          <div class="meter-fill" id="meterFill"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Form đăng ký -->
+    <main class="card">
+      <h2>Đăng ký tham gia</h2>
+
+      <form id="regForm" novalidate>
+        <div class="field">
+          <label for="fullName">Họ và tên</label>
+          <input type="text" id="fullName" name="fullName" autocomplete="name" maxlength="80" placeholder="Nguyễn Văn Bảo" aria-describedby="fullNameError" required>
+          <p class="error" id="fullNameError"></p>
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" autocomplete="email" inputmode="email" maxlength="100" placeholder="ban@example.com" aria-describedby="emailError" required>
+          <p class="error" id="emailError"></p>
+        </div>
+
+        <div class="field">
+          <label for="phone">Số điện thoại</label>
+          <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" maxlength="15" placeholder="0901234567" aria-describedby="phoneError" required>
+          <p class="error" id="phoneError"></p>
+        </div>
+
+        <div class="field">
+          <label for="organization">Trường / Đơn vị</label>
+          <input type="text" id="organization" name="organization" autocomplete="organization" maxlength="100" placeholder="Tên trường hoặc công ty" aria-describedby="organizationError" required>
+          <p class="error" id="organizationError"></p>
+        </div>
+
+        <div class="field">
+          <label for="note">Ghi chú <span class="optional">(không bắt buộc)</span></label>
+          <textarea id="note" name="note" rows="3" maxlength="300" placeholder="Bạn muốn học điều gì trong buổi này?" aria-describedby="noteError"></textarea>
+          <p class="error" id="noteError"></p>
+        </div>
+
+        <p class="status" id="formStatus" role="alert"></p>
+
+        <button type="submit" class="submit" id="submitBtn">
+          <span class="spinner" aria-hidden="true"></span>
+          <span id="submitLabel">Đăng ký ngay</span>
+        </button>
+      </form>
+
+      <p class="closed-msg" id="closedMsg" hidden>Hết chỗ. Sự kiện đã đủ 50 người đăng ký, form đã đóng.</p>
+    </main>
+  </div>
+
+  <!-- Modal thành công + QR -->
+  <dialog id="successModal" aria-labelledby="modalTitle">
+    <div class="modal-body">
+      <div class="tick" aria-hidden="true">✓</div>
+      <h2 id="modalTitle">Đăng ký thành công!</h2>
+      <p id="modalText"></p>
+      <img id="qrImage" alt="Mã QR check-in" width="200" height="200">
+      <p class="qr-note">Mang mã QR này đến sự kiện để check-in.</p>
+      <button type="button" class="submit" id="closeModalBtn">Đóng</button>
+    </div>
+  </dialog>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
