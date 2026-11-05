@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Game Hub</title>
+<meta name="description" content="Game Hub: thu thập thú cưng, chinh phục bảng xếp hạng và dạo qua thung lũng hoa về đêm.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Antonio:wght@400&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=8">
+<link rel="stylesheet" href="css/valley-theme.css?v=8">
+</head>
+<body>
+<script>
+addEventListener('error', function (e) {
+  var t = e.target, msg = t && (t.src || t.href) ? 'Không tải được: ' + (t.src || t.href) : 'Lỗi: ' + e.message + ' (' + String(e.filename || '').split('/').pop() + ':' + e.lineno + ')';
+  var d = document.getElementById('err') || document.body.appendChild(Object.assign(document.createElement('div'), { id: 'err' }));
+  d.style.cssText = 'position:fixed;left:8px;bottom:8px;z-index:999;max-width:92vw;background:#400;color:#fdd;padding:8px 12px;border-radius:8px;font:12px monospace';
+  d.textContent = msg;
+}, true);
+</script>
+<div id="valley" aria-hidden="true"><div class="js-canvas-container"></div></div>
+<div class="vig"></div>
+
+<div class="ui" id="ui">
+  <header class="hhead">
+    <a class="logo" href="#" aria-label="Game Hub">Game Hub</a>
+    <nav aria-label="Chính"><a href="#" data-launch="hub">Trò chơi</a><a href="#" data-launch="rank">Xếp hạng</a><a href="#" data-launch="quest">Nhiệm vụ</a><a class="cta" href="#" data-launch="hub">Chơi ngay</a></nav>
+  </header>
+  <section class="hero">
+    <h1>Chơi là nở hoa.</h1>
+    <p class="cap">Thu thập thú cưng, chinh phục bảng xếp hạng.<br>Dạo qua thung lũng hoa về đêm.</p>
+    <a class="go" href="#" id="heroGo" aria-label="Vào Game Hub"><svg viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a>
+  </section>
+  <div class="corner"><span>Cuộn để dạo chơi</span><i></i>
+    <button class="sound" id="sound" aria-pressed="false" aria-label="Âm thanh nền"><svg viewBox="0 0 24 24"><path d="M4 9.5v5h3.5L12 18V6L7.5 9.5Z"/><path class="w" d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/><path class="x" d="m16 10 4 4m0-4-4 4"/></svg></button>
+  </div>
+</div>
+
+<section id="auth" class="glass hidden">
+  <h1>🎮 Game Hub</h1>
+  <p>Tạo tài khoản để vào chơi nhé!</p>
+  <input id="u" placeholder="Tên đăng nhập (a-z, 0-9, _)" autocomplete="username">
+  <input id="p" type="password" placeholder="Mật khẩu (từ 6 ký tự)" autocomplete="current-password">
+  <p id="authMsg" role="alert"></p>
+  <button class="btn" id="login">Đăng nhập</button>
+  <button class="btn alt" id="signup">Đăng ký</button>
+</section>
+
+<div id="app" class="hidden">
+  <header class="glass">
+    <strong id="home" title="Về trang chủ" style="cursor:pointer">🎮 Game Hub</strong>
+    <nav role="tablist">
+      <button class="tab" data-v="hub" aria-selected="true">Trò chơi</button>
+      <button class="tab" data-v="rank" aria-selected="false">Xếp hạng</button>
+      <button class="tab" data-v="quest" aria-selected="false">Nhiệm vụ</button>
+      <button class="tab" data-v="pets" aria-selected="false">Thú cưng</button>
+    </nav>
+    <span><span class="pill">🪙 <b id="coins">0</b></span> <span id="me"></span> <button class="btn alt" id="logout">Thoát</button></span>
+  </header>
+  <main id="view"></main>
+</div>
+
+<div id="modal" class="hidden"><div class="box glass" id="box"></div></div>
+<div class="boot" id="boot" title="Chạm để bỏ qua"><span id="bootpct">Đang đánh thức thung lũng… 0%</span><div class="bt-bar"><i id="bootbar"></i></div><small>Chạm để bỏ qua</small></div>
+<div class="loader" id="loader"><span></span></div>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.154.0/build/three.min.js"></script>
+<script src="js/audio.js?v=8"></script>
+<script src="js/valley.js?v=8"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="js/config.js?v=8"></script>
+<script src="js/games.js?v=8"></script>
+<script src="js/app.js?v=8"></script>
+</body>
+</html>
